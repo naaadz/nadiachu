@@ -1,11 +1,14 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
     app: {
-        pageTransition: { name: 'page' }
+        pageTransition: { name: 'page', appear: true },
+        // pageTransition: false,
+        // layoutTransition: false
     },
     css: [
 		'@/assets/css/style.css',
 	],
+    ssr:false,
     modules: [
 		'@nuxtjs/tailwindcss'
 	],
