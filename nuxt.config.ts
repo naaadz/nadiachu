@@ -1,12 +1,12 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
     app: {
-        pageTransition: { name: 'page', appear: true },
-        // pageTransition: false,
-        // layoutTransition: false
+        //pageTransition: { name: 'page', appear: true },
+        pageTransition: false,
+        layoutTransition: false
     },
     css: [
-		'@/assets/css/style.css',
+		'@/assets/css/style.css', '@/assets/scss/style.scss'
 	],
     ssr:false,
     modules: [

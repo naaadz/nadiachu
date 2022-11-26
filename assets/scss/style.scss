@@ -1,0 +1,270 @@
+
+
+  
+  .style-logo {
+    width: 80%;
+    margin: auto;
+  }
+  
+  #that {
+    polygon, path {
+       fill: #FFFEEB;
+    }
+  }
+  
+  
+  //each path and line color
+  #style-group > g > g > * {
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke: #FDD8EC;
+      //animation: write 1s linear forwards;
+      //animation-name: write;
+    //   animation-duration: 1s;
+    //   animation-fill-mode: forwards;
+  }
+  
+  //each clip
+  #s-1 > g { 
+    clip-path: url(#clippath);
+    // line {
+    //   stroke-dasharray: 40;
+    //   stroke-dashoffset: 40;
+    //   //animation: write 1s linear forwards;
+    // }
+  }
+  
+  #s-2 > g { 
+    clip-path: url(#clippath-1) ;
+    //   path {
+    //     stroke-dasharray: 150;
+    //     stroke-dashoffset: 150;
+    //     //animation: write 1s 1s linear forwards;
+    //   }
+    
+  } 
+  
+  #s-3 > g { 
+    clip-path: url(#clippath-2) ;
+    
+    // path {
+    //     stroke-dasharray: 100;
+    //     stroke-dashoffset: 100;
+    //     //animation: write 1s 2s linear forwards;
+    //   }
+  }  
+  
+  #t > g { 
+    clip-path: url(#clippath-3); 
+    
+    // path {
+    //     stroke-dasharray: 130;
+    //     stroke-dashoffset: 130;
+    //     //animation: write 1s 3s linear forwards;
+    //   }
+  }  
+  
+  #t-2 > g { 
+    clip-path: url(#clippath-8);
+    
+    //   line {
+    //     stroke-dasharray: 80;
+    //     stroke-dashoffset: 80;
+    //     //animation: write 1s 4s linear forwards;
+    //   }
+  } 
+  
+  #y > g { 
+    clip-path: url(#clippath-4);
+    
+    // path {
+    //     stroke-dasharray: 400;
+    //     stroke-dashoffset: 400;
+    //     //animation: write 2s 5s linear forwards;
+    //   }
+    
+  } 
+  
+  #y-2 > g { 
+    clip-path: url(#clippath-5);
+    
+    //   path {
+    //     stroke-dasharray: 30;
+    //     stroke-dashoffset: 30;
+    //     //animation: write .5s 7s linear forwards;
+    //   }
+  
+  } 
+  
+  #l > g { 
+    clip-path: url(#clippath-6);
+    
+    // path {
+    //     stroke-dasharray: 350;
+    //     stroke-dashoffset: 350;
+    //     //animation: write 2s 8s linear forwards;
+    //   }
+  } 
+  
+  #e > g { 
+    clip-path: url(#clippath-7);
+    
+    // path {
+    //   stroke-dasharray: 200;
+    //   stroke-dashoffset: 200;
+    //   //animation: write 1s 9.5s linear forwards;
+    // }
+  
+  } 
+  
+  //path and line stroke weights
+  #t-2, #l, #y, #s-1, #t-2 {
+    path, line { stroke-width: 9px }
+  }
+  
+  #y-2, #e {
+    path { stroke-width: 8px }
+  }
+  
+  #s-2 {
+    path { stroke-width: 12px }
+  }
+  
+  #t {
+    path { stroke-width: 10px }
+  }
+  
+  #s-3 {
+    path { stroke-width: 7px }
+  }
+  
+  #style-group {
+    path, line {
+      fill: none;
+    }
+  }
+  
+  #compiles-bg, #style-bg {
+    fill: #FFFEEB;
+    opacity: .1;
+    display: none;
+  }
+  
+  #dash {
+    opacity: 0;
+    animation: blink 2s 4s infinite;
+    fill: #FFFEEB;
+  }
+  
+  #compiles > * {
+    opacity: 0;
+    //animation: fade-in-out .5s linear forwards;
+    fill: #FFFEEB;
+  }
+  
+  @keyframes write {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+//   @keyframes fade-in-out {
+//     0% {
+//       opacity: 0;
+//     }
+    
+//     70% {
+//       opacity: 1;
+//     }
+    
+//     100% {
+//       opacity: .7
+//     }
+//   }
+  
+//   @keyframes blink {
+//     0%, 20% {
+//       opacity: 0
+//     }
+    
+//     51%, 100% {
+//       opacity: 1
+//     }
+//   }
+
+  
+//   $compiles: c, o, m, p, i, l, e, s;
+//   $i: 0;
+//   $parent-delay: 3;
+  
+//   @each $char in $compiles {
+//     ##{$char} {
+//       animation-delay: #{$parent-delay + calc($i / 5)}s;
+//     }
+//     $i: $i + 1;
+//   }
+  
+  //////
+  //the underscore should follow the letter thats active. and blink the whole time.
+
+
+
+  
+.the-branch {
+    position: absolute;
+    left: 50px;
+    top: 0;
+    bottom: 0;
+    transition: transform .5s ease-in;
+    width: 500px;
+}
+
+main {
+    @apply w-80;
+
+    &.main-enter-active,
+    &.main-leave-active {
+        transition: width .5s;
+        @apply w-80; 
+    
+    }
+    &.main-enter-from,
+    &.main-leave-to {
+        @apply w-0; 
+        
+    }
+}
+
+.branch {
+    // position: absolute;
+    @apply mb-10;
+
+    position: relative;
+    // top: 300px;
+     left: -80px;
+    border-bottom: 2px solid theme('colors.muted-blue'); 
+    width: 400px;
+
+    &:after {
+        content: url("/_nuxt/assets/images/flower-tip.svg");
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        right: -14px;
+        top: -2px;
+        bottom: 0;
+        margin: auto;
+    }
+
+    &.branch-enter-active,
+    &.branch-leave-active {
+        transition: width 2s;
+        width: 400px;
+    
+    }
+    &.branch-enter-from,
+    &.branch-leave-to {
+        width: 0;
+        
+    }
+}

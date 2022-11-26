@@ -1,15 +1,18 @@
 <template>
     <div class="flex h-screen relative">
         <div class="floral w-10 bg-red-100 flex-none"></div>
-        <Transition name="main" @enter="mainAfterEnter" @leave="mainAfterLeave">
-            <main class="flex flex-col justify-end bg-default-dark" v-show="data.mainOpen">
+        <!-- <Transition name="main" @enter="mainAfterEnter" @leave="mainAfterLeave"> -->
+            <main class="flex flex-col justify-between bg-default-dark" v-show="data.mainOpen">
+                <div class="logo">
+                    <StyleLogo />
+                </div>
                 <nav class="flex justify-center gap-4 m-10" v-show="data.mainOpen">
                     <NuxtLink to="/">Index</NuxtLink>
                     <NuxtLink to="/about">About</NuxtLink>
                     <NuxtLink to="/projects">Projects</NuxtLink>
                 </nav>
             </main>
-        </Transition>
+        <!-- </Transition> -->
 
         <div class="the-page-outer bg-dark-1 flex-1 relative flex flex-col justify-center overflow-auto">
             <!-- <Transition name="branch">
@@ -86,85 +89,3 @@ const data = reactive({
  
 
 </script>
-
-<style lang="scss">
-
-.the-branch {
-    position: absolute;
-    left: 50px;
-    top: 0;
-    bottom: 0;
-    transition: transform .5s ease-in;
-    width: 500px;
-}
-
-// .the-page {
-//     position: absolute;
-// }
-
-.page-enter-active,
-.page-leave-active {
-    opacity: 1;
-    transition: all .5s;
-    transform: translateY(0)
-}
-
-.page-enter-from,
-.page-leave-to {
-    opacity: 0;
-    transform: translateY(10px)
-}
-
-main {
-    @apply w-80;
-
-    &.main-enter-active,
-    &.main-leave-active {
-        transition: width .5s;
-        @apply w-80; 
-    
-    }
-    &.main-enter-from,
-    &.main-leave-to {
-        @apply w-0; 
-        
-    }
-}
-
-.branch {
-    // position: absolute;
-    @apply mb-10;
-
-    position: relative;
-    // top: 300px;
-     left: -80px;
-    border-bottom: 2px solid theme('colors.muted-blue'); 
-    width: 400px;
-
-    &:after {
-        content: url("/_nuxt/assets/images/flower-tip.svg");
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        right: -14px;
-        top: -2px;
-        bottom: 0;
-        margin: auto;
-    }
-
-    &.branch-enter-active,
-    &.branch-leave-active {
-        transition: width 2s;
-        width: 400px;
-    
-    }
-    &.branch-enter-from,
-    &.branch-leave-to {
-        width: 0;
-        
-    }
-}
-
-
-
-</style>
