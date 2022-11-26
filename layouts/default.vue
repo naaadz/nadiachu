@@ -1,10 +1,10 @@
 <template>
     <div class="flex h-screen relative">
         <div class="floral w-10 bg-red-100 flex-none"></div>
-        <!-- <Transition name="main" @enter="mainAfterEnter" @leave="mainAfterLeave"> -->
+        <Transition name="main" @enter="mainAfterEnter" @leave="mainAfterLeave">
             <main class="flex flex-col justify-between bg-default-dark" v-show="data.mainOpen">
                 <div class="logo">
-                    <StyleLogo />
+                    <StyleLogo :reverse="data.logoReverse" />
                 </div>
                 <nav class="flex justify-center gap-4 m-10" v-show="data.mainOpen">
                     <NuxtLink to="/">Index</NuxtLink>
@@ -12,7 +12,7 @@
                     <NuxtLink to="/projects">Projects</NuxtLink>
                 </nav>
             </main>
-        <!-- </Transition> -->
+        </Transition>
 
         <div class="the-page-outer bg-dark-1 flex-1 relative flex flex-col justify-center overflow-auto">
             <!-- <Transition name="branch">
@@ -44,6 +44,7 @@ const data = reactive({
     mainOpen: false,
     branchOpen: false,
     branchPos: 50,
+    logoReverse: false
 })
 
 /* <div class="container mx-auto">
@@ -79,10 +80,13 @@ const data = reactive({
    watch(() => route.name, (theroute) => {
         if (theroute === 'index') {
             data.branchPos = 70
+            data.logoReverse = false
         } else if (theroute === 'about') {
             data.branchPos = 30
+            data.logoReverse = false
         } else if (theroute === 'projects') {
-            data.branchPos = 50
+            data.branchPos = 50,
+            data.logoReverse = true
         }
    })
 

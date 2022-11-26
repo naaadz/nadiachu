@@ -2,11 +2,15 @@
 
   
   .style-logo {
-    width: 80%;
-    margin: auto;
+    svg {
+        width: 80%;
+        margin: auto; 
+    }
   }
   
   #that {
+    opacity: 0;
+
     polygon, path {
        fill: #FFFEEB;
     }
