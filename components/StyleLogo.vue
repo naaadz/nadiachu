@@ -1,5 +1,4 @@
 <template>
-<div class="style-logo flex-col text-center">
     <svg data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" width="327.74" height="257.17" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 327.74 257.17">
       <defs>
     
@@ -70,56 +69,56 @@
       <g id="style-group">
         <g id="s-1">
           <g class="cls-15">
-            <line data-dasharray="40" id="s-1-path" class="cls-11" x1="66.02" y1="93.15" x2="84.36" y2="65.88"/>
+            <line id="s-1-path" class="cls-11" x1="66.02" y1="93.15" x2="84.36" y2="65.88"/>
           </g>
         </g>
         <g id="s-2">
           <g class="cls-13">
-            <path data-dasharray="150" id="s-2-path" class="cls-9" d="M100.21,62.75s-5-3-14,5c0,0-1.33,9.04,4.83,26.52,0,0,8.17,16.48-12.83,17.48,0,0-22-4-15-20"/>
+            <path id="s-2-path" class="cls-9" d="M100.21,62.75s-5-3-14,5c0,0-1.33,9.04,4.83,26.52,0,0,8.17,16.48-12.83,17.48,0,0-22-4-15-20"/>
           </g>
         </g>
         <g id="s-3">
           <g class="cls-2">
-            <path data-dasharray="100" id="s-3-path" class="cls-11" d="M63.71,92.25s3.5,10.5,22.5,10.5c0,0,17,5.16,27.5-11.5"/>
+            <path id="s-3-path" class="cls-11" d="M63.71,92.25s3.5,10.5,22.5,10.5c0,0,17,5.16,27.5-11.5"/>
           </g>
         </g>
         <g id="t">
           <g class="cls-16">
-            <path data-dasharray="130" id="t-path" class="cls-10" d="M144.21,41.75s-29.62,38.67-28.81,63.83c0,0,12.26,19.5,36.53-20.67"/>
+            <path id="t-path" class="cls-10" d="M144.21,41.75s-29.62,38.67-28.81,63.83c0,0,12.26,19.5,36.53-20.67"/>
           </g>
         </g>
         <g id="t-2">
           <g class="cls-17">
-            <line data-dasharray="80" id="t2-path" class="cls-6" x1="110.71" y1="62.25" x2="149.71" y2="62.25"/>
+            <line id="t2-path" class="cls-6" x1="110.71" y1="62.25" x2="149.71" y2="62.25"/>
           </g>
         </g>
         <g id="y">
           <g class="cls-14">
-            <path data-dasharray="400" id="y-path" class="cls-6" d="M155.21,79.75s-16,20.65-5,30.33c0,0,21-22.02,27.5-51.83,0,0,5,7-7,61,0,0-12,62-50,64,0,0-47-4,5-49,0,0,17.09-16.56,42-17"/>
+            <path id="y-path" class="cls-6" d="M155.21,79.75s-16,20.65-5,30.33c0,0,21-22.02,27.5-51.83,0,0,5,7-7,61,0,0-12,62-50,64,0,0-47-4,5-49,0,0,17.09-16.56,42-17"/>
           </g>
         </g>
         <g id="y-2">
           <g class="cls-18">
-            <path data-dasharray="30" id="y-2-path" class="cls-8" d="M162.85,117.06s13.71-4.77,21.53,2.96"/>
+            <path id="y-2-path" class="cls-8" d="M162.85,117.06s13.71-4.77,21.53,2.96"/>
           </g>
         </g>
         <g id="l">
           <g class="cls-5">
-            <path data-dasharray="350" id="l-path" class="cls-6" d="M202.71,91.25S260.32,25.93,246.71,14.25c0,0-18-16-52,71,0,0-5,36,17,27,0,0,18-15,23-25"/>
+            <path id="l-path" class="cls-6" d="M202.71,91.25S260.32,25.93,246.71,14.25c0,0-18-16-52,71,0,0-5,36,17,27,0,0,18-15,23-25"/>
           </g>
         </g>
         <g id="e">
           <g class="cls-12">
-            <path data-dasharray="200" id="e-path" class="cls-8" d="M239.21,91.75c2-3,7.16-7.39,10.26-11.79,2.43-3.45,3.8-7.82,2.92-11.94-.09-.41-5.14,1.33-5.58,1.53-1.67,.74-3.26,1.72-4.7,2.84-5.86,4.55-8.31,11.3-9.9,18.37-.72,3.19-1.76,6.82-1.02,10.01,.59,2.58,1.99,4.98,4.01,6.69,2.02,1.71,4.66,2.7,7.3,2.62,2.87-.08,5.57-1.35,7.99-2.9,3.82-2.44,7.13-5.59,10.11-8.99,1.52-1.74,2.97-3.54,4.37-5.37s2.91-3.49,3.74-5.56"/>
+            <path id="e-path" class="cls-8" d="M239.21,91.75c2-3,7.16-7.39,10.26-11.79,2.43-3.45,3.8-7.82,2.92-11.94-.09-.41-5.14,1.33-5.58,1.53-1.67,.74-3.26,1.72-4.7,2.84-5.86,4.55-8.31,11.3-9.9,18.37-.72,3.19-1.76,6.82-1.02,10.01,.59,2.58,1.99,4.98,4.01,6.69,2.02,1.71,4.66,2.7,7.3,2.62,2.87-.08,5.57-1.35,7.99-2.9,3.82-2.44,7.13-5.59,10.11-8.99,1.52-1.74,2.97-3.54,4.37-5.37s2.91-3.49,3.74-5.56"/>
           </g>
         </g>
       </g>
     </svg>
-    <p>A portfolio site by Nadia Chu</p>
-</div>
 </template>
 
 <script setup>
+
+const emit = defineEmits(["animationFinished"])
 
 const props = defineProps({
     reverse: {
@@ -128,15 +127,49 @@ const props = defineProps({
     }
 })
 
-//configure these vars
-const letterSpeed = 1
+//human definitions
+let totalTime = 3000
+const stylePercent = 60
+const styleOverlapPercent = 20
+const compilesPercent = 35
+const thatPercent = 5
+let dashValues = [40, 100, 60, 125, 40, 360, 30, 260, 125]
 
-//a running total for all animations in this component
-let runningDelay = 0
+//machine definitions
+let delay, styleTime, dashTotal, styleDurations, styleDelays, thatDuration, thatDelay, compileDurations, compileDelays, theTimer 
+
+const calcVars = () => {
+    if (props.reverse) {
+        totalTime = 1000
+        dashValues = dashValues.reverse()
+    }
+
+    delay = 0
+    styleTime = totalTime * (stylePercent / 100)
+    dashTotal =  dashValues.reduce((acc, val) => acc + val, 0)
+    styleDurations = dashValues.map(val => val / dashTotal * styleTime )
+    thatDuration = totalTime * (thatPercent / 100)
+    compileDurations = (totalTime * (compilesPercent / 100) / 8)
+    styleDelays = []
+    compileDelays = []
+    thatDelay = 0
+
+    theTimer = setTimeout(() => {
+        emit("animationFinished", true)
+    }, totalTime)
+}
 
 const style = () => {
+    //make the style delays
+    styleDurations.forEach((dur, i) => {
+        styleDelays.push(delay) 
+        //don't overlap the small y piece
+        let overlap = i !== 5 ? dur * (styleOverlapPercent / 100) : 0
+        delay = (delay + dur) - overlap
+    })
+
     const options = {
-        duration: 0, iterations: 1, delay: runningDelay, fill: 'forwards'
+        duration: 0, iterations: 1, delay: delay, fill: 'forwards'
     }
 
     let letters = document.querySelectorAll('#style-group > g > g > *')
@@ -146,47 +179,49 @@ const style = () => {
     }
 
     letters.forEach((el,i) => {
-        const dashValue = Number(el.getAttribute('data-dasharray'))
-        const duration = dashValue * letterSpeed
-
         //remove fill initially
         if (!props.reverse) {
-            el.style.strokeDasharray = dashValue
-            el.style.strokeDashoffset = dashValue
+            el.style.strokeDasharray = dashValues[i]
+            el.style.strokeDashoffset = dashValues[i]
         }
 
         //add dynamic options
-        options.duration = duration
-        options.delay = runningDelay
+        options.duration = styleDurations[i]
+        options.delay = styleDelays[i]
 
         //do the animation
         el.animate(
-            { strokeDashoffset: props.reverse ? dashValue : 0 },
+            { strokeDashoffset: props.reverse ? dashValues[i] : 0 },
             options
         )
-
-        //stagger the delay, and create a slight delay overlap so that the next 
-        //letter starts a little bit before the last one is finished
-        runningDelay = (runningDelay + duration) - (letterSpeed * 20)
     })
 }
 
 const that = () => {
+    //make that delay
+    thatDelay = delay
+    delay = delay + thatDuration
+
     const word = document.querySelector('#that')
-    let duration = 500
 
     word.animate( 
         [
             { opacity: props.reverse ? 1 : 0 },
             { opacity: props.reverse ? 0 : 1 }
         ],
-        { duration: duration, iterations: 1, delay: runningDelay - 500, fill: 'forwards' }
+        { duration: thatDuration, iterations: 1, delay: thatDelay, fill: 'forwards' }
     )
-
-    runningDelay = (runningDelay + duration) - 500
 }
 
 const compiles = () => {
+    //make the compiles delays
+    for (let i = 0; i < 8; i++) {
+        compileDelays[i] = delay
+        delay = (delay + compileDurations)
+    }
+
+    console.log('compileDelays', compileDelays)
+
     let letters = document.querySelectorAll('#compiles > *')
 
     if (props.reverse) {
@@ -194,7 +229,6 @@ const compiles = () => {
     }
 
     const dash = document.querySelector('#dash')
-    const duration = letterSpeed * 100
 
     letters.forEach((el,i) => {
         el.animate( 
@@ -203,24 +237,21 @@ const compiles = () => {
                 { opacity: 1 },
                 { opacity: props.reverse ? 0 : .8 }
             ],
-            { duration: duration, iterations: 1, delay: runningDelay, fill: 'forwards' }
+            { duration: compileDurations, iterations: 1, delay: compileDelays[i], fill: 'forwards' }
         )
-
-        runningDelay = (runningDelay + duration)
     })
 
     dash.animate( 
         [
-            { opacity : 0, offset: 0 },
-            { opacity : 0, offset: .5 },
-            { opacity : 1 }
+            { opacity: props.reverse ? 0 : 1, offset: 0 },
+            { opacity: props.reverse ? 0 : 1, offset: .5 },
+            { opacity: props.reverse ? 1 : 0 }
         ],
-        { duration: 1500, iterations: props.reverse ? 0 : 'Infinity', delay: runningDelay, fill: 'forwards' }
+        { duration: 1500, iterations: props.reverse ? 0 : 'Infinity', delay: delay, fill: 'forwards' }
     )
 }
 
 const forward = () => {
-    //console.log('forward: runningDelay', runningDelay)
     style()
     that()
     compiles()
@@ -235,16 +266,13 @@ const backward = () => {
 }
 
 onMounted(() => {
-
-    if (props.reverse) {
-        backward()
-    } else {
-        forward()
-    }
+    calcVars()
+    forward()
 })
 
 watch(() => props.reverse, (reverse) => {
-    runningDelay = 0
+
+    calcVars()
 
     if (reverse) {
         backward()
