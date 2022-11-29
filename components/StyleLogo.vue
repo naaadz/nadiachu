@@ -220,8 +220,6 @@ const compiles = () => {
         delay = (delay + compileDurations)
     }
 
-    console.log('compileDelays', compileDelays)
-
     let letters = document.querySelectorAll('#compiles > *')
 
     if (props.reverse) {
