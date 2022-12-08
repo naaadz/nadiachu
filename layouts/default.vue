@@ -26,12 +26,18 @@
                 />
                 <p class="blurb" ref="blurb">A portfolio site by <nuxt-link>Nadia Chu</nuxt-link></p>
             </div>
+            
             <nav class="nav flex justify-center gap-4 m-10" ref="nav">
                 <NuxtLink to="/">Index</NuxtLink>
                 <NuxtLink to="/about">About</NuxtLink>
                 <NuxtLink to="/projects">Projects</NuxtLink>
             </nav>
         </div>
+        <div class="absolute right-0 top-0">
+            <button @click="play()">Play</button>
+            <button @click="reverse()">Reverse</button>
+        </div>
+        
     </div>
 </template>
 
@@ -45,133 +51,132 @@ const logo = ref(null)
 const blurb = ref(null)
 const nav = ref(null)
 
-const toggleWidthsTL = gsap.timeline({
-    onComplete:() => {
-        data.logoShow = true
-    }
-})
-const toggleElsTL = gsap.timeline({paused: true})
+let promiseResolve, promiseReject
 
-const masterTL = gsap.timeline().pause().add(toggleWidthsTL)
+let waitForChildAnimation = new Promise((resolve, reject) => {
+    console.log('wait')
+  promiseResolve = resolve
+  promiseReject = reject
+})
+
+// const toggleWidthsTL = gsap.timeline({
+//     onComplete:() => {
+//         data.logoShow = true
+//     }
+// })
+//const toggleElsTL = gsap.timeline({paused: true})
+
+const playTL = gsap.timeline().pause()
+const reverseTL = gsap.timeline().pause()
 
 //resolve promise and return timeline? will it work backwards?
 //https://codepen.io/osublake/pen/MWYpmgq/4c1ea85a70347ba60cee3d9e8e55905b?editors=1010
 
-const prepareTimelines = () => {
+// const prepareTimelines = () => {
 
-    masterTL.to(first.value, { width: '50px' })
-    masterTL.to(second.value, { width: '300px' })
-    masterTL.to(logo.value, { opacity: 1 })
-    masterTL.add(() => { 
+//     masterTL.to(first.value, { width: '50px' })
+//     masterTL.to(second.value, { width: '300px' })
+//     masterTL.to(logo.value, { opacity: 1 })
+//     masterTL.add(() => { 
+//         let reversing = masterTL.reversed()
+
+//         if (reversing) {
+//             data.logoReverse = true
+           
+//         } else {
+//             data.logoReverse = false
+//             data.logoShow = true
+//         }
+//     })
+//     .then((x) => {
+//         console.log('x', x)
+//         return waitForChildAnimation
+//     }).then((y) => {
+//          console.log('y',y)
+//         masterTL.to(blurb.value, { opacity: 1 })
+//         masterTL.to(nav.value, { opacity: 1 })
+//     } )
+// }
+
+
+const forward = () => {
+    playTL.to(first.value, { width: '50px' })
+    playTL.to(second.value, { width: '300px' })
+    playTL.to(logo.value, { opacity: 1 })
+    playTL.add(() => { 
+        data.logoReverse = false
         data.logoShow = true
     })
-    masterTL.to(blurb.value, { opacity: 1 })
-    masterTL.to(nav.value, { opacity: 1 })
-
+    .then((x) => {
+        console.log('x', x)
+        return waitForChildAnimation
+    }).then((y) => {
+         console.log('y',y)
+         playTL.to(blurb.value, { opacity: 1 })
+         playTL.to(nav.value, { opacity: 1 })
+    } )
 }
+
+const backward = () => {
+
+    reverseTL.to(nav.value, { opacity: 0 })
+    reverseTL.to(nav.value, { opacity: 0 })
+    reverseTL.add(() => { 
+        data.logoReverse = true
+    })
+    .then((x) => {
+        console.log('x', x)
+        return waitForChildAnimation
+    })
+    .then((y) => {
+         console.log('y',y)
+         //data.logoShow = false
+         reverseTL.to(nav.value, { opacity: 0 })
+         reverseTL.to(blurb.value, { opacity: 0 })
+    } )
+}
+
+
 
 const route = useRoute()
 
 const data = reactive({
-    // firstShow: false,
-    // secondShow: false,
     logoShow: false,
     logoReverse: false,
-    // blurbShow: false,
-    // navShow: false,
-    // els: [
-    //     { id: 0, value: false },
-    //     { id: 1, value: false },
-    //     { id: 2, value: false },
-    //     { id: 3, value: false },
-    //     { id: 4, value: false },
-    // ],
-    // mainOpen: false,
-    // branchOpen: false,
-    // branchPos: 50,
 
 })
 
+const play = () => {
+    forward()
+    playTL.play()
+}
 
+const reverse = () => {
+    backward()
+    reverseTL.play()
+}
 
-
-//on initial load of site
-
-
-
-
-/* <div class="container mx-auto">
-        <NuxtLink to="/">Index</NuxtLink>
-        <NuxtLink to="/about">About</NuxtLink>
-        <NuxtLink to="/projects">Projects</NuxtLink>
-        <NuxtPage />
-    </div> */
-
-    // const firstAfterEnter = (el) => {
-    //     //data.branchOpen = true
-    //     //console.log('i fired')
-    //     //data.secondShow = true
-    // }
-
-    // const mainAfterLeave = (el) => {
-    //     //data.branchOpen = false
-    // }
     
     onMounted(() => {
 
-        setTimeout(() => {
-            prepareTimelines()
-            masterTL.play()
-        }, 500)
-
-
-
-
-
-        //console.log('mounted')
-        //data.firstShow = true
-        //data.secondShow = true
-
-        //console.log('route', route)
-        // const totalTime = 5000
-        // const totalEls = data.els.length
-        // let i = 0
-
-        
-
         // setTimeout(() => {
-        //     //console.log(data)
+        //     prepareTimelines()
+        //     masterTL.play()
+        // }, 500)
 
-        // for (const key of Object.keys(data)) {
-        //     console.log(key, data[key])
-        // }
-
-        // }, totalTime)
-
-        // const animate = () => {
-        //     if (i < totalEls) {
-        //         //console.log(data.els[i])
-        //         data.els[i].value = true
-        //         console.log(data.els[i])
-        //         i++
-        //     } else {
-        //         clearInterval(intervalId)
-        //     }
-        // }
-
-      //  const intervalId = setInterval(animate, totalTime / totalEls)
+        //prepareTimelines()
+        //masterTL.play()
         
     })
 
-    // watch(
-    //   () => route.name.value,
-    //    newId => {
-    //     console.log(newId)
-    //   }
-    // )
-
     const onLogoAnimated = (payload) => {
         console.log('parent: logo done animating', payload)
+        promiseResolve(payload)
+
+          // setTimeout(() => {
+        //     prepareTimelines()
+        //     masterTL.play()
+        // }, 500)
         //data.blurbShow = true
     }
 

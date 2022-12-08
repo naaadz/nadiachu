@@ -178,159 +178,23 @@ const prepareTimelines = () => {
         blinkingTL.to(dash, { duration: 1, opacity: 1, repeat: -1 });
 }
 
-
-
-
-
-//human definitions
-// let totalTime = 3000
-// const stylePercent = 60
-// const styleOverlapPercent = 20
-// const compilesPercent = 35
-// const thatPercent = 5
-// let dashValues = [40, 100, 60, 125, 40, 360, 30, 260, 125]
-
-// //machine definitions
-// let delay, styleTime, dashTotal, styleDurations, styleDelays, thatDuration, thatDelay, compileDurations, compileDelays, theTimer 
-
-// const calcVars = () => {
-//     if (props.reverse) {
-//         totalTime = 1000
-//         dashValues = dashValues.reverse()
-//     }
-
-//     delay = 0
-//     styleTime = totalTime * (stylePercent / 100)
-//     dashTotal =  dashValues.reduce((acc, val) => acc + val, 0)
-//     styleDurations = dashValues.map(val => val / dashTotal * styleTime )
-//     thatDuration = totalTime * (thatPercent / 100)
-//     compileDurations = (totalTime * (compilesPercent / 100) / 8)
-//     styleDelays = []
-//     compileDelays = []
-//     thatDelay = 0
-
-//     theTimer = setTimeout(() => {
-//         emit("animationFinished", true)
-//     }, totalTime)
-// }
-
-// const style = () => {
-//     //make the style delays
-//     styleDurations.forEach((dur, i) => {
-//         styleDelays.push(delay) 
-//         //don't overlap the small y piece
-//         let overlap = i !== 5 ? dur * (styleOverlapPercent / 100) : 0
-//         delay = (delay + dur) - overlap
-//     })
-
-//     const options = {
-//         duration: 0, iterations: 1, delay: delay, fill: 'forwards'
-//     }
-
-//     let letters = document.querySelectorAll('#style-group > g > g > *')
-
-//     if (props.reverse) {
-//         letters = [...letters].reverse()
-//     }
-
-//     letters.forEach((el,i) => {
-//         //remove fill initially
-//         if (!props.reverse) {
-//             el.style.strokeDasharray = dashValues[i]
-//             el.style.strokeDashoffset = dashValues[i]
-//         }
-
-//         //add dynamic options
-//         options.duration = styleDurations[i]
-//         options.delay = styleDelays[i]
-
-//         //do the animation
-//         el.animate(
-//             { strokeDashoffset: props.reverse ? dashValues[i] : 0 },
-//             options
-//         )
-//     })
-// }
-
-// const that = () => {
-//     //make that delay
-//     thatDelay = delay
-//     delay = delay + thatDuration
-
-//     const word = document.querySelector('#that')
-
-//     word.animate( 
-//         [
-//             { opacity: props.reverse ? 1 : 0 },
-//             { opacity: props.reverse ? 0 : 1 }
-//         ],
-//         { duration: thatDuration, iterations: 1, delay: thatDelay, fill: 'forwards' }
-//     )
-// }
-
-// const compiles = () => {
-//     //make the compiles delays
-//     for (let i = 0; i < 8; i++) {
-//         compileDelays[i] = delay
-//         delay = (delay + compileDurations)
-//     }
-
-//     let letters = document.querySelectorAll('#compiles > *')
-
-//     if (props.reverse) {
-//         letters = [...letters].reverse()
-//     }
-
-//     const dash = document.querySelector('#dash')
-
-//     letters.forEach((el,i) => {
-//         el.animate( 
-//             [
-//                 { opacity: props.reverse ? .8 : 0 },
-//                 { opacity: 1 },
-//                 { opacity: props.reverse ? 0 : .8 }
-//             ],
-//             { duration: compileDurations, iterations: 1, delay: compileDelays[i], fill: 'forwards' }
-//         )
-//     })
-
-//     dash.animate( 
-//         [
-//             { opacity: props.reverse ? 0 : 1, offset: 0 },
-//             { opacity: props.reverse ? 0 : 1, offset: .5 },
-//             { opacity: props.reverse ? 1 : 0 }
-//         ],
-//         { duration: 1500, iterations: props.reverse ? 0 : 'Infinity', delay: delay, fill: 'forwards' }
-//     )
-// }
-
-// const forward = () => {
-//     style()
-//     that()
-//     compiles()
-// }
-
-// const backward = () => {
-//     //console.log('backward: runningDelay', runningDelay)
-//     //i also want this to fade out but i can do that in the parent element
-//     compiles()
-//     that()
-//     style()
-// }
-
 onMounted(() => {
      prepareTimelines()
     masterTL.timeScale(0.8).play()
+    
+    //emit("animationFinished", 'nadia is cool')
+
+        // setTimeout(() => {
+        //     emit("animationFinished", masterTL)
+        // }, 6000)
 })
 
 watch(() => props.reverse, (reverse) => {
 
-   // calcVars()
-
     if (reverse) {
         console.log('reverse from component')
         blinkingTL.progress(0).pause()
-        masterTL.timeScale(4).reverse()
+        masterTL.timeScale(.5).reverse()
     } else {
         masterTL.timeScale(0.8).play()
     }
