@@ -120,7 +120,7 @@
 
 import gsap from 'gsap'
 
-const emit = defineEmits(["animationFinished"])
+const emit = defineEmits(['animationFinished', 'timeline'])
 
 const props = defineProps({
     reverse: {
@@ -139,14 +139,14 @@ const prepareTimelines = () => {
     const dash = document.querySelector('#dash')
     
     //define timelines
-    logoTL = gsap.timeline()
-    blinkingTL = gsap.timeline({paused: true})
-    masterTL = gsap.timeline({
-        onComplete:() => {
-            blinkingTL.restart()
-            emit("animationFinished", true)
-    }
-    }).pause().add(logoTL)
+    logoTL = gsap.timeline({paused: true})
+     //blinkingTL = gsap.timeline({paused: true})
+    // masterTL = gsap.timeline({
+    //     onComplete:() => {
+    //         blinkingTL.restart()
+    //         emit("animationFinished", true)
+    // }
+    // }).pause().add(logoTL)
 
     //dynamically fill up the dasharrays with predefined values
     styleChars.forEach((char, i) => {
@@ -175,29 +175,29 @@ const prepareTimelines = () => {
             stagger: 0.05
         })
 
-        blinkingTL.to(dash, { duration: 1, opacity: 1, repeat: -1 });
+        //blinkingTL.to(dash, { duration: 1, opacity: 1, repeat: -1 });
 }
 
 onMounted(() => {
      prepareTimelines()
-    masterTL.timeScale(0.8).play()
+    //masterTL.timeScale(0.8).play()
     
-    //emit("animationFinished", 'nadia is cool')
+    emit('timeline', logoTL)
 
         // setTimeout(() => {
         //     emit("animationFinished", masterTL)
         // }, 6000)
 })
 
-watch(() => props.reverse, (reverse) => {
+// watch(() => props.reverse, (reverse) => {
 
-    if (reverse) {
-        console.log('reverse from component')
-        blinkingTL.progress(0).pause()
-        masterTL.timeScale(.5).reverse()
-    } else {
-        masterTL.timeScale(0.8).play()
-    }
-})
+//     if (reverse) {
+//         console.log('reverse from component')
+//         blinkingTL.progress(0).pause()
+//         masterTL.timeScale(.5).reverse()
+//     } else {
+//         masterTL.timeScale(0.8).play()
+//     }
+// })
 
 </script>
