@@ -120,7 +120,7 @@
 
 import gsap from 'gsap'
 
-const emit = defineEmits(['animationFinished', 'timeline'])
+const emit = defineEmits(['timelines'])
 
 const props = defineProps({
     reverse: {
@@ -129,7 +129,7 @@ const props = defineProps({
     }
 })
 
-let masterTL, logoTL, blinkingTL
+let logoTL, blinkingTL
 
 const prepareTimelines = () => {
     const dashValues = [40, 100, 60, 125, 40, 360, 25, 260, 125]
@@ -140,13 +140,7 @@ const prepareTimelines = () => {
     
     //define timelines
     logoTL = gsap.timeline({paused: true})
-     //blinkingTL = gsap.timeline({paused: true})
-    // masterTL = gsap.timeline({
-    //     onComplete:() => {
-    //         blinkingTL.restart()
-    //         emit("animationFinished", true)
-    // }
-    // }).pause().add(logoTL)
+    blinkingTL = gsap.timeline({paused: true})
 
     //dynamically fill up the dasharrays with predefined values
     styleChars.forEach((char, i) => {
@@ -175,29 +169,12 @@ const prepareTimelines = () => {
             stagger: 0.05
         })
 
-        //blinkingTL.to(dash, { duration: 1, opacity: 1, repeat: -1 });
+        blinkingTL.to(dash, { duration: 1, opacity: 1, repeat: -1 });
 }
 
 onMounted(() => {
-     prepareTimelines()
-    //masterTL.timeScale(0.8).play()
-    
-    emit('timeline', logoTL)
-
-        // setTimeout(() => {
-        //     emit("animationFinished", masterTL)
-        // }, 6000)
+    prepareTimelines()
+    emit('timelines', [logoTL, blinkingTL])
 })
-
-// watch(() => props.reverse, (reverse) => {
-
-//     if (reverse) {
-//         console.log('reverse from component')
-//         blinkingTL.progress(0).pause()
-//         masterTL.timeScale(.5).reverse()
-//     } else {
-//         masterTL.timeScale(0.8).play()
-//     }
-// })
 
 </script>

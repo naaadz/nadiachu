@@ -12,11 +12,21 @@
 } */
 
 body {
-    @apply text-default-light;
+    @apply text-default-light bg-dark-1;
 }
 
 
 .floral {
-    background: url(/_nuxt/assets/images/flower-pattern.jpg) -161px -442px;
+    background-image: url(/_nuxt/assets/images/flower-pattern.jpg);
+    background-position: -161px -442px;
     background-size: 300px;
 }
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 1s;
+}
+
+.fade-enter-to, .fade-leave-to {
+    opacity: 0;
+}
+
