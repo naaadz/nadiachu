@@ -8,9 +8,9 @@
                 <div class="branch"></div>
                 <NuxtPage class="the-page text-default-light" />
             </div> -->
-                <p class="text-default-light fixed">
+                <!-- <p class="text-default-light fixed">
                     <a class="text-inherit" @click.prevent="" href="#">Toggle</a>
-                </p>
+                </p> -->
                 <div class="the-page p-10" ref="thepage">
                     <NuxtPage class="text-default-light"  />
                 </div>
@@ -26,9 +26,9 @@
                 </div>
                 
                 <nav class="flex justify-center gap-4 m-10" ref="standardnav">
-                    <NuxtLink to="/">Index</NuxtLink>
-                    <NuxtLink to="/about">About</NuxtLink>
-                    <NuxtLink to="/projects">Projects</NuxtLink>
+                    <a href="#" @click="goTo('index')">Index</a>
+                    <a href="#" @click="goTo('about')">About</a>
+                    <a href="#" @click="goTo('projects')">Projects</a>
                 </nav>
             </div>
             <div class="full" ref="fullnav">
@@ -37,15 +37,11 @@
                     <span>Nadia Chu</span>
                 </nav>
                 <nav class="nav flex justify-center gap-4">
-                    <NuxtLink to="/">Index</NuxtLink>
-                    <NuxtLink to="/about">About</NuxtLink>
-                    <NuxtLink to="/projects">Projects</NuxtLink>
+                    <a href="#" @click="goTo('index')">Index</a>
+                    <a href="#" @click="goTo('about')">About</a>
+                    <a href="#" @click="goTo('projects')">Projects</a>
                 </nav>
             </div>
-            <!-- <div class="absolute right-0 top-0">
-                <button @click="playStandard()">Play</button>
-                <button @click="reverseStandard()">Reverse</button>
-            </div> -->
             
         </div>
     </Body>
@@ -55,7 +51,6 @@
 <script setup>
 
 import gsap from 'gsap'
-//import { computed, watch } from 'vue'
 
 const first = ref(null)
 const second = ref(null)
@@ -67,22 +62,45 @@ const standardnav = ref(null)
 const fullnav = ref(null)
 
 const route = useRoute()
-
-//two pageStyles: standard & fullPage
+const router = useRouter()
 
 const data = reactive({
-    // logoShow: false,
-    // logoReverse: false,
-    pageChange: false,
-    layoutType: 'standard'
+    layoutType: 'standard',
+
 })
 
 
-let fullTL, logoTL, blinkingTL
+let fullTL, logoTL, blinkingTL, revealPageTL
 
-//define child timelines
-// let standardTLForward, standardTLBack, fullTL, logoTL, blinkingTL
-// standardTLForward = standardTLBack = fullTL = gsap.timeline({paused: true})
+
+const goTo = (to) => {
+
+    const from = route.name
+    console.log('goTo: route:', route.name)
+
+    if (from !== to) {
+        console.log('goTo: from != to')
+
+        //route changed, so remove the current page
+        const routeTL = gsap.timeline({paused: true})
+            .add(revealPageTL.reverse())
+
+        if (to === 'projects') {
+            routeTL.add(reverse().play())
+            routeTL.add(fullTL.play())
+        }
+
+        if (from === 'projects' ) {
+            routeTL.add(fullTL.reverse())
+            routeTL.add(forward().play())
+        }
+
+        const path = to === 'index' ? '/' : '/' + to
+        routeTL.add(() => router.push({ path: path }))
+        routeTL.play()
+    }
+
+}
 
 const childTimelines = (payload) => {
     //when children mount, receive their timelines
@@ -90,18 +108,21 @@ const childTimelines = (payload) => {
     blinkingTL = payload[1]
 }
 
-const setupFullTL = () => {
+const setupTLs = () => {
     fullTL = gsap.timeline({
-        //repeatRefresh: true,
-        paused: true, 
-        // onComplete: () => console.log('full complete'),
-        // onStart: () => console.log('full start'),
-        // onReverseComplete: () => console.log('reverse complete'),
+        paused: true
     })
         .to(first.value, { width: '50px', opacity: .2 })
         .to('.full nav:last-child > *', {opacity: 1, stagger: .2})
         .to('.full nav:first-child > *', {opacity: 1, stagger: .2})
-        .to(thepage.value, { opacity: 1})
+
+    revealPageTL = gsap.timeline({
+        paused: true, 
+        // onComplete: () => console.log('reveal complete'),
+        // onStart: () => console.log('reveal start'),
+        // onReverseComplete: () => console.log('reveal reverse complete'),
+    })
+        .to(thepage.value, { opacity: 1 })
 }
 
 const forward = () => {
@@ -112,17 +133,15 @@ const forward = () => {
         .addLabel('logo')
         .to(blurb.value, { opacity: 1 })
         .to(standardnav.value.children, {opacity: 1, stagger:.2})
-        .to(thepage.value, { opacity: 1})
-        .add(blinkingTL.play(), 'logo') //dont put anything after this cuz it will never complete
+        //.add(blinkingTL.play(), 'logo') //dont put anything after this cuz it will never complete
         
 }
 
 const reverse = () => {
     return gsap.timeline({ paused: true })
-        .to(thepage.value, { opacity: 0})
         .to(standardnav.value.children, {opacity: 0, stagger:.2})
         .to(blurb.value, { opacity: 0 })
-        .add(blinkingTL.restart().pause())
+        //.add(blinkingTL.restart().pause())
         .add(logoTL.timeScale(4).reverse())
         .to(second.value, { width: '0' })
         .to(first.value, { width: '0' })
@@ -130,18 +149,21 @@ const reverse = () => {
     
 onMounted(() => {
 
-    setupFullTL()
+    setupTLs()
+    console.log('mounted router:', router)
+    data.fromRoute = route.name
+    console.log('mounted:', data.fromRoute)
 
     if (['projects'].includes(route.name)) {
         data.layoutType = 'full'
         gsap.timeline()
             .add(fullTL.play())
-            //.to(thepage.value, { opacity: 1})
+            .add(revealPageTL.play())
     } else {
         data.layoutType = 'standard'
         gsap.timeline()
             .add(forward().play())
-            //.to(thepage.value.value, { opacity: 1})
+            .add(revealPageTL.play())
     }
 })
 
@@ -149,25 +171,11 @@ onMounted(() => {
 
 watch(() => route.name, (to, from) => {
 
-    console.log('theroute',to, from)
+    console.log('watch: route:', route.name)
 
-    //if the route has changed...
+    gsap.timeline()
+        .add(revealPageTL.play())
 
-    //if the route is now to: projects
-    if (to === 'projects') {
-        data.layoutType = 'full'
-        gsap.timeline()
-            .add(reverse().play())
-            .add(fullTL.play())
-    }
-
-    if (from === 'projects') {
-        data.layoutType = 'standard'
-        console.log('full reverse', fullTL)
-        gsap.timeline()
-            .add(fullTL.reverse())
-            .add(forward().play())
-    }
 })
 
 
