@@ -16,11 +16,7 @@ body {
 }
 
 
-.floral {
-    background-image: url(/_nuxt/assets/images/flower-pattern.jpg);
-    background-position: -161px -442px;
-    background-size: 300px;
-}
+
 
 .fade-enter-active, .fade-leave-active {
     transition: opacity 1s;
@@ -29,4 +25,8 @@ body {
 .fade-enter-to, .fade-leave-to {
     opacity: 0;
 }
+
+
+
+
 
