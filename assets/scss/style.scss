@@ -6,10 +6,8 @@
   }
   
   #that {
-    opacity: 0;
-
     polygon, path {
-       fill: #FFFEEB;
+       fill: theme('colors.default-light');
     }
   }
   
@@ -89,21 +87,17 @@
   }
   
   #compiles-bg, #style-bg {
-    fill: #FFFEEB;
+    fill: theme('colors.default-light');
     opacity: .1;
     display: none;
   }
   
   #dash {
-    opacity: 0;
-    //animation: blink 2s 4s infinite;
-    fill: #FFFEEB;
+    fill: theme('colors.default-light');
   }
   
   #compiles > * {
-    opacity: 0;
-    //animation: fade-in-out .5s linear forwards;
-    fill: #FFFEEB;
+    fill: theme('colors.default-light');
   }
   
 

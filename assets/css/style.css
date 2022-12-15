@@ -2,21 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .main-bg {
-    background: linear-gradient(90deg, theme('colors.primary-blue') 50%, theme('colors.default-light') 50%);
-    min-height: 100vh;
-}
-
-.bolts, .cfa {
-    flex: 1 0 0;
-} */
 
 body {
     @apply text-default-light bg-dark-1;
 }
-
-
-
 
 .fade-enter-active, .fade-leave-active {
     transition: opacity 1s;

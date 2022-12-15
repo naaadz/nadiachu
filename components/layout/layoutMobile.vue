@@ -57,7 +57,6 @@ const forward = () => {
         .to(first.value, { width: '20px' })
         .to(second.value, { flex: 1 })
         .add(logoTL.timeScale(1).play(), '>-50%')
-        .addLabel('logo')
         .to(blurb.value, { opacity: 1 })
         .to(standardnav.value.children, {opacity: 1, stagger:.2})
         
@@ -91,11 +90,8 @@ if (from !== to) {
 
 }
 
-const playReverse = () => {
-    reverse().play()
-}
-
 onMounted(() => {
+    console.log('mobile mounted')
 
     revealPageTL.to(thepage.value, { opacity: 1 })
 
@@ -106,11 +102,8 @@ onMounted(() => {
 
 watch(() => route.name, (to, from) => {
 
-//console.log('watch: route:', route.name)
-
     gsap.timeline()
         .add(revealPageTL.play())
-
     })
 
 </script>

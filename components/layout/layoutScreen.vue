@@ -33,7 +33,8 @@
                     <a href="#" @click="goTo('projects')">Projects</a>
                 </nav>
             </div>
-            
+            <button @click="blinkingTL.play()">play</button>
+            <button @click="blinkingTL.pause()">pause</button>
         </div>
 </template>
 
@@ -65,10 +66,10 @@ let fullTL, logoTL, blinkingTL, revealPageTL
 const goTo = (to) => {
 
     const from = route.name
-    console.log('goTo: route:', route.name)
+    //console.log('goTo: route:', route.name)
 
     if (from !== to) {
-        console.log('goTo: from != to')
+        //console.log('goTo: from != to')
 
         //route changed, so remove the current page
         const routeTL = gsap.timeline({paused: true})
@@ -98,6 +99,7 @@ const childTimelines = (payload) => {
 }
 
 const setupTLs = () => {
+
     fullTL = gsap.timeline({
         paused: true
     })
@@ -106,10 +108,7 @@ const setupTLs = () => {
         .to('.full nav:first-child > *', {opacity: 1, stagger: .2})
 
     revealPageTL = gsap.timeline({
-        paused: true, 
-        // onComplete: () => console.log('reveal complete'),
-        // onStart: () => console.log('reveal start'),
-        // onReverseComplete: () => console.log('reveal reverse complete'),
+        paused: true
     })
         .to(thepage.value, { opacity: 1 })
 }
@@ -118,11 +117,9 @@ const forward = () => {
     return gsap.timeline({ paused: true })
         .to(first.value, { width: '50px' })
         .to(second.value, { width: '300px' })
-        .add(logoTL.timeScale(1).play(), '>-50%')
-        .addLabel('logo')
+        .add(logoTL.timeScale(1).restart().play(), '>-50%')
         .to(blurb.value, { opacity: 1 })
         .to(standardnav.value.children, {opacity: 1, stagger:.2})
-        //.add(blinkingTL.play(), 'logo') //dont put anything after this cuz it will never complete
         
 }
 
@@ -130,18 +127,15 @@ const reverse = () => {
     return gsap.timeline({ paused: true })
         .to(standardnav.value.children, {opacity: 0, stagger:.2})
         .to(blurb.value, { opacity: 0 })
-        //.add(blinkingTL.restart().pause())
+        .add(blinkingTL.restart().pause())
         .add(logoTL.timeScale(4).reverse())
         .to(second.value, { width: '0' })
         .to(first.value, { width: '0' })
 }
     
 onMounted(() => {
-
+    console.log('screen mounted')
     setupTLs()
-    //console.log('mounted router:', router)
-    //data.fromRoute = route.name
-    //console.log('mounted:', data.fromRoute)
 
     if (['projects'].includes(route.name)) {
         data.layoutType = 'full'
@@ -159,9 +153,7 @@ onMounted(() => {
 //possibly move this to middleware
 
 watch(() => route.name, (to, from) => {
-
     //console.log('watch: route:', route.name)
-
     gsap.timeline()
         .add(revealPageTL.play())
 

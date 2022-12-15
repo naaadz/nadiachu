@@ -139,8 +139,14 @@ const prepareTimelines = () => {
     const dash = document.querySelector('#dash')
     
     //define timelines
-    logoTL = gsap.timeline({paused: true})
-    blinkingTL = gsap.timeline({paused: true})
+    blinkingTL = gsap.timeline({paused: true })
+    logoTL = gsap.timeline({
+        paused: true, 
+        onComplete: () => {
+            gsap.timeline().add(blinkingTL.restart().play())
+        }
+    })
+    
 
     //dynamically fill up the dasharrays with predefined values
     styleChars.forEach((char, i) => {
@@ -157,6 +163,10 @@ const prepareTimelines = () => {
             )
         })
 
+        gsap.set(that, { opacity: 0 })
+        gsap.set(compChars, { opacity: 0 })
+        gsap.set(dash, { opacity: 0 })
+
         logoTL.to(that, {
                 duration: 0.5,
                 opacity: 1
@@ -169,7 +179,7 @@ const prepareTimelines = () => {
             stagger: 0.05
         })
 
-        blinkingTL.to(dash, { duration: 1, opacity: 1, repeat: -1 });
+        blinkingTL.to(dash, { duration: 1, opacity: 1, repeat: -1 })
 }
 
 onMounted(() => {
