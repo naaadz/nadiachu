@@ -1,6 +1,7 @@
+@import "@/assets/scss/vars.scss";
+
 .style-logo {
     svg {
-        width: 256px;
         margin: auto; 
     }
   }
@@ -115,7 +116,7 @@
 .layout-mobile, .layout-screen {
 
     .floral {
-        background-image: url(/_nuxt/assets/images/flower-pattern.jpg);
+        background-image: url('@/assets/images/flower-pattern.jpg');
     }
     
     .first, .second {
@@ -142,9 +143,26 @@
         background-position: -141px -442px;
         background-size: 250px;
     }
+
+    .style-logo svg {
+        width: 230px;
+    }
+
+    nav {
+        background: linear-gradient(rgba($default-dark, .3), rgba($default-dark, 1) 50%);
+         @apply p-8 w-full;
+    }
+
+    .content {
+        left: 1.5rem;
+    }
 }
 
 .layout-screen {
+
+    .style-logo svg {
+        width: 256px;
+    }
 
     .floral {
         background-position: -161px -442px;

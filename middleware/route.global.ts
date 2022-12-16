@@ -1,6 +1,12 @@
 
 export default defineNuxtRouteMiddleware((to, from) => {
     // const a = 1
+    console.log('middleware:', to.path)
+    
+
+    if (to.path === '/') {
+        return navigateTo('/about')
+    }
 
     // gsap.timeline()
     //     .to()

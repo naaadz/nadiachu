@@ -17,9 +17,10 @@
             </div>
             
             <nav class="flex justify-center gap-4 m-10" ref="standardnav">
-                <a href="#" @click="goTo('index')">Index</a>
                 <a href="#" @click="goTo('about')">About</a>
+                <a href="#" @click="goTo('resume')">Resume</a>
                 <a href="#" @click="goTo('projects')">Projects</a>
+                <a href="#" @click="goTo('contact')">Contact</a>
             </nav>
         </div>
         <div class="full" ref="fullnav">
@@ -28,9 +29,10 @@
                 <span>Nadia Chu</span>
             </nav>
             <nav class="nav flex justify-center gap-4">
-                <a href="#" @click="goTo('index')">Index</a>
                 <a href="#" @click="goTo('about')">About</a>
+                <a href="#" @click="goTo('resume')">Resume</a>
                 <a href="#" @click="goTo('projects')">Projects</a>
+                <a href="#" @click="goTo('contact')">Contact</a>
             </nav>
         </div>
         <!-- <button @click="blinkingTL.play()">play</button>
@@ -65,24 +67,34 @@ let fullTL, logoTL, blinkingTL, revealPageTL
 
 const goTo = (to) => {
     const from = route.name
+    console.log('goTo: route:', from, to)
+
 
     if (from !== to) {
-        masterTL
-            .clear()
-            .add(revealPageTL.reverse())
+        masterTL.clear()
 
-        if (to === 'projects') {
-            masterTL.add(standardBackTL().play())
-            masterTL.add(fullTL.play())
-        }
+        //first hide the page
+        masterTL.add(revealPageTL.reverse())
 
-        if (from === 'projects' ) {
-            masterTL.add(fullTL.reverse())
-            masterTL.add(standardForwardTL().play())
-        }
+        //now change the route early, so that there's less chance the route will be the same
+        //if you click on the same link during an animation
+        masterTL.add(() => {
+            router.push({ path: to })
+        })
 
-        const path = to === 'index' ? '/' : '/' + to
-        masterTL.add(() => router.push({ path: path }))
+        masterTL.then(() => {
+            if (to === 'projects') {
+                masterTL.add(standardBackTL().play())
+                masterTL.add(fullTL.play())
+            }
+
+            if (from === 'projects' ) {
+                masterTL.add(fullTL.reverse())
+                masterTL.add(standardForwardTL().play())
+            }
+
+            masterTL.add(revealPageTL.play())
+        })
     }
 
 }
@@ -144,10 +156,10 @@ onMounted(() => {
     }
 })
 
-watch(() => route.name, (to, from) => {
-    gsap.timeline()
-        .add(revealPageTL.play())
-})
+// watch(() => route.name, (to, from) => {
+//     gsap.timeline()
+//         .add(revealPageTL.play())
+// })
 
 
 </script>

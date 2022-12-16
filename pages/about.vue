@@ -5,3 +5,12 @@
 
     </div>
 </template>
+
+<script setup>
+
+definePageMeta({
+  title: 'About',
+  heading: 'About me'
+})
+
+</script>
