@@ -8,6 +8,7 @@ export const useScreensize = () => {
 	let size = ref(null)
 
     const handleResize = () => {
+        console.log('window.innerWidth', window.innerWidth)
 		windowWidth.value = window.innerWidth
 
 		if (windowWidth.value >= 1024) {
