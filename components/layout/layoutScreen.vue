@@ -6,13 +6,13 @@
             <div class="third bg-dark-1 flex-1"></div>
         </div>
 
-        <div class="standard fixed h-screen flex flex-col justify-between top-0 overflow-hidden">
+        <div class="standard fixed h-screen flex flex-col justify-between top-0 overflow-hidden" ref="standard">
             <div class="style-logo flex-col text-center" ref="logo">
                 <StyleLogo 
                     class="logo" 
                     @timelines="childTimelines"
                 />
-                <p class="blurb" ref="blurb">A portfolio site by <nuxt-link>Nadia Chu</nuxt-link></p>
+                <p class="blurb" ref="blurb">A portfolio site by <a href="#" class="under active" @click="goTo('/about')">Nadia Chu</a></p>
             </div>
             
             <nav class="flex justify-center gap-4 m-10" ref="standardnav">
@@ -35,6 +35,7 @@
                 <a 
                     v-for="page in usePages()" 
                     :class="{ active : route.name === page.name}"
+                    class="fill"
                     href="#" 
                     @click="goTo(page.name)">{{ page.name }}
                 </a>
@@ -76,6 +77,7 @@ const second = ref(null)
 const logo = ref(null)
 const blurb = ref(null)
 const thepage = ref(null)
+const standard = ref(null)
 const standardnav = ref(null)
 const fullnav = ref(null)
 const heading = ref(null)
@@ -92,20 +94,22 @@ const revealFirst = gsap.timeline({paused: true})
 const revealBlurb = gsap.timeline({paused: true})
 const revealNav = gsap.timeline({paused: true})
 
-
-
-
-
-
 const goTo = (to) => {
     const from = route.name
     //console.log('goTo: route:', from, to)
 
     if (from !== to) {
         masterTL.clear()
-        //first hide the page
-        masterTL.add(revealHeading.reverse())
-        masterTL.add(revealPageTL.reverse())
+        
+        if (![from, to].includes('projects')) {
+            //dim the standard nav while the other pages are appearing
+            masterTL.add(gsap.to(standard.value, { opacity: .5}))
+        }
+
+        masterTL
+            .add(revealHeading.reverse())
+            .add(revealPageTL.reverse())
+            
         //now change the route early, so that there's less chance the route will be the same
         //if you click on the same link during an animation
         masterTL.add(() => {
@@ -136,17 +140,14 @@ const goTo = (to) => {
                     .add(revealPageTL.play(), '>')
                     .add(revealNav.play(), '>')
                     .add(revealBlurb.play(), '>')
-                // masterTL.add(fullTL.timeScale(3).reverse())
-                // masterTL.add(standardForwardTL().timeScale(1).play())
             }
 
             else {
                 masterTL
                     .add(revealHeading.play(), '>-50%')
                     .add(revealPageTL.play(), '>-50%')
+                    .add(gsap.to(standard.value, { opacity: 1}))
             }
-
-            
         })
     }
 }
@@ -158,7 +159,7 @@ const childTimelines = (payload) => {
 
 const defineTimelines = () => {
     fullTL
-        .to(first.value, { width: '50px', opacity: .2 })
+        .to(first.value, { width: '2.5rem', opacity: .2 })
         .to('.full nav:last-child > *', {opacity: 1, stagger: .1})
         .to('.full nav:first-child > *', {opacity: 1, stagger: .1})
 
