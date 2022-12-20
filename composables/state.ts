@@ -1,3 +1,4 @@
+
 export const useConfigVariables = () => {
     const config = useRuntimeConfig()
 }
@@ -59,15 +60,10 @@ const debounce = (callback, delay) => {
     }
   }
 
-// export const useGoTo = (to, callback) => {
-//     const route = useRoute()
-//     const router = useRouter()
 
-//     const from = route.name
-//     console.log('state goTo: route:', to)
-
-//     if (from !== to) {
-//         //route changed so do something
-//         callback
-//     }
-// }
+export const usePages = () => {
+    const router = useRouter()
+    const routes = router.getRoutes()
+    //put the routes in order of the nav
+    return [routes[0], routes[3], routes[2], routes[1]]
+}

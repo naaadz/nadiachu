@@ -103,15 +103,25 @@
   }
   
 
-  @keyframes appear {
-    from {
-        opacity: 0;
-    }
+//   @keyframes appear {
+//     from {
+//         opacity: 0;
+//     }
 
-    to {
-      opacity: 1;
+//     to {
+//       opacity: 1;
+//     }
+//   }
+
+a.under {
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: border .6s;
+
+    &.active, &:hover {
+        border-bottom: 1px solid $light-pink;
     }
-  }
+}
 
 
 .layout-mobile, .layout-screen {
@@ -136,6 +146,7 @@
         > * {
             opacity: 0;
             font-size: .9rem;
+            text-transform: capitalize;
         }
     }
 }
@@ -179,7 +190,7 @@
         position: fixed;
         height: 100vh;
         overflow: auto;
-        left: 350px;
+        left: 364px;
         right: -30px; //hide scroll bar
 
         &:after {
@@ -209,7 +220,7 @@
             position: fixed;
             background: linear-gradient($dark-1 60%, rgba($dark-1, .5));
             width: 800px;
-            left: 350px;
+            left: 364px;
             top: 0;
             z-index: -1;
         }

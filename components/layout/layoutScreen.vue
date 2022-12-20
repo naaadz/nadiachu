@@ -16,10 +16,13 @@
             </div>
             
             <nav class="flex justify-center gap-4 m-10" ref="standardnav">
-                <a href="#" @click="goTo('about')">About</a>
-                <a href="#" @click="goTo('resume')">Resume</a>
-                <a href="#" @click="goTo('projects')">Projects</a>
-                <a href="#" @click="goTo('contact')">Contact</a>
+                <a 
+                    v-for="page in usePages()" 
+                    class="under"
+                    :class="{ active : route.name === page.name}"
+                    href="#" 
+                    @click="goTo(page.name)">{{ page.name }}
+                </a>
             </nav>
         </div>
 
@@ -29,10 +32,12 @@
                 <span>Nadia Chu</span>
             </nav>
             <nav class="nav flex justify-center gap-4">
-                <a href="#" @click="goTo('about')">About</a>
-                <a href="#" @click="goTo('resume')">Resume</a>
-                <a href="#" @click="goTo('projects')">Projects</a>
-                <a href="#" @click="goTo('contact')">Contact</a>
+                <a 
+                    v-for="page in usePages()" 
+                    :class="{ active : route.name === page.name}"
+                    href="#" 
+                    @click="goTo(page.name)">{{ page.name }}
+                </a>
             </nav>
         </div>
 
@@ -83,6 +88,15 @@ const fullTL = gsap.timeline({ paused: true })
 const revealPageTL = gsap.timeline({ paused: true })
 const revealHeading = gsap.timeline({ paused: true })
 
+const revealFirst = gsap.timeline({paused: true})
+const revealBlurb = gsap.timeline({paused: true})
+const revealNav = gsap.timeline({paused: true})
+
+
+
+
+
+
 const goTo = (to) => {
     const from = route.name
     //console.log('goTo: route:', from, to)
@@ -90,8 +104,8 @@ const goTo = (to) => {
     if (from !== to) {
         masterTL.clear()
         //first hide the page
-        masterTL.add(revealHeading.timeScale(3).reverse())
-        masterTL.add(revealPageTL.timeScale(3).reverse())
+        masterTL.add(revealHeading.reverse())
+        masterTL.add(revealPageTL.reverse())
         //now change the route early, so that there's less chance the route will be the same
         //if you click on the same link during an animation
         masterTL.add(() => {
@@ -101,17 +115,38 @@ const goTo = (to) => {
         masterTL.then(() => {
 
             if (to === 'projects') {
-                masterTL.add(standardBackTL().timeScale(3).play())
-                masterTL.add(fullTL.timeScale(1).play())
+                //reverse the standard view
+                masterTL
+                .add(blinkingTL.restart().pause())
+                .add(logoTL.timeScale(4).reverse())
+                .add(revealNav.reverse(), '<')
+                .add(revealBlurb.reverse(), '<')
+                .add(revealFirst.reverse(), '<')
+                .add(fullTL.timeScale(1).play())
+                .add(revealHeading.play(), '>-50%')
+                .add(revealPageTL.play(), '>-50%')
             }
 
-            if (from === 'projects' ) {
-                masterTL.add(fullTL.timeScale(3).reverse())
-                masterTL.add(standardForwardTL().timeScale(1).play())
+            else if (from === 'projects' ) {
+                masterTL
+                    .add(fullTL.timeScale(3).reverse())
+                    .add(revealFirst.play())
+                    .add(logoTL.timeScale(1).play(), '>-50%')
+                    .add(revealHeading.play(), '>-50%')
+                    .add(revealPageTL.play(), '>')
+                    .add(revealNav.play(), '>')
+                    .add(revealBlurb.play(), '>')
+                // masterTL.add(fullTL.timeScale(3).reverse())
+                // masterTL.add(standardForwardTL().timeScale(1).play())
             }
 
-            masterTL.add(revealHeading.timeScale(1).play())
-            masterTL.add(revealPageTL.timeScale(1).play())
+            else {
+                masterTL
+                    .add(revealHeading.play(), '>-50%')
+                    .add(revealPageTL.play(), '>-50%')
+            }
+
+            
         })
     }
 }
@@ -132,49 +167,65 @@ const defineTimelines = () => {
     revealHeading
         .to(branch.value, { width: '300px', ease: "expo.out" })
         .to(heading.value, { opacity: 1 })
+
+    revealFirst
+        .to(first.value, { width: '2.5rem' })
+        .to(second.value, { width: '20rem' })
+    
+    revealBlurb.to(blurb.value, { opacity: 1 })
+
+    revealNav.to(standardnav.value.children, {opacity: 1, stagger:.2})
+
 }
 
-const standardForwardTL = () => {
-    return gsap.timeline({ paused: true })
-        .to(first.value, { width: '50px' })
-        .to(second.value, { width: '300px' })
-        .add(logoTL.timeScale(1).restart().play(), '>-80%')
-        .to(blurb.value, { opacity: 1 })
-        .to(standardnav.value.children, {opacity: 1, stagger:.2})
-}
 
-const standardBackTL = () => {
-    return gsap.timeline({ paused: true })
-        .to(standardnav.value.children, {opacity: 0, stagger:.2})
-        .to(blurb.value, { opacity: 0 })
-        .add(blinkingTL.restart().pause())
-        .add(logoTL.timeScale(4).reverse())
-        .to(second.value, { width: '0' },'>-20%')
-        .to(first.value, { width: '0' })
-}
+
+
+
+
+
+// const standardForwardTL = () => {
+//     return gsap.timeline({ paused: true })
+//         // .to(first.value, { width: '50px' })
+//         // .to(second.value, { width: '300px' })
+//         .add(logoTL.timeScale(1).restart().play(), '>-80%')
+//         .to(blurb.value, { opacity: 1 })
+//         .to(standardnav.value.children, {opacity: 1, stagger:.2})
+// }
+
+// const standardBackTL = () => {
+//     return gsap.timeline({ paused: true })
+//         // .to(standardnav.value.children, {opacity: 0, stagger:.2})
+//         // .to(blurb.value, { opacity: 0 })
+//         .add(blinkingTL.restart().pause())
+//         .add(logoTL.timeScale(4).reverse())
+//         // .to(second.value, { width: '0' },'>-20%')
+//         // .to(first.value, { width: '0' })
+// }
     
 onMounted(() => {
     console.log('screen mounted')
+    // console.log('route', route)
+    // console.log('router', router.getRoutes())
 
     defineTimelines()
 
-    masterTL
-        .then(() => {
-            return new Promise((res) => {
-                if (route.name === 'projects') {
-                    fullTL.eventCallback('onComplete', () => res()).play()
-                } else {
-                    standardForwardTL().eventCallback('onComplete', () => res()).play()
-                }
-            })
-        })
-        .then(() => {
-            masterTL.add(revealHeading.play())
-            masterTL.add(revealPageTL.play())
-        })
+    if (route.name === 'projects') {
+        masterTL
+            .add(fullTL.play())
+            .add(revealHeading.play(), '>-50%')
+            .add(revealPageTL.play())
+    } else {
+        masterTL
+            .add(revealFirst.play())
+            .add(logoTL.timeScale(1).play(), '>-50%')
+            .add(revealHeading.play(), '>-50%')
+            .add(revealPageTL.play(), '>')
+            .add(revealNav.play(), '>')
+            .add(revealBlurb.play(), '>')
+    }
 
     masterTL.play()
-
 })
 
 
