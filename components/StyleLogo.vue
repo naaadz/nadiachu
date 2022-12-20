@@ -179,7 +179,9 @@ const prepareTimelines = () => {
             stagger: 0.05
         })
 
-        blinkingTL.to(dash, { duration: 1, opacity: 1, repeat: -1 })
+        blinkingTL
+            .to(dash, { duration: 1, opacity: 1, repeat: -1 })
+            //.to('#compiles', { duration: 1, opacity: .5, repeat: -1, yoyo: true })
 }
 
 onMounted(() => {

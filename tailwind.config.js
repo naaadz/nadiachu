@@ -12,6 +12,10 @@ module.exports = {
         'xl': '1480px'
       },
       extend: {
+        fontFamily: {
+            lato: ["Lato", "sans-serif"],
+            corinthia: ["Corinthia", "cursive"]
+        },
         fontSize:{
           '5xl': ['3rem', '1.25'],
           '6xl': ['3.75rem', '1.5']

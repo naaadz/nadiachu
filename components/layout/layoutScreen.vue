@@ -37,21 +37,22 @@
         </div>
 
         <div class="page-wrap">
-            <div class="heading-wrap flex items-center fixed">
-                <div class="branch" ref="branch"></div>
-                <div class="heading flex" ref="heading">
-                    <template v-if="route.meta.heading">
-                        <span>{{ route.meta.heading[0] }}</span>
-                        <span>{{ route.meta.heading[1] }}</span>
-                    </template>
-                    <template v-else>
-                        <span>Page not found</span>
-                    </template>
-                   
+            <div class="page-content">
+                <div class="the-page" ref="thepage">
+                    <NuxtPage class="text-default-light" />
                 </div>
             </div>
-            <div class="the-page p-10" ref="thepage">
-                <NuxtPage class="text-default-light" />
+        </div>
+        <div class="heading-wrap flex items-center fixed">
+            <div class="branch" ref="branch"></div>
+            <div class="heading flex" ref="heading">
+                <template v-if="route.meta.heading">
+                    <span>{{ route.meta.heading[0] }}</span>
+                    <span>{{ route.meta.heading[1] }}_</span>
+                </template>
+                <template v-else>
+                    <span>Page not found</span>
+                </template>
             </div>
         </div>
     </div>
@@ -98,6 +99,7 @@ const goTo = (to) => {
         })
 
         masterTL.then(() => {
+
             if (to === 'projects') {
                 masterTL.add(standardBackTL().timeScale(3).play())
                 masterTL.add(fullTL.timeScale(1).play())
@@ -136,7 +138,7 @@ const standardForwardTL = () => {
     return gsap.timeline({ paused: true })
         .to(first.value, { width: '50px' })
         .to(second.value, { width: '300px' })
-        .add(logoTL.timeScale(1).restart().play(), '>-50%')
+        .add(logoTL.timeScale(1).restart().play(), '>-80%')
         .to(blurb.value, { opacity: 1 })
         .to(standardnav.value.children, {opacity: 1, stagger:.2})
 }
@@ -147,7 +149,7 @@ const standardBackTL = () => {
         .to(blurb.value, { opacity: 0 })
         .add(blinkingTL.restart().pause())
         .add(logoTL.timeScale(4).reverse())
-        .to(second.value, { width: '0' })
+        .to(second.value, { width: '0' },'>-20%')
         .to(first.value, { width: '0' })
 }
     
