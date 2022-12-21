@@ -60,7 +60,6 @@ const debounce = (callback, delay) => {
     }
   }
 
-
 export const usePages = () => {
     const router = useRouter()
     const routes = router.getRoutes()

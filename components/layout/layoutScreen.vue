@@ -12,7 +12,7 @@
                     class="logo" 
                     @timelines="childTimelines"
                 />
-                <p class="blurb" ref="blurb">A portfolio site by <a href="#" class="under active" @click="goTo('/about')">Nadia Chu</a></p>
+                <p class="blurb" ref="blurb">A portfolio site by <a href="#" class="under active" @click="goTo('about')">Nadia Chu</a></p>
             </div>
             
             <nav class="flex justify-center gap-4 m-10" ref="standardnav">
@@ -55,9 +55,6 @@
                 <template v-if="route.meta.heading">
                     <span>{{ route.meta.heading[0] }}</span>
                     <span>{{ route.meta.heading[1] }}_</span>
-                </template>
-                <template v-else>
-                    <span>Page not found</span>
                 </template>
             </div>
         </div>
@@ -178,36 +175,9 @@ const defineTimelines = () => {
     revealNav.to(standardnav.value.children, {opacity: 1, stagger:.2})
 
 }
-
-
-
-
-
-
-
-// const standardForwardTL = () => {
-//     return gsap.timeline({ paused: true })
-//         // .to(first.value, { width: '50px' })
-//         // .to(second.value, { width: '300px' })
-//         .add(logoTL.timeScale(1).restart().play(), '>-80%')
-//         .to(blurb.value, { opacity: 1 })
-//         .to(standardnav.value.children, {opacity: 1, stagger:.2})
-// }
-
-// const standardBackTL = () => {
-//     return gsap.timeline({ paused: true })
-//         // .to(standardnav.value.children, {opacity: 0, stagger:.2})
-//         // .to(blurb.value, { opacity: 0 })
-//         .add(blinkingTL.restart().pause())
-//         .add(logoTL.timeScale(4).reverse())
-//         // .to(second.value, { width: '0' },'>-20%')
-//         // .to(first.value, { width: '0' })
-// }
     
 onMounted(() => {
     console.log('screen mounted')
-    // console.log('route', route)
-    // console.log('router', router.getRoutes())
 
     defineTimelines()
 

@@ -1,9 +1,11 @@
 @import "@/assets/scss/vars.scss";
 
+//logo styles
 
 .style-logo {
     svg {
         margin: auto; 
+        pointer-events: none;
     }
   }
   
@@ -103,15 +105,7 @@
   }
   
 
-//   @keyframes appear {
-//     from {
-//         opacity: 0;
-//     }
-
-//     to {
-//       opacity: 1;
-//     }
-//   }
+//common styles
 
 a.under {
     padding-bottom: 3px;
@@ -132,60 +126,143 @@ a.fill {
     }
 }
 
+.heading {
+    opacity: 0;
 
-.layout-mobile, .layout-screen {
+    @apply items-center;
 
-    .floral {
-        background-image: url('@/assets/images/flower-pattern.jpg');
-    }
-    
-    .first, .second {
-        width: 0;
-    }
+    > span {
+        &:first-child {
+            @apply font-corinthia mx-2 text-light-pink;
+            font-size: 3rem;
+        }
 
-    .blurb {
-        opacity: 0;
-    }
-    
-    .the-page {
-        opacity: 0;
-    }
-    
-    nav  {
-        > * {
-            opacity: 0;
-            font-size: .9rem;
-            text-transform: capitalize;
+        &:last-child {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
         }
     }
 }
 
-.layout-mobile {
-    .floral {
-        background-position: -141px -442px;
-        background-size: 250px;
+.floral {
+    background-image: url('@/assets/images/flower-pattern.jpg');
+}
+
+.first, .second {
+    width: 0;
+}
+
+.blurb {
+    opacity: 0;
+}
+
+.the-page {
+    opacity: 0;
+}
+
+nav  {
+    > * {
+        opacity: 0;
+        font-size: .9rem;
+        text-transform: capitalize;
     }
+}
+
+.layout-mobile {
 
     .style-logo svg {
         width: 230px;
     }
 
+    .floral {
+        background-position: -141px -442px;
+        background-size: 250px;
+    }
+
+    .fixed-stretch {
+        position: fixed;
+        left: 1.5rem;
+        right: 0;
+    }
+
+    .page-wrap {
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+    }
+
+        .the-page {
+            position: relative;
+        }
+
+    .blurb {
+        margin-top: -20px;
+    }
+
+    $pages: 
+        'about' 300 0,
+        'resume' 100 0,
+        'projects' 100 0,
+        'contact' 100 0;
+
+    @each $page, $top, $left in $pages {
+        &.page-#{$page} {
+
+            .the-page {
+                top: #{$top - 40}px;
+
+                &:before {
+                    height: #{$top + 30}px
+                    
+                }
+            }
+        }
+    }
+
+    .heading-wrap {
+        position: fixed;
+        z-index:100;
+
+        &:before {
+            content: '';
+            position: absolute;
+            background: none;
+            top: 0;
+            z-index: -1;
+            width: 100vw;
+            height: 100px;
+        }
+    }
+
     .heading {
-        opacity: 0;
+        padding-left: 25px;
+    }
+
+    &.page-about .heading-wrap:before {
+        height: 300px;
     }
 
     nav {
-        background: linear-gradient(rgba($default-dark, .3), rgba($default-dark, 1) 50%);
-        @apply p-8 absolute right-0 left-0 bottom-0;
+        background: none;
+        @apply p-8 fixed right-0 left-0 bottom-0;
     }
 
-    .content {
-        left: 1.5rem;
+    //when loaded, show the gradients
+    .loaded {
+        .heading-wrap {
+            &:before {
+                background: linear-gradient($default-dark 60%, rgba($default-dark, .5));
+            }
+        }
+
+        nav {
+            background: linear-gradient(rgba($default-dark, .3), rgba($default-dark, 1) 50%);
+        }
     }
 }
 
 .layout-screen {
-
     .style-logo svg {
         width: 256px;
     }
@@ -219,7 +296,7 @@ a.fill {
 
         .the-page {
             padding: 50px;
-            max-width: 800px;
+            max-width: 600px;
         }
     }
     
@@ -233,24 +310,6 @@ a.fill {
             top: 0;
             z-index: -1;
         }
-
-        .heading {
-            opacity: 0;
-            @apply items-center;
-
-            > span {
-                &:first-child {
-                    @apply font-corinthia mx-2 text-light-pink;
-                    font-size: 3rem;
-                }
-
-                &:last-child {
-                    font-weight: 700;
-                    font-size: 1.2rem;
-                    letter-spacing: 1px;
-                }
-            }
-        }
     
         .branch {
             background: $muted-blue;
@@ -258,7 +317,6 @@ a.fill {
             width: 0;
         }
     }
-
 
     $pages: 
         'about' 400 320,
@@ -321,6 +379,20 @@ a.fill {
                 padding-top: 20px;
             }
         }
+    }
+}
+
+//pages styles
+
+.tags {
+    @apply gap-2 flex flex-wrap;
+    width: 80%;
+
+    span {
+        background: rgba($cornflower, .3);
+        color: $cornflower;
+        padding: 2px 5px;
+        @apply rounded text-sm;
     }
 }
 

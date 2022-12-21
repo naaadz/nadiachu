@@ -7,8 +7,8 @@
 <script setup>
 
 definePageMeta({
-  title: 'About',
-  heading: ['about', 'me']
+    title: 'About',
+    heading: ['about', 'me']
 })
 
 </script>

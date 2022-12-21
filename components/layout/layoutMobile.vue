@@ -1,39 +1,39 @@
 <template>
-    <div>
+    <div :class="{ loaded: data.loaded }">
         <div class="bg flex h-screen relative">
             <div class="first floral flex-none" ref="first"></div>
             <div class="second bg-default-dark flex flex-col justify-between" ref="second"></div>
         </div>
+        <div class="page-wrap flex flex-col items-center fixed-stretch">
+            <div class="heading-wrap fixed-stretch">
+                <div class="style-logo flex-col text-center" ref="logo">
+                    <StyleLogo 
+                        class="logo" 
+                        @timelines="childTimelines"
+                    />
+                    <p class="blurb" ref="blurb">A portfolio site by <a href="#" class="under active" @click="goTo('about')">Nadia Chu</a></p>
+                </div>
+                <div class="heading flex" ref="heading">
+                    <template v-if="route.meta.heading">
+                        <span>{{ route.meta.heading[0] }}</span>
+                        <span>{{ route.meta.heading[1] }}_</span>
+                    </template>
+                </div>
+            </div>
 
-        <div class="content fixed top-0 z-10 h-screen flex flex-col">
-            <div class="style-logo flex-col text-center" ref="logo">
-                <StyleLogo 
-                    class="logo" 
-                    @timelines="childTimelines"
-                />
-                <p class="blurb" ref="blurb">A portfolio site by <nuxt-link>Nadia Chu</nuxt-link></p>
-            </div>
-            <div class="heading flex justify-center" ref="heading">
-                <template v-if="route.meta.heading">
-                    <span>{{ route.meta.heading[0] }}</span>
-                    <span>{{ route.meta.heading[1] }}</span>
-                </template>
-                <template v-else>
-                    <span>Page not found</span>
-                </template>
-            </div>
-            <div class="the-page p-10 overflow-auto flex-1" ref="thepage">
+            <div class="the-page p-10" ref="thepage">
                 <NuxtPage class="text-default-light" />
             </div>
-            <nav class="flex justify-center space-x-4" ref="nav">
-                <a href="#" @click="goTo('about')">About</a>
-                <a href="#" @click="goTo('resume')">Resume</a>
-                <a href="#" @click="goTo('projects')">Projects</a>
-                <a href="#" @click="goTo('contact')">Contact</a>
+            <nav class="fixed-stretch flex justify-center space-x-4" ref="nav">
+                <a 
+                    v-for="page in usePages()" 
+                    class="under"
+                    :class="{ active : route.name === page.name}"
+                    href="#" 
+                    @click="goTo(page.name)">{{ page.name }}
+                </a>
             </nav>
         </div>
-
-       
     </div>
 </template>
 
@@ -43,6 +43,10 @@ import gsap from 'gsap'
 
 const route = useRoute()
 const router = useRouter()
+
+const data = reactive({
+    loaded: false
+})
 
 //maybe make the refs list and the timeline assignments dynamic (in a loop)
 
@@ -62,6 +66,8 @@ const revealPageTL = gsap.timeline({paused: true})
 const revealHeading = gsap.timeline({paused: true})
 const hideLogoTL = gsap.timeline({paused: true})
 const revealNav = gsap.timeline({paused: true})
+const revealBlurb = gsap.timeline({paused: true})
+
 
 const childTimelines = (payload) => {
     //when children mount, receive their timelines
@@ -85,22 +91,26 @@ const goTo = (to) => {
         })
 
         masterTL.then(() => {
-            //if route is "from" about
             if (from === 'about') {
-                masterTL.add(blinkingTL.restart().pause())
-                masterTL.add(logoTL.timeScale(4).reverse())
-                masterTL.add(hideLogoTL.play())
-                masterTL.add(revealHeading.play())
-            }
+                masterTL
+                    .add(blinkingTL.restart().pause())
+                    .add(logoTL.timeScale(4).reverse())
+                    .add(revealBlurb.reverse(), '>-50%')
+                    .add(hideLogoTL.play())
+                    .add(revealHeading.play())
+                    .add(revealPageTL.play(), '>-50%')
+            } 
 
-            //if route is "to" about
-            if (to === 'about') {
-                masterTL.add(revealHeading.reverse())
-                masterTL.add(hideLogoTL.reverse())
-                masterTL.add(logoTL.timeScale(1).play())
+            else if (to === 'about') {
+                masterTL
+                    .add(revealHeading.reverse())
+                    .add(hideLogoTL.reverse())
+                    .add(logoTL.timeScale(1).play())
+                    .add(revealBlurb.play(), '>-20%')
+                    .add(revealPageTL.play(), '>-20%')
+            } else {
+                masterTL.add(revealPageTL.play())
             }
-
-            masterTL.add(revealPageTL.play())
         })
     }
 }
@@ -114,6 +124,7 @@ const defineTimelines = () => {
     revealHeading
         .to(heading.value, { opacity: 1 })
     hideLogoTL.set(logo.value, { height: 0 })
+    revealBlurb.to(blurb.value, { opacity: 1 })
 }
 
 onMounted(() => {
@@ -122,25 +133,21 @@ onMounted(() => {
 
     masterTL
         .add(revealFirst.play())
-        .then(() => {
-            return new Promise((res) => {
-                if (route.name === 'about') {
-                    //if about, play the whole logo
-                    logoTL.eventCallback('onComplete', () => res())
-                    logoTL.timeScale(1).play()
-                } else {
-                    //just play the heading
-                    revealHeading.eventCallback('onComplete', () => res())
-                    hideLogoTL.play()
-                    revealHeading.play()
-                }
-            })
-        })
-        .then(() => {
+        .add(() => data.loaded = true )
+
+        if (route.name === 'about') {
             masterTL
-                .add(revealNav.play())
-                .add(revealPageTL.play())
-        })
+                .add(logoTL.play())
+                .add(revealBlurb.play())
+        } else {
+            masterTL
+            .add(hideLogoTL.play())
+            .add(revealHeading.play())
+        }
+
+    masterTL
+        .add(revealPageTL.play())
+        .add(revealNav.play())
 
     masterTL.play()
 
