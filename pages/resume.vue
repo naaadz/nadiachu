@@ -40,13 +40,13 @@
                     <li>Legacy ipsum dolor sit amet</li>
                     <li>sed do eiusmod tempor</li>
                 </ul>
-                    <div class="tags">
+                <div class="tags">
                     <span>adobe XD</span>
                     <span>adobe Illustrator</span>
                     <span>UX</span>
                     <span>UI</span>
                     <span>web design</span>
-                        <span>product design</span>
+                    <span>product design</span>
                 </div>
             </div>
         </div>

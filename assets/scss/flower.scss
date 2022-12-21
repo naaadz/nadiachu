@@ -1,0 +1,67 @@
+@import "@/assets/scss/vars.scss";
+
+.static {
+    .splash {
+        display: none;
+    }
+}
+
+.animated {
+    .petal {
+        path, line {
+            stroke-dasharray: 30px;
+            stroke-dashoffset: 30px;   
+        }
+    }
+    
+    .splash {
+        stroke-dasharray: 15;
+        stroke-dashoffset: 15;
+    }
+}
+
+#layer-flower {
+    width: 40px;
+
+    .cls-1 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke: $default-light;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        fill: none;
+      }
+
+      .cls-6 {
+        clip-path: url(#clippath-200);
+      }
+
+      .cls-2 {
+        stroke-width: 15px;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-100);
+      }
+
+      .cls-3 {
+        stroke-width: 12px;
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-00);
+      }
+
+      .cls-4 {
+        stroke-width: 14px;
+      }
+}

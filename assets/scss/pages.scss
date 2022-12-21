@@ -1,0 +1,31 @@
+@import "@/assets/scss/vars.scss";
+
+//pages styles
+
+.tags {
+    @apply gap-2 flex flex-wrap;
+    width: 80%;
+
+    span {
+        background: rgba($cornflower, .3);
+        color: $cornflower;
+        padding: 2px 5px;
+        @apply rounded text-sm;
+    }
+}
+
+.page-projects {
+    .page-content, .the-page {
+        display: contents;
+    }
+
+    // .the-page {
+    //     max-width: 1200px;
+    // }
+}
+
+.page-resume {
+    .the-page {
+        max-width: 600px;
+    }
+}

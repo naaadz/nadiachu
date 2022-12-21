@@ -6,7 +6,11 @@ export default defineNuxtConfig({
         layoutTransition: false
     },
     css: [
-		'@/assets/css/style.css', '@/assets/scss/style.scss'
+		'@/assets/css/style.css', 
+        '@/assets/scss/common.scss',
+        '@/assets/scss/flower.scss',
+        '@/assets/scss/logo.scss',
+        '@/assets/scss/pages.scss'
 	],
     ssr:false,
     modules: [

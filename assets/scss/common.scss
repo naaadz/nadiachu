@@ -1,0 +1,300 @@
+@import "@/assets/scss/vars.scss";
+  
+
+//common styles
+
+a.under {
+    padding-bottom: 3px;
+    display: inline-flex;
+    border-bottom: 1px solid transparent;
+    transition: border .6s;
+
+    &.active, &:hover {
+        border-bottom: 1px solid $light-pink;
+    }
+}
+
+a.fill {
+    transition: color .3s;
+
+    &.active, &:hover {
+        color: $light-blue;
+    }
+}
+
+.heading {
+    opacity: 0;
+
+    @apply items-center;
+
+    > span {
+        &:first-child {
+            @apply font-corinthia mx-2 text-light-pink;
+            font-size: 3rem;
+        }
+
+        &:last-child {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+.floral {
+    background-image: url('@/assets/images/flower-pattern.jpg');
+}
+
+.first, .second {
+    width: 0;
+}
+
+.blurb {
+    opacity: 0;
+}
+
+.the-page {
+    opacity: 0;
+}
+
+nav  {
+    > * {
+        opacity: 0;
+        font-size: .9rem;
+        text-transform: capitalize;
+    }
+}
+
+.layout-mobile {
+
+    .logo-wrap svg#layer-logo {
+        width: 230px;
+    }
+
+    .floral {
+        background-position: -141px -442px;
+        background-size: 250px;
+    }
+
+    .fixed-stretch {
+        position: fixed;
+        left: 1.5rem;
+        right: 0;
+    }
+
+    .page-wrap {
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+    }
+
+        .the-page {
+            position: relative;
+        }
+
+    .blurb {
+        margin-top: -20px;
+    }
+
+    $pages: 
+        'about' 300 0,
+        'resume' 100 0,
+        'projects' 100 0,
+        'contact' 100 0;
+
+    @each $page, $top, $left in $pages {
+        &.page-#{$page} {
+
+            .the-page {
+                top: #{$top - 40}px;
+
+                &:before {
+                    height: #{$top + 30}px
+                    
+                }
+            }
+        }
+    }
+
+    .heading-wrap {
+        position: fixed;
+        z-index:100;
+
+        &:before {
+            content: '';
+            position: absolute;
+            background: none;
+            top: 0;
+            z-index: -1;
+            width: 100vw;
+            height: 100px;
+        }
+    }
+
+    .heading {
+        padding-left: 25px;
+    }
+
+    &.page-about .heading-wrap:before {
+        height: 300px;
+    }
+
+    nav {
+        background: none;
+        @apply p-8 fixed right-0 left-0 bottom-0;
+    }
+
+    //when loaded, show the gradients
+    .loaded {
+        .heading-wrap {
+            &:before {
+                background: linear-gradient($default-dark 60%, rgba($default-dark, .5));
+            }
+        }
+
+        nav {
+            background: linear-gradient(rgba($default-dark, .3), rgba($default-dark, 1) 50%);
+        }
+    }
+}
+
+.layout-screen {
+    .logo-wrap svg#layer-logo {
+        width: 256px;
+    }
+
+    .floral {
+        background-position: -161px -442px;
+        background-size: 300px;
+    }
+
+    .page-wrap {
+        position: fixed;
+        height: 100vh;
+        overflow: auto;
+        left: 364px;
+        right: -30px; //hide scroll bar
+
+        &:after {
+            content: '';
+            position: fixed;
+            width: 100%;
+            z-index: 5;
+            bottom: 0;
+            height: 100px;
+            background: linear-gradient(rgba($dark-1, .3), rgba($dark-1, 1) 50%);
+            pointer-events: none;
+        }
+
+        .page-content {
+            position: relative;
+        }
+
+        .the-page {
+            padding: 50px 50px 100px;
+        }
+    }
+    
+    .heading-wrap {
+        &:before {
+            content: '';
+            position: fixed;
+            background: linear-gradient($dark-1 60%, rgba($dark-1, .5));
+            width: 800px;
+            left: 364px;
+            top: 0;
+            z-index: -1;
+        }
+    
+        .branch {
+            background: $muted-blue;
+            height: 1px;
+            width: 0;
+        }
+    }
+
+    $pages: 
+        'about' 400 320,
+        'resume' 85 320,
+        'projects' 65 15,
+        'contact' 400 320;
+
+    @each $page, $top, $left in $pages {
+        &.page-#{$page} {
+
+            .page-content {
+                top: #{$top}px;
+            }
+
+            .heading-wrap {
+                top: #{$top - 40}px;
+                left: #{$left}px;
+
+                &:before {
+                    height: #{$top + 30}px
+                    
+                }
+            }
+        }
+    }
+    
+    &.page-projects {
+        .page-wrap {
+            left: 50px;
+
+            &:after {
+                display: none;
+            }
+        }
+    }
+
+    .standard {
+        @apply ml-10;
+        @apply w-80;
+    }
+    
+    .full {
+        height: 100vh;
+        width: 2.5rem;
+        left: 0;
+        position: absolute;
+        @apply flex flex-col justify-between items-center;
+    
+        nav {
+            @apply flex;
+            writing-mode: tb-rl;
+            white-space: nowrap;
+
+            &:first-child {
+                padding-bottom: 20px;
+
+                span.flower {
+                    position: absolute;
+                    top: 10px;
+                    left: 0;
+
+                    #layer-flower {
+                        width: 35px;
+                    }
+
+                }
+
+                span.nadia {
+                    // display: block;
+                    margin-top: 80px;
+                     transform: rotate(180deg);
+                }
+            }
+
+            &:last-child {
+                padding-top: 20px;
+                transform: rotate(180deg);
+            }
+        }
+    }
+}
+
+
+
+
+

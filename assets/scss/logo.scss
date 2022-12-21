@@ -1,0 +1,135 @@
+@import "@/assets/scss/vars.scss";
+
+.logo-wrap {
+    #layer-logo {
+        margin: auto; 
+        pointer-events: none;
+    }
+
+    .stc-flower {
+        position: absolute;
+        top: 50px;
+        left: 45px;
+    }
+  }
+
+.stc-logo {
+    //has both logos in it
+    position: relative;
+}
+
+  #layer-logo {
+    #that {
+        polygon, path {
+           fill: theme('colors.default-light');
+        }
+      }
+      
+      //each path and line color
+      #style-group > g > g > * {
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke: #FDD8EC;
+      }
+      
+      //each clip
+      #s-1 > g { 
+        clip-path: url(#clippath);
+      }
+      
+      #s-2 > g { 
+        clip-path: url(#clippath-1) ;
+        
+      } 
+      
+      #s-3 > g { 
+        clip-path: url(#clippath-2) ;
+      }  
+      
+      #t > g { 
+        clip-path: url(#clippath-3); 
+      }  
+      
+      #t-2 > g { 
+        clip-path: url(#clippath-8);
+      } 
+      
+      #y > g { 
+        clip-path: url(#clippath-4);
+        
+      } 
+      
+      #y-2 > g { 
+        clip-path: url(#clippath-5);
+      
+      } 
+      
+      #l > g { 
+        clip-path: url(#clippath-6);
+    
+      } 
+      
+      #e > g { 
+        clip-path: url(#clippath-7);
+      } 
+      
+      //path and line stroke weights
+      #t-2, #l, #y, #s-1, #t-2 {
+        path, line { stroke-width: 9px }
+      }
+      
+      #y-2, #e {
+        path { stroke-width: 8px }
+      }
+      
+      #s-2 {
+        path { stroke-width: 12px }
+      }
+      
+      #t {
+        path { stroke-width: 10px }
+      }
+      
+      #s-3 {
+        path { stroke-width: 7px }
+      }
+      
+      #style-group {
+        path, line {
+          fill: none;
+        }
+      }
+      
+      #compiles-bg, #style-bg {
+        fill: theme('colors.default-light');
+        opacity: .1;
+        display: none;
+      }
+
+      #dash-group {
+        opacity: 0;
+
+        #dash {
+            fill: theme('colors.default-light');
+            animation: blink 1s infinite;
+          }
+      }
+      
+
+      
+      #compiles > * {
+        fill: theme('colors.default-light');
+      }
+  }
+
+
+  @keyframes blink {
+    30% {
+        opacity: 0
+    }
+
+    70% {
+        opacity: 1
+    }
+}
+  

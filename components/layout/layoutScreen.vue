@@ -7,10 +7,10 @@
         </div>
 
         <div class="standard fixed h-screen flex flex-col justify-between top-0 overflow-hidden" ref="standard">
-            <div class="style-logo flex-col text-center" ref="logo">
-                <StyleLogo 
+            <div class="logo-wrap flex-col text-center" ref="logo">
+                <STCLogo
                     class="logo" 
-                    @timelines="childTimelines"
+                    @logoTL="onlogoTL"
                 />
                 <p class="blurb" ref="blurb">A portfolio site by <a href="#" class="under active" @click="goTo('about')">Nadia Chu</a></p>
             </div>
@@ -28,8 +28,8 @@
 
         <div class="full" ref="fullnav">
             <nav>
-                <span>logo</span>
-                <span>Nadia Chu</span>
+                <span class="flower"><STCFlower :static="true" /></span>
+                <span class="nadia">Nadia Chu</span>
             </nav>
             <nav class="nav flex justify-center gap-4">
                 <a 
@@ -80,7 +80,7 @@ const fullnav = ref(null)
 const heading = ref(null)
 const branch = ref(null)
 
-let logoTL, blinkingTL
+let logoTL
 
 const masterTL = gsap.timeline({ paused: true })
 const fullTL = gsap.timeline({ paused: true })
@@ -118,8 +118,7 @@ const goTo = (to) => {
             if (to === 'projects') {
                 //reverse the standard view
                 masterTL
-                .add(blinkingTL.restart().pause())
-                .add(logoTL.timeScale(4).reverse())
+                .add(logoTL.timeScale(5).reverse())
                 .add(revealNav.reverse(), '<')
                 .add(revealBlurb.reverse(), '<')
                 .add(revealFirst.reverse(), '<')
@@ -149,9 +148,8 @@ const goTo = (to) => {
     }
 }
 
-const childTimelines = (payload) => {
-    logoTL = payload[0]
-    blinkingTL = payload[1]
+const onlogoTL = (payload) => {
+    logoTL = payload
 }
 
 const defineTimelines = () => {

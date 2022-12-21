@@ -6,10 +6,10 @@
         </div>
         <div class="page-wrap flex flex-col items-center fixed-stretch">
             <div class="heading-wrap fixed-stretch">
-                <div class="style-logo flex-col text-center" ref="logo">
-                    <StyleLogo 
+                <div class="logo-wrap flex-col text-center" ref="logo">
+                    <STCLogo
                         class="logo" 
-                        @timelines="childTimelines"
+                        @logoTL="onlogoTL"
                     />
                     <p class="blurb" ref="blurb">A portfolio site by <a href="#" class="under active" @click="goTo('about')">Nadia Chu</a></p>
                 </div>
@@ -58,7 +58,7 @@ const heading = ref(null)
 const nav = ref(null)
 const thepage = ref(null)
 
-let logoTL, blinkingTL
+let logoTL
 
 const masterTL = gsap.timeline({paused: true})
 const revealFirst = gsap.timeline({paused: true})
@@ -69,10 +69,8 @@ const revealNav = gsap.timeline({paused: true})
 const revealBlurb = gsap.timeline({paused: true})
 
 
-const childTimelines = (payload) => {
-    //when children mount, receive their timelines
-    logoTL = payload[0]
-    blinkingTL = payload[1]
+const onlogoTL = (payload) => {
+    logoTL = payload
 }
 
 const goTo = (to) => {
@@ -93,7 +91,6 @@ const goTo = (to) => {
         masterTL.then(() => {
             if (from === 'about') {
                 masterTL
-                    .add(blinkingTL.restart().pause())
                     .add(logoTL.timeScale(4).reverse())
                     .add(revealBlurb.reverse(), '>-50%')
                     .add(hideLogoTL.play())

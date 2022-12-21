@@ -16,7 +16,8 @@
         //nuxt bug? template wasn't waiting for composable before trying to render
         //so it was moutning layoutScreen for example, in mobile view.
         console.log('shouldRender:', isMobile.value)
-        return isMobile.value
+        //return isMobile.value
+        return false
     })
 
     onMounted(() => {
