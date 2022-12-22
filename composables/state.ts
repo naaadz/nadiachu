@@ -66,3 +66,16 @@ export const usePages = () => {
     //put the routes in order of the nav
     return [routes[0], routes[3], routes[2], routes[1]]
 }
+
+export const useProjects = () => {
+    return [
+        { 
+            id: 0, 
+            name: 'solutions', 
+            title: 'Some solutions title maybe', 
+            desc: '', 
+            mediaType: 'video', 
+            mediaPath: '/video/solutions-marker.mp4',  
+        }
+    ]
+}

@@ -106,7 +106,7 @@ const goTo = (to) => {
         }
 
         masterTL
-            .add(revealHeading.reverse())
+            .add(revealHeading.reverse(), '<')
             .add(revealPageTL.reverse())
             
         //now change the route early, so that there's less chance the route will be the same
