@@ -7,6 +7,7 @@
 			height="257.17"
 			xmlns:xlink="http://www.w3.org/1999/xlink"
 			viewBox="0 0 327.74 257.17"
+            ref="logo"
 		>
 			<defs>
 				<clipPath id="clippath">
@@ -290,6 +291,8 @@
 <script setup>
 import gsap from "gsap"
 
+const logo = ref(null)
+
 const emit = defineEmits(['logoTL'])
 
 const props = defineProps({
@@ -301,12 +304,14 @@ const props = defineProps({
 
 let logoTL, flowerTL
 
+
+
 const defineTimelines = () => {
 	const dashValues = [40, 100, 60, 125, 40, 360, 25, 260, 125]
-	const styleChars = document.querySelectorAll("#style-group > g > g > *")
-	const that = document.querySelector("#that")
-	const compChars = document.querySelectorAll("#compiles > *")
-	const dash = document.querySelector("#dash-group")
+	const styleChars = logo.value.querySelectorAll("#style-group > g > g > *")
+	const that = logo.value.querySelector("#that")
+	const compChars = logo.value.querySelectorAll("#compiles > *")
+	const dash = logo.value.querySelector("#dash-group")
 
 	//define timelines
 	logoTL = gsap.timeline({ paused: true })
@@ -347,7 +352,7 @@ const defineTimelines = () => {
 	})
 
     logoTL.to(dash, { opacity: 1})
-    logoTL.add(flowerTL.play())
+    logoTL.add(flowerTL.play(), .5)
 
 }
 

@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div :class="`layout-${route.name === 'projects' ? 'full' : 'standard'}`">
         <div class="bg flex h-screen fixed overflow-hidden">
             <div class="first floral flex-none" ref="first"></div>
             <div class="second bg-default-dark" ref="second"></div>
             <div class="third bg-dark-1 flex-1"></div>
         </div>
 
-        <div class="standard fixed h-screen flex flex-col justify-between top-0 overflow-hidden" ref="standard">
+        <div class="bar-standard fixed h-screen flex flex-col justify-between top-0 overflow-hidden" ref="standard">
             <div class="logo-wrap flex-col text-center" ref="logo">
                 <STCLogo
                     class="logo" 
@@ -26,9 +26,11 @@
             </nav>
         </div>
 
-        <div class="full" ref="fullnav">
+        <div class="bar-full" ref="fullnav">
             <nav>
-                <span class="flower"><STCFlower :static="true" /></span>
+                <span class="flower">
+                    <STCFlower @flowerTL="onFlowerTL" />
+                </span>
                 <span class="nadia">Nadia Chu</span>
             </nav>
             <nav class="nav flex justify-center gap-4">
@@ -80,16 +82,16 @@ const fullnav = ref(null)
 const heading = ref(null)
 const branch = ref(null)
 
-let logoTL
+let logoTL, flowerTL
 
 const masterTL = gsap.timeline({ paused: true })
 const fullTL = gsap.timeline({ paused: true })
 const revealPageTL = gsap.timeline({ paused: true })
 const revealHeading = gsap.timeline({ paused: true })
-
 const revealFirst = gsap.timeline({paused: true})
 const revealBlurb = gsap.timeline({paused: true})
 const revealNav = gsap.timeline({paused: true})
+const hideLogoTL = gsap.timeline({paused: true})
 
 const goTo = (to) => {
     const from = route.name
@@ -148,6 +150,10 @@ const goTo = (to) => {
     }
 }
 
+const onFlowerTL = (payload) => {
+    flowerTL = payload
+}
+
 const onlogoTL = (payload) => {
     logoTL = payload
 }
@@ -155,8 +161,9 @@ const onlogoTL = (payload) => {
 const defineTimelines = () => {
     fullTL
         .to(first.value, { width: '2.5rem', opacity: .2 })
-        .to('.full nav:last-child > *', {opacity: 1, stagger: .1})
-        .to('.full nav:first-child > *', {opacity: 1, stagger: .1})
+        .to('.bar-full nav:last-child > *', {opacity: 1, stagger: .1})
+        .to('.bar-full nav:first-child > *', {opacity: 1, stagger: .1})
+        .add(flowerTL.play())
 
     revealPageTL.to(thepage.value, { opacity: 1 })
 
@@ -171,6 +178,8 @@ const defineTimelines = () => {
     revealBlurb.to(blurb.value, { opacity: 1 })
 
     revealNav.to(standardnav.value.children, {opacity: 1, stagger:.2})
+
+    hideLogoTL.set(logo.value, { height: 0, autoAlpha: 0 })
 
 }
     

@@ -5,6 +5,9 @@
 			xmlns="http://www.w3.org/2000/svg"
 			xmlns:xlink="http://www.w3.org/1999/xlink"
 			viewBox="0 0 48.35 45.34"
+            @mouseenter="shootSprayIn"
+            @mouseleave="shootSprayOut"
+            ref="flower"
 		>
 			<defs>
 				<clipPath id="clippath-00">
@@ -84,24 +87,49 @@
 <script setup>
 import gsap from "gsap"
 
+const flower = ref(null)
+
 const props = defineProps({
 	static: {
 		type: Boolean,
 		default: false,
-	},
+	}
 })
 
 const emit = defineEmits(['flowerTL'])
 const flowerTL = gsap.timeline({ paused: true })
+const sprayTL = gsap.timeline({ paused: true })
+const petalsTL = gsap.timeline({ 
+    paused: true, 
+    onComplete: () => {
+            gsap.timeline().add(sprayTL.restart().play())
+    }})
+
+const shootSprayIn = () => {
+    gsap.timeline()
+        .add(gsap.to(flower.value, { duration: .2, scale: 1.1, transformOrigin: '70%' }))
+        .add(sprayTL.restart().play())
+}
+
+const shootSprayOut = () => {
+    gsap.timeline()
+        .add(gsap.to(flower.value, { duration: .2, scale: 1, transformOrigin: '70%' }))
+}
 
 onMounted(() => {
-    if (!props.static) {
-        flowerTL  
-            .to('.petal > g > *', { duration: .5, strokeDashoffset: 0, stagger: .1 })
-            .to('.splash', { strokeDashoffset: -15 }, '>-20%')
+    const petals = flower.value.querySelectorAll('.petal > g > *')
+    const splashes = flower.value.querySelectorAll('.splash')
 
-        emit('flowerTL', flowerTL)
-    }
+    petalsTL  
+        .to(petals, { duration: .5, strokeDashoffset: 0, stagger: .1 })
+
+    sprayTL
+        .to(splashes, { strokeDashoffset: -15 }, '>-20%')
+
+    flowerTL
+        .add(petalsTL.play())
+
+    emit('flowerTL', flowerTL)
 
 })
 </script>
