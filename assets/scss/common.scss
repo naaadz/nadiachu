@@ -23,6 +23,19 @@ a.fill {
     }
 }
 
+.arrow {
+    opacity: .8;
+    transition: opacity .5s;
+
+    &.prev {
+        transform: rotate(180deg);
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
 .heading {
     opacity: 0;
 
@@ -67,7 +80,7 @@ nav  {
 }
 
 .heading-wrap {
-    pointer-events: none;
+    //pointer-events: none;
 }
 
 .layout-mobile {
@@ -305,6 +318,10 @@ nav  {
             &:after {
                 display: none;
             }
+        }
+
+        .the-page {
+            max-width: 1400px;
         }
     }
 

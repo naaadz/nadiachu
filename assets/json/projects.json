@@ -1,0 +1,26 @@
+[
+    { 
+        "id": 0, 
+        "name": "solutions", 
+        "title": "Some solutions title maybe", 
+        "desc": "", 
+        "mediaType": "video",
+        "mediaPath": "/video/solutions-marker.mp4"
+    },
+    { 
+        "id": 1, 
+        "name": "test", 
+        "title": "Some test title maybe", 
+        "desc": "", 
+        "mediaType": "image",
+        "mediaPath": "/images/sample.png"
+    },
+    { 
+        "id": 2, 
+        "name": "test-2", 
+        "title": "Some test title maybe", 
+        "desc": "", 
+        "mediaType": "image",
+        "mediaPath": "/images/sample.png"
+    }
+]

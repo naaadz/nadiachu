@@ -10,7 +10,8 @@ export default defineNuxtConfig({
         '@/assets/scss/common.scss',
         '@/assets/scss/flower.scss',
         '@/assets/scss/logo.scss',
-        '@/assets/scss/pages.scss'
+        '@/assets/scss/pages.scss',
+        '@/assets/scss/projects.scss'
 	],
     ssr:false,
     modules: [

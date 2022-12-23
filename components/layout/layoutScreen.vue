@@ -70,6 +70,7 @@ import gsap from 'gsap'
 
 const route = useRoute()
 const router = useRouter()
+const { currentProject } = useProjects()
 
 const first = ref(null)
 const second = ref(null)
@@ -160,7 +161,7 @@ const onlogoTL = (payload) => {
 
 const defineTimelines = () => {
     fullTL
-        .to(first.value, { width: '2.5rem', opacity: .2 })
+        .to(first.value, { width: '2.5rem', opacity: 0 })
         .to('.bar-full nav:last-child > *', {opacity: 1, stagger: .1})
         .to('.bar-full nav:first-child > *', {opacity: 1, stagger: .1})
         .add(flowerTL.play())
