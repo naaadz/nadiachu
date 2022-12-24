@@ -1,5 +1,5 @@
 <template>
-	<div class="stc-logo">
+	<div class="stc-logo" ref="logoWrap">
 		<svg
 			id="layer-logo"
 			xmlns="http://www.w3.org/2000/svg"
@@ -284,13 +284,14 @@
 				</g>
 			</g>
 		</svg>
-		<STCFlower @flowerTL="onFlowerTL" />
+		<STCFlower :key=2 @flowerTL="onFlowerTL" />
 	</div>
 </template>
 
 <script setup>
 import gsap from "gsap"
 
+const logoWrap = ref(null)
 const logo = ref(null)
 
 const emit = defineEmits(['logoTL'])
@@ -316,6 +317,7 @@ const defineTimelines = () => {
 	//define timelines
 	logoTL = gsap.timeline({ paused: true })
 
+    gsap.set(logoWrap.value, { opacity: 1})
 	//dynamically fill up the dasharrays with predefined values
 	styleChars.forEach((char, i) => {
 		gsap.set(char, {

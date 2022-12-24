@@ -18,11 +18,7 @@ export const useProjects = () => {
             nextId = 0
         }
 
-        console.log('nextId', nextId)
-
         state.currentProject = projects[nextId]
-
-        console.log(state.currentProject.id)
     }
 
     return { currentProject, next }

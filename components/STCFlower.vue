@@ -107,18 +107,21 @@ const petalsTL = gsap.timeline({
 
 const shootSprayIn = () => {
     gsap.timeline()
-        .add(gsap.to(flower.value, { duration: .2, scale: 1.1, transformOrigin: '70%' }))
+        .add(gsap.to(flower.value, { duration: .2, scale: 1.1, transformOrigin: '50%' }))
         .add(sprayTL.restart().play())
 }
 
 const shootSprayOut = () => {
     gsap.timeline()
-        .add(gsap.to(flower.value, { duration: .2, scale: 1, transformOrigin: '70%' }))
+        .add(gsap.to(flower.value, { duration: .2, scale: 1, transformOrigin: '50%' }))
 }
 
-onMounted(() => {
+const defineTimelines = () => {
     const petals = flower.value.querySelectorAll('.petal > g > *')
     const splashes = flower.value.querySelectorAll('.splash')
+
+    gsap.set(petals, { strokeDasharray: 30, strokeDashoffset: 30})
+    gsap.set(splashes, { strokeDasharray: 15, strokeDashoffset: 15})
 
     petalsTL  
         .to(petals, { duration: .5, strokeDashoffset: 0, stagger: .1 })
@@ -128,6 +131,10 @@ onMounted(() => {
 
     flowerTL
         .add(petalsTL.play())
+}
+
+onMounted(() => {
+    defineTimelines()
 
     emit('flowerTL', flowerTL)
 

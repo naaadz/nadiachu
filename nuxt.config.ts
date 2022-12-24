@@ -1,9 +1,18 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
     app: {
-        //pageTransition: { name: 'page', appear: true },
         pageTransition: false,
-        layoutTransition: false
+        layoutTransition: false,
+
+        head: {
+            title: 'Nadia Chu, Front-end Developer',
+            meta: [
+                { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+            ],
+            link: [
+                { rel: 'icon', type: 'image/png', href: '/images/favicon.png' }
+            ]
+        }
     },
     css: [
 		'@/assets/css/style.css', 

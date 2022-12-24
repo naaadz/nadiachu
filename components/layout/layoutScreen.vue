@@ -7,7 +7,7 @@
         </div>
 
         <div class="bar-standard fixed h-screen flex flex-col justify-between top-0 overflow-hidden" ref="standard">
-            <div class="logo-wrap flex-col text-center" ref="logo">
+            <div class="flex-col text-center">
                 <STCLogo
                     class="logo" 
                     @logoTL="onlogoTL"
@@ -29,7 +29,7 @@
         <div class="bar-full" ref="fullnav">
             <nav>
                 <span class="flower">
-                    <STCFlower @flowerTL="onFlowerTL" />
+                    <STCFlower :key="1" @flowerTL="onFlowerTL" @click="goTo('about')" />
                 </span>
                 <span class="nadia">Nadia Chu</span>
             </nav>
@@ -47,7 +47,7 @@
         <div class="page-wrap">
             <div class="page-content">
                 <div class="the-page" ref="thepage">
-                    <NuxtPage class="text-default-light" />
+                    <NuxtPage class="" />
                 </div>
             </div>
         </div>
@@ -74,7 +74,6 @@ const { currentProject } = useProjects()
 
 const first = ref(null)
 const second = ref(null)
-const logo = ref(null)
 const blurb = ref(null)
 const thepage = ref(null)
 const standard = ref(null)
@@ -92,11 +91,9 @@ const revealHeading = gsap.timeline({ paused: true })
 const revealFirst = gsap.timeline({paused: true})
 const revealBlurb = gsap.timeline({paused: true})
 const revealNav = gsap.timeline({paused: true})
-const hideLogoTL = gsap.timeline({paused: true})
 
 const goTo = (to) => {
     const from = route.name
-    //console.log('goTo: route:', from, to)
 
     if (from !== to) {
         masterTL.clear()
@@ -179,13 +176,9 @@ const defineTimelines = () => {
     revealBlurb.to(blurb.value, { opacity: 1 })
 
     revealNav.to(standardnav.value.children, {opacity: 1, stagger:.2})
-
-    hideLogoTL.set(logo.value, { height: 0, autoAlpha: 0 })
-
 }
     
 onMounted(() => {
-    console.log('screen mounted')
 
     defineTimelines()
 

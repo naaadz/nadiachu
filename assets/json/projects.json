@@ -2,25 +2,45 @@
     { 
         "id": 0, 
         "name": "solutions", 
-        "title": "Some solutions title maybe", 
-        "desc": "", 
+        "title": "Solutions marker animated", 
+        "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>", 
+        "tags": [
+            "vanilla js", "wordpress", "native javascript animation", "scss"
+        ],
         "mediaType": "video",
         "mediaPath": "/video/solutions-marker.mp4"
     },
     { 
         "id": 1, 
-        "name": "test", 
-        "title": "Some test title maybe", 
-        "desc": "", 
-        "mediaType": "image",
-        "mediaPath": "/images/sample.png"
+        "name": "trade-area-prototype", 
+        "title": "Mapping prototype", 
+        "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>", 
+        "tags": [
+            "vue js", "leaflet js", "vanilla js", "scss", "adobe XD"
+        ],
+        "mediaType": "video",
+        "mediaPath": "/video/trade-areas-prototype.mp4"
     },
     { 
         "id": 2, 
-        "name": "test-2", 
-        "title": "Some test title maybe", 
-        "desc": "", 
-        "mediaType": "image",
-        "mediaPath": "/images/sample.png"
+        "name": "polygons-toolbar", 
+        "title": "Draw tools", 
+        "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>", 
+        "tags": [
+            "vue js", "leaflet js", "vanilla js", "scss", "adobe XD"
+        ],
+        "mediaType": "video",
+        "mediaPath": "/video/polygons-toolbar.mp4"
+    },
+    { 
+        "id": 3, 
+        "name": "platform", 
+        "title": "Platform page", 
+        "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>", 
+        "tags": [
+            "vanilla js", "wordpress", "native javascript animation", "scss"
+        ],
+        "mediaType": "video",
+        "mediaPath": "/video/platform-page.mp4"
     }
 ]

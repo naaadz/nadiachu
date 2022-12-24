@@ -6,7 +6,7 @@
         </div>
         <div class="page-wrap flex flex-col items-center fixed-stretch">
             <div class="heading-wrap fixed-stretch">
-                <div class="logo-wrap flex-col text-center" ref="logo">
+                <div class="flex-col text-center" ref="logoWrap">
                     <STCLogo
                         class="logo" 
                         @logoTL="onlogoTL"
@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="the-page p-10" ref="thepage">
+            <div class="the-page" ref="thepage">
                 <NuxtPage class="text-default-light" />
             </div>
             <nav class="fixed-stretch flex justify-center space-x-4" ref="nav">
@@ -52,7 +52,7 @@ const data = reactive({
 
 const first = ref(null)
 const second = ref(null)
-const logo = ref(null)
+const logoWrap = ref(null)
 const blurb = ref(null)
 const heading = ref(null)
 const nav = ref(null)
@@ -76,7 +76,6 @@ const onlogoTL = (payload) => {
 const goTo = (to) => {
 
     const from = route.name
-    //console.log('goTo: route:', from, to)
 
     if (from !== to) {
         masterTL.clear()
@@ -120,7 +119,7 @@ const defineTimelines = () => {
     revealPageTL.to(thepage.value, { opacity: 1 })
     revealHeading
         .to(heading.value, { opacity: 1 })
-    hideLogoTL.set(logo.value, { height: 0 })
+    hideLogoTL.set(logoWrap.value, { height: 0 })
     revealBlurb.to(blurb.value, { opacity: 1 })
 }
 
@@ -133,7 +132,7 @@ onMounted(() => {
         .add(() => data.loaded = true )
 
         if (route.name === 'about') {
-            masterTL
+             masterTL
                 .add(logoTL.play())
                 .add(revealBlurb.play())
         } else {

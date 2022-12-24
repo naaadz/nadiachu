@@ -41,7 +41,7 @@
   }
 
 body {
-    @apply text-default-light bg-dark-1;
+    @apply text-default-light text-base bg-dark-1;
     font-family: 'Lato';
 }
 

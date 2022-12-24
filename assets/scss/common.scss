@@ -7,11 +7,16 @@ a.under {
     padding-bottom: 3px;
     display: inline-flex;
     border-bottom: 1px solid transparent;
-    transition: border .6s;
+    transition: border .6s, color .5s;
     align-self: flex-start;
 
     &.active, &:hover {
-        border-bottom: 1px solid $light-pink;
+        border-bottom: 1px solid $cornflower;
+        
+    }
+
+    &:hover {
+        color: $cornflower;
     }
 }
 
@@ -19,7 +24,7 @@ a.fill {
     transition: color .3s;
 
     &.active, &:hover {
-        color: $light-blue;
+        color: $cornflower;
     }
 }
 
@@ -69,23 +74,26 @@ a.fill {
 
 .the-page {
     opacity: 0;
+
+    p { 
+        @apply leading-7;
+    }
 }
 
 nav  {
     > * {
         opacity: 0;
-        font-size: .9rem;
         text-transform: capitalize;
     }
 }
 
 .heading-wrap {
-    //pointer-events: none;
+    pointer-events: none;
 }
 
 .layout-mobile {
 
-    .logo-wrap svg#layer-logo {
+    .stc-logo {
         width: 230px;
     }
 
@@ -108,6 +116,7 @@ nav  {
 
         .the-page {
             position: relative;
+            padding: 30px 30px 100px;
         }
 
     .blurb {
@@ -145,7 +154,7 @@ nav  {
             top: 0;
             z-index: -1;
             width: 100vw;
-            height: 100px;
+            height: 70px;
         }
     }
 
@@ -154,7 +163,7 @@ nav  {
     }
 
     &.page-about .heading-wrap:before {
-        height: 300px;
+        height: 285px;
     }
 
     nav {
@@ -177,7 +186,8 @@ nav  {
 }
 
 .layout-screen {
-    .logo-wrap svg#layer-logo {
+
+    .stc-logo {
         width: 256px;
     }
 
@@ -191,7 +201,6 @@ nav  {
         height: 100vh;
         overflow: auto;
         left: 364px;
-        right: -30px; //hide scroll bar
 
         &:after {
             content: '';
@@ -277,21 +286,21 @@ nav  {
                 padding-bottom: 20px;
 
                 span.flower {
-                    position: absolute;
-                     top: 10px;
-                    // left: 0;
-
-                    left: 12px;
-                    transform: rotate(80deg);
+                    // position: absolute;
+                    // top: 10px;
+                    // left: 7px;
+                    // transform: rotate(80deg);
 
                     #layer-flower {
                         width: 35px;
+                        position: absolute;
+                        top: 10px;
+                        left: 7px;
+                        transform: rotate(80deg);
                     }
-
                 }
 
                 span.nadia {
-                    // display: block;
                     margin-top: 80px;
                      transform: rotate(180deg);
                 }
@@ -321,7 +330,7 @@ nav  {
         }
 
         .the-page {
-            max-width: 1400px;
+            //max-width: 1400px;
         }
     }
 
@@ -329,7 +338,22 @@ nav  {
         .page-content {
             max-width: 800px;
         }
+
+        .page-wrap {
+            right: -30px; //hide scroll bar
+        }
     }
+
+}
+
+.fade-enter-active,
+.fade-leave-active {
+transition: opacity .5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+opacity: 0;
 }
 
 

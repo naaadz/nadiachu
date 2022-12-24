@@ -18,7 +18,6 @@ schedule.scheduleJob('37 1 * * *', async () => {
     //sec (opt), min, hr, day, month, yr
 
     // run everyday at 1:37am
-    console.log('i ran at 1:37am')
     //get the latest sportsAPI
     await getSportsStuff().then((data) => {
         //filter the response to just Tampa bay home games

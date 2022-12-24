@@ -1,24 +1,22 @@
 @import "@/assets/scss/vars.scss";
 
-.logo-wrap {
-    #layer-logo {
-        margin: auto; 
-        pointer-events: none;
-    }
-
-    .stc-flower {
-        position: absolute;
-        top: 50px;
-        left: 45px;
-    }
-  }
-
 .stc-logo {
     //has both logos in it
     position: relative;
+    margin: auto;
+    opacity: 0;
+
+    .stc-flower {
+        position: absolute;
+        top: 43px;
+        left: 13px;
+    }
 }
 
   #layer-logo {
+    width: 100%;
+    margin: auto; 
+
     #that {
         polygon, path {
            fill: theme('colors.default-light');
@@ -114,8 +112,6 @@
             animation: blink 1s infinite;
           }
       }
-      
-
       
       #compiles > * {
         fill: theme('colors.default-light');

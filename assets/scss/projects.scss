@@ -2,15 +2,17 @@
 
 body {
 
-    &.page-projects {
-        transition: background-color 1s;
-
-        $projects: 'solutions' #121243 #3471da, 'test' green blue, 'test-2' pink red;
+    &.page-projects.layout-screen {
+        $projects: 
+            'solutions' #0e1946 #1796FF, 
+            'trade-area-prototype' #151836 #f8bd50, 
+            'polygons-toolbar' #0f133d #f1437f,
+            'platform' #161653 #9037e2; 
 
         @each $name, $primary, $accent in $projects {
             &.project-#{$name} {
-    
-                background-color: darken($primary, 8);
+                transition: background-color 1s;
+                background-color: darken($primary, 10);
     
                 .bar-full {
                     background: darken($primary, 5);
@@ -19,31 +21,36 @@ body {
     
                 .heading span:first-child {
                     color: $accent;
+                    transition: color 1s;
                 }
     
                 .heading-wrap .branch {
                    background: $accent;
+                   transition: background 1s;
                 }
-    
-                a.active {
-                    &.fill {
-                        color: $accent;
-    
-                        &:hover {
-                            color: $accent;
-                        }
-                    }
-    
-                    &.under {
+
+                a.under {
+                    &.active, &:hover {
                         border-bottom: 1px solid $accent;
+                    }
+                
+                    &:hover {
+                        color: $accent;
+                    }
+                }
+                
+                a.fill {
+                    &.active, &:hover {
+                        color: $accent;
                     }
                 }
     
                 .tags > span {
-                    color: lighten($primary, 50);
+                    color: lighten($accent, 20);
                     background: $primary;
+                    transition: background 1s;
                 }
-            }
+            } 
         }
     }
 

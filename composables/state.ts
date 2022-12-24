@@ -8,10 +8,9 @@ export const useScreensize = () => {
 	let size = ref(null)
 
     const handleResize = () => {
-        console.log('window.innerWidth', window.innerWidth)
 		windowWidth.value = window.innerWidth
 
-		if (windowWidth.value >= 1024) {
+		if (windowWidth.value >= 768) {
 			isMobile.value = false
 		} else {
 			isMobile.value = true
@@ -34,7 +33,6 @@ export const useScreensize = () => {
 				size.value = "default"
 		}
 
-        console.log('isMobile', isMobile.value)
     }
 
 	onMounted(() => {
@@ -64,4 +62,11 @@ export const usePages = () => {
     const routes = router.getRoutes()
     //put the routes in order of the nav
     return [routes[0], routes[3], routes[2], routes[1]]
+}
+
+export const usePreloadVideos = () => {
+    document.createElement("video").setAttribute("src", "/video/solutions-marker.mp4")
+    document.createElement("video").setAttribute("src", "/video/trade-areas-prototype.mp4")
+    document.createElement("video").setAttribute("src", "/video/polygons-toolbar.mp4")
+    document.createElement("video").setAttribute("src", "/video/platform-page.mp4")
 }

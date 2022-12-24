@@ -1,24 +1,24 @@
 @import "@/assets/scss/vars.scss";
 
-.static {
-    .splash {
-        display: none;
-    }
-}
+// .static {
+//     .splash {
+//         display: none;
+//     }
+// }
 
-.animated {
-    .petal {
-        path, line {
-            stroke-dasharray: 30px;
-            stroke-dashoffset: 30px;   
-        }
-    }
+// .animated {
+//     .petal {
+//         path, line {
+//             stroke-dasharray: 30px;
+//             stroke-dashoffset: 30px;   
+//         }
+//     }
     
-    .splash {
-        stroke-dasharray: 15;
-        stroke-dashoffset: 15;
-    }
-}
+//     .splash {
+//         stroke-dasharray: 15;
+//         stroke-dashoffset: 15;
+//     }
+// }
 
 #layer-flower {
     width: 40px;
