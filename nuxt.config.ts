@@ -1,8 +1,8 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
     app: {
-        pageTransition: false,
-        layoutTransition: false,
+        // pageTransition: false,
+        // layoutTransition: false,
 
         head: {
             title: 'Nadia Chu, Front-end Developer',
@@ -14,6 +14,11 @@ export default defineNuxtConfig({
             ]
         }
     },
+    // router: {
+    //     options: {
+    //         hashMode: true
+    //       }
+    // },
     css: [
 		'@/assets/css/style.css', 
         '@/assets/scss/common.scss',

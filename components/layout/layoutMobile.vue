@@ -11,7 +11,7 @@
                         class="logo" 
                         @logoTL="onlogoTL"
                     />
-                    <p class="blurb" ref="blurb">A portfolio site by <a href="#" class="under active" @click="goTo('about')">Nadia Chu</a></p>
+                    <p class="blurb" ref="blurb">A portfolio site by <a href="#" class="under active">Nadia Chu</a></p>
                 </div>
                 <div class="heading flex" ref="heading">
                     <template v-if="route.meta.heading">
@@ -25,13 +25,12 @@
                 <NuxtPage class="text-default-light" />
             </div>
             <nav class="fixed-stretch flex justify-center space-x-4" ref="nav">
-                <a 
+                <nuxt-link 
                     v-for="page in usePages()" 
                     class="under"
                     :class="{ active : route.name === page.name}"
-                    href="#" 
-                    @click="goTo(page.name)">{{ page.name }}
-                </a>
+                    :to="page.name">{{ page.name }}
+                </nuxt-link>
             </nav>
         </div>
     </div>
@@ -73,22 +72,23 @@ const onlogoTL = (payload) => {
     logoTL = payload
 }
 
-const goTo = (to) => {
+router.beforeEach((to, from, next) => {
 
-    const from = route.name
+    //console.log('beforeEach', from.name, to.name)
 
-    if (from !== to) {
+    if (from.name !== to.name) {
         masterTL.clear()
-        //first hide the page
         masterTL.add(revealPageTL.reverse())
-        //now change the route early, so that there's less chance the route will be the same
-        //if you click on the same link during an animation
+
         masterTL.add(() => {
-            router.push({ path: to })
+            return new Promise ((res) => {
+                next()
+                res()
+            })
         })
 
         masterTL.then(() => {
-            if (from === 'about') {
+            if (from.name === 'about') {
                 masterTL
                     .add(logoTL.timeScale(4).reverse())
                     .add(revealBlurb.reverse(), '>-50%')
@@ -97,7 +97,7 @@ const goTo = (to) => {
                     .add(revealPageTL.play(), '>-50%')
             } 
 
-            else if (to === 'about') {
+            else if (to.name === 'about') {
                 masterTL
                     .add(revealHeading.reverse())
                     .add(hideLogoTL.reverse())
@@ -109,7 +109,7 @@ const goTo = (to) => {
             }
         })
     }
-}
+})
 
 const defineTimelines = () => {
     revealFirst
@@ -124,28 +124,28 @@ const defineTimelines = () => {
 }
 
 onMounted(() => {
-
     defineTimelines()
 
-    masterTL
-        .add(revealFirst.play())
-        .add(() => data.loaded = true )
+        masterTL
+            .add(revealFirst.play())
+            .add(() => data.loaded = true )
 
-        if (route.name === 'about') {
-             masterTL
-                .add(logoTL.play())
-                .add(revealBlurb.play())
-        } else {
-            masterTL
-            .add(hideLogoTL.play())
-            .add(revealHeading.play())
-        }
+            if (['contact', 'projects', 'resume'].includes(route.name)) {
+                masterTL
+                    .add(hideLogoTL.play())
+                    .add(revealHeading.play())
+            } else {
+                masterTL
+                    .add(logoTL.play())
+                    .add(revealBlurb.play())
+            }
 
-    masterTL
-        .add(revealPageTL.play())
-        .add(revealNav.play())
+        masterTL
+            .add(revealPageTL.play())
+            .add(revealNav.play())
 
-    masterTL.play()
+        masterTL.play()
+
 
 })
 

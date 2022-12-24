@@ -12,17 +12,17 @@
                     class="logo" 
                     @logoTL="onlogoTL"
                 />
-                <p class="blurb" ref="blurb">A portfolio site by <a href="#" class="under active" @click="goTo('about')">Nadia Chu</a></p>
+                <p class="blurb" ref="blurb">A portfolio site by <a href="#" class="under active">Nadia Chu</a></p>
+                
             </div>
             
             <nav class="flex justify-center gap-4 m-10" ref="standardnav">
-                <a 
+                <nuxt-link 
                     v-for="page in usePages()" 
                     class="under"
                     :class="{ active : route.name === page.name}"
-                    href="#" 
-                    @click="goTo(page.name)">{{ page.name }}
-                </a>
+                    :to="page.name">{{ page.name }}
+                </nuxt-link>
             </nav>
         </div>
 
@@ -34,13 +34,12 @@
                 <span class="nadia">Nadia Chu</span>
             </nav>
             <nav class="nav flex justify-center gap-4">
-                <a 
+                <nuxt-link 
                     v-for="page in usePages()" 
-                    :class="{ active : route.name === page.name}"
                     class="fill"
-                    href="#" 
-                    @click="goTo(page.name)">{{ page.name }}
-                </a>
+                    :class="{ active : route.name === page.name}"
+                    :to="page.name">{{ page.name }}
+                </nuxt-link>
             </nav>
         </div>
 
@@ -92,62 +91,6 @@ const revealFirst = gsap.timeline({paused: true})
 const revealBlurb = gsap.timeline({paused: true})
 const revealNav = gsap.timeline({paused: true})
 
-const goTo = (to) => {
-    const from = route.name
-
-    if (from !== to) {
-        masterTL.clear()
-        
-        if (![from, to].includes('projects')) {
-            //dim the standard nav while the other pages are appearing
-            masterTL.add(gsap.to(standard.value, { opacity: .5}))
-        }
-
-        masterTL
-            .add(revealHeading.reverse(), '<')
-            .add(revealPageTL.reverse())
-            
-        //now change the route early, so that there's less chance the route will be the same
-        //if you click on the same link during an animation
-        masterTL.add(() => {
-            router.push({ path: to })
-        })
-
-        masterTL.then(() => {
-
-            if (to === 'projects') {
-                //reverse the standard view
-                masterTL
-                .add(logoTL.timeScale(5).reverse())
-                .add(revealNav.reverse(), '<')
-                .add(revealBlurb.reverse(), '<')
-                .add(revealFirst.reverse(), '<')
-                .add(fullTL.timeScale(1).play())
-                .add(revealHeading.play(), '>-50%')
-                .add(revealPageTL.play(), '>-50%')
-            }
-
-            else if (from === 'projects' ) {
-                masterTL
-                    .add(fullTL.timeScale(3).reverse())
-                    .add(revealFirst.play())
-                    .add(logoTL.timeScale(1).play(), '>-50%')
-                    .add(revealHeading.play(), '>-50%')
-                    .add(revealPageTL.play(), '>')
-                    .add(revealNav.play(), '>')
-                    .add(revealBlurb.play(), '>')
-            }
-
-            else {
-                masterTL
-                    .add(revealHeading.play(), '>-50%')
-                    .add(revealPageTL.play(), '>-50%')
-                    .add(gsap.to(standard.value, { opacity: 1}))
-            }
-        })
-    }
-}
-
 const onFlowerTL = (payload) => {
     flowerTL = payload
 }
@@ -177,6 +120,62 @@ const defineTimelines = () => {
 
     revealNav.to(standardnav.value.children, {opacity: 1, stagger:.2})
 }
+
+router.beforeEach((to, from, next) => {
+
+    if (from.name !== to.name) {
+        masterTL.clear()
+        
+        if (![from.name, to.name].includes('projects')) {
+            //dim the standard nav while the other pages are appearing
+            masterTL.add(gsap.to(standard.value, { opacity: .5}))
+        }
+
+        masterTL
+            .add(revealHeading.reverse(), '<')
+            .add(revealPageTL.reverse())
+            
+        masterTL.add(() => {
+            return new Promise ((res) => {
+                next()
+                res()
+            })
+        })
+
+        masterTL.then(() => {
+
+            if (to.name === 'projects') {
+                //reverse the standard view
+                masterTL
+                .add(logoTL.timeScale(5).reverse())
+                .add(revealNav.reverse(), '<')
+                .add(revealBlurb.reverse(), '<')
+                .add(revealFirst.reverse(), '<')
+                .add(fullTL.timeScale(1).play())
+                .add(revealHeading.play(), '>-50%')
+                .add(revealPageTL.play(), '>-50%')
+            }
+
+            else if (from.name === 'projects' ) {
+                masterTL
+                    .add(fullTL.timeScale(3).reverse())
+                    .add(revealFirst.play())
+                    .add(logoTL.timeScale(1).play(), '>-50%')
+                    .add(revealHeading.play(), '>-50%')
+                    .add(revealPageTL.play(), '>')
+                    .add(revealNav.play(), '>')
+                    .add(revealBlurb.play(), '>')
+            }
+
+            else {
+                masterTL
+                    .add(revealHeading.play(), '>-50%')
+                    .add(revealPageTL.play(), '>-50%')
+                    .add(gsap.to(standard.value, { opacity: 1}))
+            }
+        })
+    }
+})
     
 onMounted(() => {
 
@@ -198,6 +197,8 @@ onMounted(() => {
     }
 
     masterTL.play()
+
+
 })
 
 
