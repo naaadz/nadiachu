@@ -62,8 +62,8 @@ export const usePages = () => {
 }
 
 export const usePreloadVideos = () => {
-    document.createElement("video").setAttribute("src", "/video/solutions-marker.mp4")
-    document.createElement("video").setAttribute("src", "/video/trade-areas-prototype.mp4")
-    document.createElement("video").setAttribute("src", "/video/polygons-toolbar.mp4")
-    document.createElement("video").setAttribute("src", "/video/platform-page.mp4")
+    document.createElement("video").setAttribute("src", "https://new.nadiastoffel.com/video/solutions-marker.mp4")
+    document.createElement("video").setAttribute("src", "https://new.nadiastoffel.com/video/trade-areas-prototype.mp4")
+    document.createElement("video").setAttribute("src", "https://new.nadiastoffel.com/video/polygons-toolbar.mp4")
+    document.createElement("video").setAttribute("src", "https://new.nadiastoffel.com/video/platform-page.mp4")
 }
