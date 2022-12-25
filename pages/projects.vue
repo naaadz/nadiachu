@@ -17,21 +17,19 @@
 				alt=""
 			/> -->
             <Loader v-show="!data.mediaLoaded" />
-            <Transition name="fade" mode="in-out">
-                <video
-                    class="frame"
-                    v-show="data.mediaLoaded"
-                    @loadeddata="onLoadedData"
-                    :key="currentProject.id"
-                    loop
-                    muted
-                    autoplay
-                    playsinline
-                    controls
-                >
-                    <source :src="currentProject.mediaPath" type="video/mp4" />
-                </video>
-            </Transition>
+            <video
+                class="frame"
+                v-show="data.mediaLoaded"
+                @loadeddata="onLoadedData"
+                :key="currentProject.id"
+                loop
+                muted
+                autoplay
+                playsinline
+                controls
+            >
+                <source :src="currentProject.mediaPath" type="video/mp4" />
+            </video>
 		</div>
         <div class="flex gap-2">
             <a
