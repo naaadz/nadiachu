@@ -8,7 +8,7 @@
             "vanilla js", "wordpress", "native javascript animation", "scss"
         ],
         "mediaType": "video",
-        "mediaPath": "/video/solutions-marker.mp4"
+        "mediaPath": "https://new.nadiastoffel.com/video/solutions-marker.mp4"
     },
     { 
         "id": 1, 
@@ -19,7 +19,7 @@
             "vue js", "leaflet js", "vanilla js", "scss", "adobe XD"
         ],
         "mediaType": "video",
-        "mediaPath": "/video/trade-areas-prototype.mp4"
+        "mediaPath": "https://new.nadiastoffel.com/video/trade-areas-prototype.mp4"
     },
     { 
         "id": 2, 
@@ -30,7 +30,7 @@
             "vue js", "leaflet js", "vanilla js", "scss", "adobe XD"
         ],
         "mediaType": "video",
-        "mediaPath": "/video/polygons-toolbar.mp4"
+        "mediaPath": "https://new.nadiastoffel.com/video/polygons-toolbar.mp4"
     },
     { 
         "id": 3, 
