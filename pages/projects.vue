@@ -17,7 +17,7 @@
 				alt=""
 			/> -->
             <Loader v-show="!data.mediaLoaded" />
-            <Transition name="fade">
+            <Transition name="fade" mode="in-out">
                 <video
                     class="frame"
                     v-show="data.mediaLoaded"
