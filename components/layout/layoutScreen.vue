@@ -123,6 +123,9 @@ const defineTimelines = () => {
 
 router.beforeEach((to, from, next) => {
 
+    console.log('from:', from)
+    console.log('to:', to)
+
     if (from.name !== to.name) {
         masterTL.clear()
         
@@ -137,7 +140,9 @@ router.beforeEach((to, from, next) => {
             
         masterTL.add(() => {
             return new Promise ((res) => {
+                //router.replace(to.path)
                 next()
+                //next({ path: to.path })
                 res()
             })
         })
