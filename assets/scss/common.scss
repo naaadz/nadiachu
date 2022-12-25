@@ -41,6 +41,16 @@ a.fill {
     }
 }
 
+.loader {
+    animation: spin 1s infinite;
+}
+
+@keyframes spin { 
+    100% { 
+        transform:rotate(360deg); 
+    } 
+}
+
 .heading {
     opacity: 0;
 

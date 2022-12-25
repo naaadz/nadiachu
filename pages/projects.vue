@@ -10,36 +10,37 @@
 		</div>
 
 		<div class="scaled-content">
-			<img
+			<!-- <img
 				v-if="currentProject.mediaType === 'image'"
 				class="frame"
 				:src="currentProject.mediaPath"
 				alt=""
-			/>
-            <Transition name="fade" mode="out-in">
+			/> -->
+            <Loader v-show="!data.mediaLoaded" />
+            <Transition name="fade">
                 <video
-                    v-if="currentProject.mediaType === 'video'"
+                    class="frame"
+                    v-show="data.mediaLoaded"
+                    @loadeddata="onLoadedData"
                     :key="currentProject.id"
                     loop
                     muted
                     autoplay
                     playsinline
                     controls
-                    class="frame"
                 >
                     <source :src="currentProject.mediaPath" type="video/mp4" />
-			    </video>
+                </video>
             </Transition>
-
 		</div>
         <div class="flex gap-2">
             <a
                 class="under active"
                 href="#"
-                @click="next()"
+                @click="playNext"
                 >Next project</a
             >
-            <Arrow @click="next()" />
+            <Arrow @click="playNext" />
         </div>
 		<!-- <div class="flex space-x-4 justify-between">
 			<a
@@ -69,6 +70,18 @@ const { currentProject, next } = useProjects()
 //there's an error in this component: commenting out the source element removes the error.
 //maybe upgrading nuxt will fix it?
 
+const data = reactive({
+    mediaLoaded: false
+})
+
+const playNext = () => {
+    data.mediaLoaded = false
+    next()
+}
+
+const onLoadedData = () => {
+    data.mediaLoaded = true
+}
 
 definePageMeta({
 	title: "Projects",
