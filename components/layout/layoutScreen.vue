@@ -140,9 +140,7 @@ router.beforeEach((to, from, next) => {
             
         masterTL.add(() => {
             return new Promise ((res) => {
-                //router.replace(to.path)
                 next()
-                //next({ path: to.path })
                 res()
             })
         })
