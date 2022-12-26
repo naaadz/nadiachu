@@ -29,7 +29,7 @@
         <div class="bar-full" ref="fullnav">
             <nav>
                 <span class="flower">
-                    <STCFlower :key="1" @flowerTL="onFlowerTL" />
+                    <nuxt-link to="/about"><STCFlower :key="1" @flowerTL="onFlowerTL" /></nuxt-link>
                 </span>
                 <span class="nadia">Nadia Chu</span>
             </nav>

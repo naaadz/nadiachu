@@ -3,7 +3,7 @@
         "id": 0, 
         "name": "solutions", 
         "title": "Solutions marker animated", 
-        "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>", 
+        "desc": "<p>This is an svg map marker that morphs to different states upon interaction, syncing with page content -- hover and page scroll.</p><p>My portion of this feature was receiving vector artwork from our designer, converting that into dom elements, animating those with Javascript and styling, and integrating it with the web application.</p>", 
         "tags": [
             "vanilla js", "wordpress", "native javascript animation", "scss"
         ],
@@ -15,9 +15,9 @@
         "id": 1, 
         "name": "trade-area-prototype", 
         "title": "Mapping prototype", 
-        "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>", 
+        "desc": "<p>This project is a trade areas feature where users can manage shapes associated with their brick and mortar stores.</p><p>I first designed it in Adobe XD for look and feel. Then created this Vue application as a prototype to be used by our product and dev team along with customers to test and receive early feedback.</p><p>After it was proven to meet our needs, I helped our dev team implement it into our production application and test it.</p>", 
         "tags": [
-            "vue js", "leaflet js", "vanilla js", "scss", "adobe XD"
+            "vue js", "pinia store", "leaflet js", "geojson", "scss", "adobe XD"
         ],
         "loaded": false,
         "mediaType": "video",
@@ -27,7 +27,7 @@
         "id": 2, 
         "name": "polygons-toolbar", 
         "title": "Draw tools", 
-        "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>", 
+        "desc": "<p>Here's another feature to let users draw boundaries for their stores.</p><p>I designed this in Adobe XD for look and feel. Then did the markup, styling then created Vue foundational components from that. Finally, helped our dev team fully implement and test it.</p>", 
         "tags": [
             "vue js", "leaflet js", "vanilla js", "scss", "adobe XD"
         ],
