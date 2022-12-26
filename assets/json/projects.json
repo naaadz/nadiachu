@@ -15,7 +15,7 @@
         "id": 1, 
         "name": "trade-area-prototype", 
         "title": "Mapping prototype", 
-        "desc": "<p>This project is a trade areas feature where users can manage shapes associated with their brick and mortar stores.</p><p>I first designed it in Adobe XD for look and feel. Then created this Vue application as a prototype to be used by our product and dev team along with customers to test and receive early feedback.</p><p>After it was proven to meet our needs, I helped our dev team implement it into our production application and test it.</p>", 
+        "desc": "<p>This project is a feature that allows users to manage shapes associated with their brick and mortar stores.</p><p>I first designed it in Adobe XD for layout, look and feel. Then created this Vue application as a prototype to be used by our product and dev team along with customers to test and receive early feedback.</p><p>After it was proven to meet our needs, I helped our dev team implement it into our production application and test it.</p>", 
         "tags": [
             "vue js", "pinia store", "leaflet js", "geojson", "scss", "adobe XD"
         ],
@@ -27,7 +27,7 @@
         "id": 2, 
         "name": "polygons-toolbar", 
         "title": "Draw tools", 
-        "desc": "<p>Here's another feature to let users draw boundaries for their stores.</p><p>I designed this in Adobe XD for look and feel. Then did the markup, styling then created Vue foundational components from that. Finally, helped our dev team fully implement and test it.</p>", 
+        "desc": "<p>Here's a toolbar feature to let users draw boundaries for their stores.</p><p>I designed this in Adobe XD for look and feel. Then did the markup and styling and created Vue foundational components from that. Finally, I helped our dev team fully implement and test it.</p>", 
         "tags": [
             "vue js", "leaflet js", "vanilla js", "scss", "adobe XD"
         ],

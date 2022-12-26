@@ -123,8 +123,8 @@ const defineTimelines = () => {
 
 router.beforeEach((to, from, next) => {
 
-    console.log('from:', from)
-    console.log('to:', to)
+    // console.log('from:', from)
+    // console.log('to:', to)
 
     if (from.name !== to.name) {
         masterTL.clear()
