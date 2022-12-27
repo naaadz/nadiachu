@@ -3,9 +3,9 @@
         "id": 0, 
         "name": "solutions", 
         "title": "Solutions marker animated", 
-        "desc": "<p>This is an svg map marker that morphs to different states upon interaction, syncing with page content -- hover and page scroll.</p><p>My portion of this feature was receiving vector artwork from our designer, converting that into dom elements, animating those with Javascript and styling, and integrating it with the web application.</p>", 
+        "desc": "<p>This is an svg map marker that morphs to different states upon interaction, syncing with page content via hover and page scroll. I converted the vector artwork into dom elements, animated those with native Javascript animation api, styled it, and integrated it with the website.</p><p>I love this kind of work because I get to take a static piece thats beautiful on its own to the next level, increasing its appeal to the user.</p>", 
         "tags": [
-            "vanilla js", "wordpress", "native javascript animation", "scss"
+            "vanilla js", "native javascript animation", "scss", "wordpress"
         ],
         "loaded": false,
         "mediaType": "video",
@@ -15,7 +15,7 @@
         "id": 1, 
         "name": "trade-area-prototype", 
         "title": "Mapping prototype", 
-        "desc": "<p>This project is a feature that allows users to manage shapes associated with their brick and mortar stores.</p><p>I first designed it in Adobe XD for layout, look and feel. Then created this Vue application as a prototype to be used by our product and dev team along with customers to test and receive early feedback.</p><p>After it was proven to meet our needs, I helped our dev team implement it into our production application and test it.</p>", 
+        "desc": "<p>This project is a feature that allows users to manage shapes associated with their brick and mortar stores.</p><p>I first designed it in Adobe XD for layout, look and feel. Then created this Vue application as a prototype to be used by our product and dev team along with customers to test and receive early feedback.</p><p>After it was proven to meet our needs, I helped our dev team implement it into the full application and test it.</p>", 
         "tags": [
             "vue js", "pinia store", "leaflet js", "geojson", "scss", "adobe XD"
         ],
@@ -27,7 +27,7 @@
         "id": 2, 
         "name": "polygons-toolbar", 
         "title": "Draw tools", 
-        "desc": "<p>Here's a toolbar feature to let users draw boundaries for their stores.</p><p>I designed this in Adobe XD for look and feel. Then did the markup and styling and created Vue foundational components from that. Finally, I helped our dev team fully implement and test it.</p>", 
+        "desc": "<p>Here's a toolbar feature to let users draw boundaries for their stores.</p><p>I designed this in Adobe XD for look and feel. Then did the markup and styling and created Vue foundational components from that. Finally, I helped our dev team implement and test it.</p>", 
         "tags": [
             "vue js", "leaflet js", "vanilla js", "scss", "adobe XD"
         ],

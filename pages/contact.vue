@@ -1,6 +1,19 @@
 <template>
-	<div class="space-y-4">
-		<p v-for="i in 1" :key="i">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+	<div class="form-wrap space-y-8">
+		<p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+        <form class="flex flex-col space-y-4" action="">
+            <input type="text" placeholder="Your name">
+            <input type="text" placeholder="Your contact">
+            <div class="textarea-wrap">
+                <textarea name="" id="" placeholder="Your note"></textarea>
+                <button class="send" @click.prevent="">send</button>
+            </div>
+        </form>
+        <div class="social flex space-x-6">
+            <img src="@/assets/images/email.svg" alt="">
+            <img src="@/assets/images/linkedin.svg" alt="">
+            <img src="@/assets/images/github.svg" alt="">
+        </div>
 	</div>
 </template>
 
@@ -9,7 +22,7 @@
 definePageMeta({
   title: 'Contact',
   heading: [
-    'my', 'contact'
+    'contact', 'me'
   ]
 })
 

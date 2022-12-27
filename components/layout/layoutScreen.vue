@@ -12,7 +12,7 @@
                     class="logo" 
                     @logoTL="onlogoTL"
                 />
-                <p class="blurb" ref="blurb">A portfolio site by <a href="#" class="under active">Nadia Chu</a></p>
+                <p class="blurb" ref="blurb">A portfolio site by <nuxt-link to="/about" class="under active">Nadia Chu</nuxt-link></p>
                 
             </div>
             

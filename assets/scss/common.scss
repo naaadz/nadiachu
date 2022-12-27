@@ -4,7 +4,7 @@
 //common styles
 
 a.under {
-    padding-bottom: 3px;
+    //padding-bottom: 3px;
     display: inline-flex;
     border-bottom: 1px solid transparent;
     transition: border .6s, color .5s;
@@ -46,27 +46,22 @@ a.fill {
     animation: spin 1s infinite;
 }
 
-@keyframes spin { 
-    100% { 
-        transform:rotate(360deg); 
-    } 
-}
-
 .heading {
     opacity: 0;
 
-    @apply items-center;
+    @apply items-center gap-1;
 
     > span {
         &:first-child {
             @apply font-corinthia mx-2 text-light-pink;
-            font-size: 3rem;
+            font-size: 3.6rem;
         }
 
         &:last-child {
             font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
+            font-size: 1.5rem;
+            padding-bottom: 5px;
+            letter-spacing: 2px;
         }
     }
 }
@@ -100,6 +95,23 @@ nav  {
 
 .heading-wrap {
     pointer-events: none;
+
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+
+        .layout-mobile & {
+            width: 100%;
+        }
+    }
+
+    .branch {
+        background: $muted-blue;
+        height: 1px;
+    }
 }
 
 .layout-mobile {
@@ -134,47 +146,28 @@ nav  {
         margin-top: -20px;
     }
 
-    $pages: 
-        'about' 300 0,
-        'resume' 100 0,
-        'projects' 100 0,
-        'contact' 100 0;
+    .branch {
+        flex: 0;
+    }
 
-    @each $page, $top, $left in $pages {
-        &.page-#{$page} {
-
-            .the-page {
-                top: #{$top - 40}px;
-
-                &:before {
-                    height: #{$top + 30}px
-                    
-                }
-            }
-        }
+    .the-page {
+        top: 70px;
     }
 
     .heading-wrap {
-        position: fixed;
-        z-index:100;
+        width: 100%;
+        top: 20px;
+        opacity: 1;
+        transition: opacity 1s;
 
         &:before {
-            content: '';
-            position: absolute;
-            background: none;
-            top: 0;
-            z-index: -1;
-            width: 100vw;
-            height: 70px;
+            height: 100px;
+            top: -20px;
         }
     }
 
     .heading {
-        padding-left: 25px;
-    }
-
-    &.page-about .heading-wrap:before {
-        height: 285px;
+        padding-right: 60px;
     }
 
     nav {
@@ -186,7 +179,9 @@ nav  {
     .loaded {
         .heading-wrap {
             &:before {
-                background: linear-gradient($default-dark 60%, rgba($default-dark, .5));
+                background: linear-gradient($default-dark 60%, rgba($default-dark, 0));
+               // background: red;
+               // opacity: 1;
             }
         }
 
@@ -232,45 +227,35 @@ nav  {
             padding: 50px 50px 100px;
         }
     }
-    
+
     .heading-wrap {
+
         &:before {
-            content: '';
-            position: fixed;
-            background: linear-gradient($dark-1 60%, rgba($dark-1, .5));
             width: 800px;
-            left: 364px;
-            top: 0;
-            z-index: -1;
-        }
-    
-        .branch {
-            background: $muted-blue;
-            height: 1px;
-            width: 0;
+            left: 40px;
+            background: linear-gradient($dark-1 60%, rgba($dark-1, .5));
+            //background: red;
         }
     }
 
     $pages: 
-        'about' 400 320,
-        'resume' 85 320,
-        'projects' 65 15,
-        'contact' 400 320;
+    'about' 400,
+    'resume' 60,
+    'contact' 300;
 
     @each $page, $top, $left in $pages {
         &.page-#{$page} {
-
+            
             .page-content {
-                top: #{$top}px;
+                top: #{$top + 40}px;
             }
 
             .heading-wrap {
-                top: #{$top - 40}px;
-                left: #{$left}px;
+                top: #{$top}px;
 
                 &:before {
-                    height: #{$top + 30}px
-                    
+                    top: #{-$top}px;
+                    height: #{$top + 80}px;
                 }
             }
         }
@@ -324,48 +309,63 @@ nav  {
         }
     }
 
-    .layout-full {
-        .heading-wrap {
-            &:before {
-                display: none;
-            }
-        }
-
-        .page-wrap {
-            overflow: unset;
-            left: 50px;
-
-            &:after {
-                display: none;
-            }
-        }
-
-        .the-page {
-            //max-width: 1400px;
-        }
-    }
-
     .layout-standard {
         .page-content {
             max-width: 800px;
         }
-
+    
         .page-wrap {
             right: -30px; //hide scroll bar
         }
+    
+        .heading-wrap {
+            left: 330px;
+        }
     }
-
+    
+    .layout-full {
+    
+        .page-wrap {
+            overflow: unset;
+            left: 50px;
+    
+            &:after {
+                display: none;
+            }
+        }
+    
+        .the-page {
+            padding: 120px 50px 50px;
+        }
+    
+        .heading-wrap {
+            top: 24px;
+            left: 15px;
+    
+            &:before {
+                display: none;
+            }
+        }
+    }
 }
 
-.fade-enter-active,
-.fade-leave-active {
-transition: opacity .5s ease;
+//common animations
+
+@keyframes spin { 
+    100% { 
+        transform:rotate(360deg); 
+    } 
 }
 
-.fade-enter-from,
-.fade-leave-to {
-opacity: 0;
-}
+// .fade-enter-active,
+// .fade-leave-active {
+//     transition: opacity .5s ease;
+// }
+
+// .fade-enter-from,
+// .fade-leave-to {
+//     opacity: 0;
+// }
 
 
 

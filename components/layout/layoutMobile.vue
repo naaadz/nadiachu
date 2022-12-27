@@ -5,20 +5,13 @@
             <div class="second bg-default-dark flex flex-col justify-between" ref="second"></div>
         </div>
         <div class="page-wrap flex flex-col items-center fixed-stretch">
-            <div class="heading-wrap fixed-stretch">
-                <div class="flex-col text-center" ref="logoWrap">
-                    <STCLogo
-                        class="logo" 
-                        @logoTL="onlogoTL"
-                    />
-                    <p class="blurb" ref="blurb">A portfolio site by <a href="#" class="under active">Nadia Chu</a></p>
-                </div>
-                <div class="heading flex" ref="heading">
-                    <template v-if="route.meta.heading">
-                        <span>{{ route.meta.heading[0] }}</span>
-                        <span>{{ route.meta.heading[1] }}_</span>
-                    </template>
-                </div>
+            <div class="flex-col text-center" ref="logoWrap">
+                <STCLogo
+                    class="logo" 
+                    @logoTL="onlogoTL"
+                />
+                <p class="blurb" ref="blurb">A portfolio site by <nuxt-link to="/about" class="under active">Nadia Chu</nuxt-link></p>
+                
             </div>
 
             <div class="the-page" ref="thepage">
@@ -32,6 +25,15 @@
                     :to="page.name">{{ page.name }}
                 </nuxt-link>
             </nav>
+        </div>
+        <div class="heading-wrap flex justify-start items-center fixed-stretch">
+            <div class="branch" ref="branch"></div>
+            <div class="heading flex" ref="heading">
+                <template v-if="route.meta.heading">
+                    <span>{{ route.meta.heading[0] }}</span>
+                    <span>{{ route.meta.heading[1] }}_</span>
+                </template>
+            </div>
         </div>
     </div>
 </template>
@@ -56,6 +58,7 @@ const blurb = ref(null)
 const heading = ref(null)
 const nav = ref(null)
 const thepage = ref(null)
+const branch = ref(null)
 
 let logoTL
 
@@ -66,7 +69,6 @@ const revealHeading = gsap.timeline({paused: true})
 const hideLogoTL = gsap.timeline({paused: true})
 const revealNav = gsap.timeline({paused: true})
 const revealBlurb = gsap.timeline({paused: true})
-
 
 const onlogoTL = (payload) => {
     logoTL = payload
@@ -118,6 +120,7 @@ const defineTimelines = () => {
     revealNav.to(nav.value.children, {opacity: 1, stagger:.2})
     revealPageTL.to(thepage.value, { opacity: 1 })
     revealHeading
+        .to(branch.value, { flex: '1 1 0', ease: "expo.out" })
         .to(heading.value, { opacity: 1 })
     hideLogoTL.set(logoWrap.value, { height: 0 })
     revealBlurb.to(blurb.value, { opacity: 1 })
