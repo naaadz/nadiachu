@@ -11,11 +11,6 @@ export default defineNuxtConfig({
             ]
         }
     },
-    // router: {
-    //     options: {
-    //          //strict: true
-    //     }
-    // },
     css: [
 		'@/assets/css/style.css', 
         '@/assets/scss/common.scss',
@@ -29,10 +24,6 @@ export default defineNuxtConfig({
 		'@nuxtjs/tailwindcss'
 	],
     runtimeConfig: {
-        sportRadarAPIkey: process.env.SPORT_RADAR_API_KEY,
-        firebaseInfo: process.env.FIREBASE_INFO,
-        public: {
-
-        }
+        firebaseInfo: process.env.FIREBASE_INFO
     }
 })

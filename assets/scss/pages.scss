@@ -85,6 +85,17 @@
         }
     }
 
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover, 
+    input:-webkit-autofill:focus {
+        -webkit-text-fill-color: $default-light;
+        -webkit-box-shadow: 0 0 0px 40rem $dark-1 inset;
+
+        @screen lg {
+            -webkit-box-shadow: 0 0 0px 40rem $default-dark inset;
+        }
+    }
+
     textarea {
         width: 100%;
         height: 200px;

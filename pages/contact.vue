@@ -3,7 +3,7 @@
 		<p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
 		<form
 			class="flex flex-col space-y-4"
-			@submit="onSubmit"
+            @submit.prevent="onSubmit"
 		>
 			<input
 				type="text"
@@ -59,6 +59,7 @@
 </template>
 
 <script setup>
+
 definePageMeta({
 	title: "Contact",
 	heading: ["contact", "me"],
@@ -90,27 +91,36 @@ const resetForm = () => {
     }
 }
 
+
 const isFormValid = () => {
     return Object.values(formData).every(field => field !== '') && isEmailValid(formData.email)
 }
 
+const storeData = async() => {
+    console.log('storeData ran')
+    await $fetch('/api/updateForm', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json;'
+        },
+        body: formData
+    }).then((x) => {
+        console.log('success or failure', x)
+    })
+}
+
 const onSubmit = (e) => {
-    //do validation with form data
-    e.preventDefault()
     validation.submittedBefore = true
 
     if (isFormValid()) {
         validation.isValid = true
-        console.log('valid!', formData)
-        //save the data
-        //reset form
-        resetForm()
+        storeData()
+        //resetForm()
+        //updateForm(formData)
     } else {
         validation.isValid = false
-        console.log('not valid!', formData)
     }
-
-    
 }
+
 
 </script>
