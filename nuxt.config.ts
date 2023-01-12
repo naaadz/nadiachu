@@ -21,8 +21,8 @@ export default defineNuxtConfig({
 	],
     ssr:false,
     modules: [
-		'@nuxtjs/tailwindcss'
-	],
+		'@nuxtjs/tailwindcss',
+    ],
     runtimeConfig: {
         firebaseInfo: process.env.FIREBASE_INFO
     }

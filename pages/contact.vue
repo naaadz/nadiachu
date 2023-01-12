@@ -68,7 +68,8 @@ definePageMeta({
 const formData = reactive({
     name: '',
     email: '',
-    note: ''
+    note: '',
+    time: null
 })
 
 const validation = reactive({
@@ -91,13 +92,12 @@ const resetForm = () => {
     }
 }
 
-
 const isFormValid = () => {
     return Object.values(formData).every(field => field !== '') && isEmailValid(formData.email)
 }
 
 const storeData = async() => {
-    console.log('storeData ran')
+    formData.time = Date.now()
     await $fetch('/api/updateForm', {
         method: 'POST',
         headers: {
@@ -105,6 +105,7 @@ const storeData = async() => {
         },
         body: formData
     }).then((x) => {
+        validation.isValid = true
         console.log('success or failure', x)
     })
 }
@@ -113,10 +114,8 @@ const onSubmit = (e) => {
     validation.submittedBefore = true
 
     if (isFormValid()) {
-        validation.isValid = true
         storeData()
         //resetForm()
-        //updateForm(formData)
     } else {
         validation.isValid = false
     }

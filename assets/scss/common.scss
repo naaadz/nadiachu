@@ -46,6 +46,18 @@ a.fill {
     animation: spin 1s infinite;
 }
 
+::selection {
+    color: $default-light;
+    background: $bright-blue;
+}
+
+::-moz-selection {
+    color: $default-light;
+    background: $bright-blue;
+}
+
+
+
 .heading {
     opacity: 0;
 
