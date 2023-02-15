@@ -7,7 +7,8 @@ body {
             'solutions' #0e1946 #1796FF, 
             'trade-area-prototype' #151836 #f8bd50, 
             'polygons-toolbar' #0f133d #f1437f,
-            'platform' #161653 #9037e2; 
+            'platform' #161653 #9037e2,
+            'thinkitai' #000b33 #2df3ce;
 
         @each $name, $primary, $accent in $projects {
             &.project-#{$name} {
@@ -29,15 +30,19 @@ body {
                    transition: background 1s;
                 }
 
-                a.under {
-                    &.active, &:hover {
+                
+                .active {
+                    color: $accent;
+                    border-bottom: 1px solid transparent;
+                    transition: border .5s;
+                    
+
+                    &:hover {
                         border-bottom: 1px solid $accent;
                     }
-                
-                    &:hover {
-                        color: $accent;
-                    }
                 }
+        
+                
                 
                 a.fill {
                     &.active, &:hover {

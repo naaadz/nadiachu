@@ -5,7 +5,7 @@
             <div class="space-y-6">
                 <h3 class="text-cornflower text-xl">front-end developer</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-                <ul class="list-disc list-inside">
+                <ul class="list-disc px-4 space-y-4">
                     <li>Lorem ipsum dolor sit amet</li>
                     <li>sed do eiusmod tempor</li>
                 </ul>
@@ -19,7 +19,7 @@
                     <span>css</span>
                     <span>scss</span>
                 </div>
-                <ul class="list-disc list-inside">
+                <ul class="list-disc px-4 space-y-4">
                     <li>Legacy ipsum dolor sit amet</li>
                     <li>sed do eiusmod tempor</li>
                 </ul>
@@ -34,7 +34,7 @@
             <div class="space-y-6">
                 <h3 class="text-cornflower text-xl">user experience designer</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-                <ul class="list-disc list-inside">
+                <ul class="list-disc px-4 space-y-4">
                     <li>Legacy ipsum dolor sit amet</li>
                     <li>sed do eiusmod tempor</li>
                     <li>Legacy ipsum dolor sit amet</li>
@@ -57,7 +57,7 @@
                     <h3 class="text-cornflower text-xl">SomeWhere</h3>
                     <span class="text-light-pink italic">2018 - present</span>
                 </div>
-                <ul class="list-disc list-inside">
+                <ul class="list-disc px-4 space-y-4">
                     <li>Legacy ipsum dolor sit amet ipsum dolor sit amet adipiscing elit, sed</li>
                     <li>sed do eiusmod tempor ipsum dolor sit amet adipiscing elit, sed</li>
                     <li>Legacy ipsum dolor sit amet ipsum dolor amet ipsum dolor sit</li>

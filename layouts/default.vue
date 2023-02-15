@@ -10,7 +10,6 @@
     const route = useRoute()
     const { currentProject } = useProjects()
 
-
     onMounted(() => {
         usePreloadVideos()
     })

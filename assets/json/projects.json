@@ -8,6 +8,7 @@
             "vanilla js", "native javascript animation", "scss", "wordpress"
         ],
         "loaded": false,
+        "liveLink": "https://prev.sitezeusdev.com/solutions/",
         "mediaType": "video",
         "mediaPath": "https://new.nadiastoffel.com/video/solutions-marker.mp4"
     },
@@ -44,7 +45,21 @@
             "vanilla js", "wordpress", "native javascript animation", "scss"
         ],
         "loaded": false,
+        "liveLink": "https://prev.sitezeusdev.com/products/synergy/",
         "mediaType": "video",
         "mediaPath": "https://new.nadiastoffel.com/video/platform-page.mp4"
+    },
+    { 
+        "id": 4, 
+        "name": "thinkitai", 
+        "title": "ThinkIT AI", 
+        "desc": "<p>I created this brand for a new A.I. managed services company, Thinkit AI. From concept, to logo, to web and <a href='https://dribbble.com/shots/20667395-ThinkIT-AI-print-media-2018' class='active' target='_blank'>print media</a>. Here, I showcase the homepage banner incorporating logo concepts in its transition animations.</p>", 
+        "tags": [
+            "logo design", "wordpress", "js", "native javascript animation", "scss", "svg"
+        ],
+        "loaded": false,
+        "liveLink": "https://tia.nadiastoffel.com",
+        "mediaType": "video",
+        "mediaPath": "https://new.nadiastoffel.com/video/thinkit-ai-homepage.mp4"
     }
 ]

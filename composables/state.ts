@@ -1,3 +1,5 @@
+import projects from "@/assets/json/projects.json"
+
 export const useConfigVariables = () => {
     const config = useRuntimeConfig()
 }
@@ -62,8 +64,7 @@ export const usePages = () => {
 }
 
 export const usePreloadVideos = () => {
-    document.createElement("video").setAttribute("src", "https://new.nadiastoffel.com/video/solutions-marker.mp4")
-    document.createElement("video").setAttribute("src", "https://new.nadiastoffel.com/video/trade-areas-prototype.mp4")
-    document.createElement("video").setAttribute("src", "https://new.nadiastoffel.com/video/polygons-toolbar.mp4")
-    document.createElement("video").setAttribute("src", "https://new.nadiastoffel.com/video/platform-page.mp4")
+    projects.forEach(project => {
+        document.createElement("video").setAttribute("src", project.mediaPath)
+    })
 }

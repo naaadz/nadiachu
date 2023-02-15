@@ -34,24 +34,52 @@
            {{ validation.isValid ? validation.message.success : validation.message.error }}
         </p>
 		<div class="social flex space-x-6">
-			<img
+            <nuxt-link
+				to="mailto:naaadz@gmail.com"
+                title="Email"
+				:external="true"
+                target="_blank"
+				><img
 				src="@/assets/images/email.svg"
 				alt=""
-			/>
+			/></nuxt-link>
 			<nuxt-link
 				to="https://www.linkedin.com/in/nadia-chu-5ab9814/"
+                title="Linkedin"
 				:external="true"
                 target="_blank"
 				><img
 					src="@/assets/images/linkedin.svg"
 					alt=""
 			/></nuxt-link>
-			<nuxt-link
+
+            <nuxt-link
+				to="https://codepen.io/collection/jbMZxB"
+                title="CodePen"
+				:external="true"
+                target="_blank"
+				><img
+					src="@/assets/images/codepen.svg"
+					alt=""
+			/></nuxt-link>
+
+            <nuxt-link
 				to="https://github.com/naaadz/"
+                title="GitHub"
 				:external="true"
                 target="_blank"
 				><img
 					src="@/assets/images/github.svg"
+					alt=""
+			/></nuxt-link>
+
+            <nuxt-link
+				to="https://dribbble.com/naaadz"
+                title="Dribbble"
+				:external="true"
+                target="_blank"
+				><img
+					src="@/assets/images/dribbble.svg"
 					alt=""
 			/></nuxt-link>
 		</div>

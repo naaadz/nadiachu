@@ -32,8 +32,11 @@
             </video>
 		</div>
         <div class="flex gap-2">
+            <template v-if="currentProject.liveLink">
+                <a class="active" :href="currentProject.liveLink" target="_blank">See it live</a> |
+            </template>
             <a
-                class="under active"
+                class="active"
                 href="#"
                 @click="playNext"
                 >Next project</a
