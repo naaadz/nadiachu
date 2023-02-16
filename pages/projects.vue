@@ -43,24 +43,7 @@
             >
             <Arrow @click="playNext" />
         </div>
-		<!-- <div class="flex space-x-4 justify-between">
-			<a
-				class="under active"
-				href="#"
-                @click="next()"
-				>See this project</a
-			>
-            <div class="flex gap-2">
-                <a
-                    class="under active"
-                    href="#"
-                    @click="next()"
-                    >Next project</a
-                >
-                <Arrow @click="next()" />
-            </div>
 
-		</div> -->
 	</div>
 </template>
 

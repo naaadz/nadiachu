@@ -30,10 +30,10 @@
 				</button>
 			</div>
 		</form>
-        <p v-if="validation.submittedBefore" :class="validation.isValid ? 'success' : 'error'">
+        <p v-if="validation.isValid !== undefined" :class="validation.isValid ? 'success' : 'error'">
            {{ validation.isValid ? validation.message.success : validation.message.error }}
         </p>
-		<div class="social flex space-x-6">
+		<div class="social flex space-x-6 items-center">
             <nuxt-link
 				to="mailto:naaadz@gmail.com"
                 title="Email"
@@ -101,8 +101,7 @@ const formData = reactive({
 })
 
 const validation = reactive({
-    submittedBefore: false,
-    isValid: false,
+    isValid: undefined,
     message: {
         success: `It worked! Thanks :)`,
         error: `It didn't work :( Check the fields and try again.`
@@ -125,6 +124,7 @@ const isFormValid = () => {
 }
 
 const storeData = async() => {
+    //add a timeout here  to test the case where this takes a bit, to handle the bug of it showing invalid befor its showing valid
     formData.time = Date.now()
     await $fetch('/api/updateForm', {
         method: 'POST',
@@ -136,14 +136,17 @@ const storeData = async() => {
         validation.isValid = true
         console.log('success or failure', x)
     })
+
+
+
+
 }
 
 const onSubmit = (e) => {
-    validation.submittedBefore = true
+    
 
     if (isFormValid()) {
         storeData()
-        //resetForm()
     } else {
         validation.isValid = false
     }
