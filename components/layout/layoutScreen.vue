@@ -109,7 +109,7 @@ const defineTimelines = () => {
     revealPageTL.to(thepage.value, { opacity: 1 })
 
     revealHeading
-        .to(branch.value, { width: '300px', ease: "expo.out" })
+        .to(branch.value, { width: '400px', ease: "expo.out" })
         .to(heading.value, { opacity: 1 })
 
     revealFirst

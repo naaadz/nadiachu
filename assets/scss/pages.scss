@@ -7,7 +7,7 @@
     width: 80%;
 
     span {
-        background: rgba($cornflower, .3);
+        background: rgba($cornflower, .2);
         color: $cornflower;
         padding: 2px 5px;
         @apply rounded text-sm;
@@ -50,6 +50,21 @@
     .the-page {
         max-width: 600px;
     }
+
+    .employer {
+        .title {
+            &:hover {
+                .desc {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .desc {
+            transition: opacity .5s;
+            opacity: 0;
+        }
+    }
 }
 
 .page-about {
@@ -66,7 +81,7 @@
         width: 100%;
 
         @screen lg {
-            width: 400px; 
+            width: 470px; 
         }
     }
 
@@ -123,8 +138,9 @@
     }
 
     .social {
-        img {
+        svg {
             cursor: pointer;
+            fill: $default-light;
             width: 25px;
             transition: transform .3s;
 
@@ -135,12 +151,11 @@
     }
 
     .error {
-        color: #FD336A;
+        color: $status-danger;
     }
 
     .success {
         color: $bright-blue;
     }
-
 
 }

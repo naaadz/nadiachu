@@ -1,0 +1,136 @@
+[
+    { 
+        "employerName": "SiteZeus",
+        "desc": "Location intelligence SaaS company",
+        "position": [
+            { 
+                "title": "Front-end developer, Dev team",
+                "date": "3/2020 - present",
+                "blurb": "Bring designs to life with well-organized JS and styling",
+                "list":[
+                    "Prototype and build features",
+                    "Organize foundation components and styling",
+                    "Assist QA with testing",
+                    "Write client-facing and internal documentation",
+                    "Mentor junior developers"
+                ],
+                "tags": [
+                    "VueJS",
+                    "KnockoutJS",
+                    "Leaflet",
+                    "Javascript",
+                    "CSS",
+                    "SCSS",
+                    "TailwindCSS",
+                    "GIT",
+                    "Azure Devops"
+                ]
+            },
+            { 
+                "title": "Product Designer, Dev team",
+                "date": "3/2020 - present",
+                "blurb": "Cleanup an overly-complex looking UI by introducing well thought-out design patterns",
+                "list":[
+                    "Research, and organize team and client feedback",
+                    "Diagram, wireframe, and design the UI",
+                    "Describe steps for implementation"
+                ],
+                "tags": [
+                    "Adobe libraries",
+                    "Adobe XD",
+                    "Adobe Illustrator",
+                    "UX",
+                    "UI",
+                    "Lucid chart",
+                    "Coffee"
+                ]
+            },
+            { 
+                "title": "Web developer, Marketing team",
+                "date": "10/2018 - 3/2021",
+                "blurb": "Own the public-facing marketing website & blog",
+                "list":[
+                    "Built & managed both sites",
+                    "Optimized for performance and lead-tracking",
+                    "Assisted in design and maintenance of company design assets and branding"
+                ],
+                "tags": [
+                    "Javascript",
+                    "SVG animation",
+                    "GSAP",
+                    "NuxtJS",
+                    "Jamstack",
+                    "Wordpress",
+                    "PHP",
+                    "jQuery",
+                    "MySQL",
+                    "CSS",
+                    "SCSS"
+                ]
+            }
+        ]
+    },
+    { 
+        "employerName": "DataComm Networks",
+        "desc": "Managed services provider",
+        "position": [
+            { 
+                "title": "Web developer & designer",
+                "date": "3/2011 - 1/2018",
+                "list":[
+                    "Designed, built, maintained company and client websites",
+                    "Created graphics and print literature for company's marketing needs"
+                ],
+                "tags": [
+                    "Adobe Suite",
+                    "Javascript",
+                    "Wordpress",
+                    "CSS",
+                    "SCSS"
+                ]
+            }
+        ]
+    },
+    { 
+        "employerName": "Fashion for Web & Paper",
+        "desc": "Freelance creative consultant",
+        "position": [
+            { 
+                "title": "Web developer & designer",
+                "date": "2008 - 2011",
+                "list":[
+                    "Designed and built websites from concept to production",
+                    "Created graphics for print and other media"
+                ],
+                "tags": [
+                    "Adobe Suite",
+                    "Javascript",
+                    "Wordpress",
+                    "Video composition",
+                    "Print media",
+                    "CSS",
+                    "SCSS"
+                ]
+            }
+        ]
+    },
+    { 
+        "employerName": "Mercury New Media",
+        "desc": "Application development agency",
+        "position": [
+            { 
+                "title": "Associate developer",
+                "date": "2007 - 2008",
+                "list":[
+                    "Built websites from designs as agency/client work"
+                ],
+                "tags": [
+                    "Adobe Suite",
+                    "ColdFusion",
+                    "Javascript",
+                    "CSS"
+                ]
+            }
+        ]
+    }
+]

@@ -30,58 +30,21 @@
 				</button>
 			</div>
 		</form>
-        <p v-if="validation.isValid !== undefined" :class="validation.isValid ? 'success' : 'error'">
-           {{ validation.isValid ? validation.message.success : validation.message.error }}
-        </p>
+
+        <Alert v-if="validation.isValid !== undefined" :type="`${validation.isValid ? 'success' : 'danger'}`">
+            {{ validation.isValid ? validation.message.success : validation.message.error }}
+        </Alert>
+
 		<div class="social flex space-x-6 items-center">
             <nuxt-link
-				to="mailto:naaadz@gmail.com"
-                title="Email"
+                v-for="item in socials"
+				:to="item.link"
+                :title="item.title"
 				:external="true"
                 target="_blank"
-				><img
-				src="@/assets/images/email.svg"
-				alt=""
-			/></nuxt-link>
-			<nuxt-link
-				to="https://www.linkedin.com/in/nadia-chu-5ab9814/"
-                title="Linkedin"
-				:external="true"
-                target="_blank"
-				><img
-					src="@/assets/images/linkedin.svg"
-					alt=""
-			/></nuxt-link>
-
-            <nuxt-link
-				to="https://codepen.io/collection/jbMZxB"
-                title="CodePen"
-				:external="true"
-                target="_blank"
-				><img
-					src="@/assets/images/codepen.svg"
-					alt=""
-			/></nuxt-link>
-
-            <nuxt-link
-				to="https://github.com/naaadz/"
-                title="GitHub"
-				:external="true"
-                target="_blank"
-				><img
-					src="@/assets/images/github.svg"
-					alt=""
-			/></nuxt-link>
-
-            <nuxt-link
-				to="https://dribbble.com/naaadz"
-                title="Dribbble"
-				:external="true"
-                target="_blank"
-				><img
-					src="@/assets/images/dribbble.svg"
-					alt=""
-			/></nuxt-link>
+				>
+                <Icon :name="item.name" />
+            </nuxt-link>
 		</div>
 	</div>
 </template>
@@ -92,6 +55,14 @@ definePageMeta({
 	title: "Contact",
 	heading: ["contact", "me"],
 })
+
+const socials = [
+    { name: 'email', link: 'mailto:naaadz@gmail.com', title: 'Email' },
+    { name: 'linkedin', link: 'https://www.linkedin.com/in/nadia-chu-5ab9814/', title: 'Linkedin' },
+    { name: 'codepen', link: 'https://codepen.io/collection/jbMZxB', title: 'CodePen' },
+    { name: 'github', link: 'https://github.com/naaadz/', title: 'GitHub' },
+    { name: 'dribbble', link: 'https://dribbble.com/naaadz', title: 'Dribbble' }  
+]
 
 const formData = reactive({
     name: '',
@@ -124,7 +95,6 @@ const isFormValid = () => {
 }
 
 const storeData = async() => {
-    //add a timeout here  to test the case where this takes a bit, to handle the bug of it showing invalid befor its showing valid
     formData.time = Date.now()
     await $fetch('/api/updateForm', {
         method: 'POST',
@@ -134,23 +104,16 @@ const storeData = async() => {
         body: formData
     }).then((x) => {
         validation.isValid = true
-        console.log('success or failure', x)
+        console.log('sent to db', x)
     })
-
-
-
-
 }
 
 const onSubmit = (e) => {
-    
-
     if (isFormValid()) {
         storeData()
     } else {
         validation.isValid = false
     }
 }
-
 
 </script>

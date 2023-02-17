@@ -4,7 +4,6 @@
 //common styles
 
 a.under {
-    //padding-bottom: 3px;
     display: inline-flex;
     border-bottom: 1px solid transparent;
     transition: border .6s, color .5s;
@@ -294,11 +293,6 @@ nav  {
                 padding-bottom: 20px;
 
                 span.flower {
-                    // position: absolute;
-                    // top: 10px;
-                    // left: 7px;
-                    // transform: rotate(80deg);
-
                     #layer-flower {
                         width: 35px;
                         position: absolute;
@@ -361,6 +355,54 @@ nav  {
     }
 }
 
+.alert {
+    background: rgba($cornflower, .1);
+
+    &:before {
+        content: '';
+        width: 82%;
+        display: block;
+    }
+    
+    > div {
+        padding: 20px;
+        position: relative;
+
+        &:after {
+            content: url('@/assets/images/flowers.svg');
+            position: absolute;
+            right: 0;
+            top: -30px;
+        }
+    }
+    
+    &.type-info {
+        &:before {
+            border-top: 2px solid $cornflower;
+        }
+    }
+
+    &.type-success {
+        &:before {
+            border-top: 2px solid $light-blue;
+        } 
+
+        div {
+            color: $light-blue;
+        }
+    }
+
+    &.type-danger {
+        &:before {
+            border-top: 2px solid $status-danger;
+        }
+
+        div {
+            color: $status-danger;
+        }
+    }
+}
+
 //common animations
 
 @keyframes spin { 
@@ -368,16 +410,6 @@ nav  {
         transform:rotate(360deg); 
     } 
 }
-
-// .fade-enter-active,
-// .fade-leave-active {
-//     transition: opacity .5s ease;
-// }
-
-// .fade-enter-from,
-// .fade-leave-to {
-//     opacity: 0;
-// }
 
 
 

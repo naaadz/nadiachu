@@ -5,7 +5,7 @@
         "title": "Solutions marker animated", 
         "desc": "<p>This is an svg map marker that morphs to different states upon interaction, syncing with page content via hover and page scroll. I converted the vector artwork into dom elements, animated those with native Javascript animation api, styled it, and integrated it with the website.</p><p>I love this kind of work because I get to take a static piece thats beautiful on its own to the next level, increasing its appeal to the user.</p>", 
         "tags": [
-            "vanilla js", "native javascript animation", "scss", "wordpress"
+            "Vanilla js", "Native javascript animation", "SCSS", "Wordpress"
         ],
         "loaded": false,
         "liveLink": "https://prev.sitezeusdev.com/solutions/",
@@ -18,7 +18,7 @@
         "title": "Mapping prototype", 
         "desc": "<p>This project is a feature that allows users to manage shapes associated with their brick and mortar stores.</p><p>I first designed it in Adobe XD for layout, look and feel. Then created this Vue application as a prototype to be used by our product and dev team along with customers to test and receive early feedback.</p><p>After it was proven to meet our needs, I helped our dev team implement it into the full application and test it.</p>", 
         "tags": [
-            "vue js", "pinia store", "leaflet js", "geojson", "scss", "adobe XD"
+            "VueJS", "Pinia store", "Leaflet JS", "geojson", "SCSS", "Adobe XD"
         ],
         "loaded": false,
         "mediaType": "video",
@@ -30,7 +30,7 @@
         "title": "Draw tools", 
         "desc": "<p>Here's a toolbar feature to let users draw boundaries for their stores.</p><p>I designed this in Adobe XD for look and feel. Then did the markup and styling and created Vue foundational components from that. Finally, I helped our dev team implement and test it.</p>", 
         "tags": [
-            "vue js", "leaflet js", "vanilla js", "scss", "adobe XD"
+            "VueJS", "Leaflet JS", "Vanilla JS", "SCSS", "Adobe XD"
         ],
         "loaded": false,
         "mediaType": "video",
@@ -42,7 +42,7 @@
         "title": "Platform page", 
         "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>", 
         "tags": [
-            "vanilla js", "wordpress", "native javascript animation", "scss"
+            "Vanilla JS", "Wordpress", "Native javascript animation", "SCSS"
         ],
         "loaded": false,
         "liveLink": "https://prev.sitezeusdev.com/products/synergy/",
@@ -55,7 +55,7 @@
         "title": "ThinkIT AI", 
         "desc": "<p>I created this brand for a new A.I. managed services company, Thinkit AI. From concept, to logo, to web and <a href='https://dribbble.com/shots/20667395-ThinkIT-AI-print-media-2018' class='active' target='_blank'>print media</a>. Here, I showcase the homepage banner incorporating logo concepts in its transition animations.</p>", 
         "tags": [
-            "logo design", "wordpress", "js", "native javascript animation", "scss", "svg"
+            "Logo design", "Wordpress", "JS", "Native javascript animation", "SCSS", "SVG"
         ],
         "loaded": false,
         "liveLink": "https://tia.nadiastoffel.com",
