@@ -144,7 +144,7 @@ nav  {
 
     .page-wrap {
         top: 0;
-        height: 100vh;
+        height: 100dvh;
         overflow: auto;
     }
 
@@ -191,18 +191,30 @@ nav  {
         .heading-wrap {
             &:before {
                 background: linear-gradient($default-dark 60%, rgba($default-dark, 0));
-               // background: red;
-               // opacity: 1;
             }
         }
 
         nav {
-            background: linear-gradient(rgba($default-dark, .3), rgba($default-dark, 1) 50%);
+            background: linear-gradient(rgba(5, 24, 51, 0) 0%, #051833 30%);
         }
     }
 }
 
 .layout-screen {
+
+    .second {
+        position: relative;
+    
+        &:after {
+            content: '';
+            width: 2px;
+            background: #0B3067;
+            height: 100%;
+            position: absolute;
+            right: -5px;
+            top: 10px;
+        }
+    }
 
     .stc-logo {
         width: 256px;
@@ -228,6 +240,7 @@ nav  {
             height: 100px;
             background: linear-gradient(rgba($dark-1, .3), rgba($dark-1, 1) 50%);
             pointer-events: none;
+            margin-left: 2px;
         }
 
         .page-content {
@@ -244,8 +257,7 @@ nav  {
         &:before {
             width: 800px;
             left: 40px;
-            background: linear-gradient($dark-1 60%, rgba($dark-1, .5));
-            //background: red;
+            background: linear-gradient($dark-1 60%, rgba($dark-1, 0));
         }
     }
 

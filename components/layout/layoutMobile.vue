@@ -4,7 +4,7 @@
             <div class="first floral flex-none" ref="first"></div>
             <div class="second bg-default-dark flex flex-col justify-between" ref="second"></div>
         </div>
-        <div class="page-wrap flex flex-col items-center fixed-stretch">
+        <div class="page-wrap flex flex-col items-center fixed-stretch" ref="pageWrap">
             <div class="flex-col text-center" ref="logoWrap">
                 <STCLogo
                     class="logo" 
@@ -59,6 +59,7 @@ const heading = ref(null)
 const nav = ref(null)
 const thepage = ref(null)
 const branch = ref(null)
+const pageWrap = ref(null)
 
 let logoTL
 
@@ -73,6 +74,15 @@ const revealBlurb = gsap.timeline({paused: true})
 const onlogoTL = (payload) => {
     logoTL = payload
 }
+
+router.afterEach((to, from, next) => {
+    console.log('to', to)
+    console.log('from', from)
+    if (to.name !== from.name ) {
+        console.log('test')
+        pageWrap.value.scrollTo({ top: 0 })
+    }
+})
 
 router.beforeEach((to, from, next) => {
 

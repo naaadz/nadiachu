@@ -4,7 +4,10 @@
 
 .tags {
     @apply gap-2 flex flex-wrap;
-    width: 80%;
+
+    @screen sm {
+        width: 80%;
+    }
 
     span {
         background: rgba($cornflower, .2);

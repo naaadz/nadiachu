@@ -7,7 +7,7 @@
             </div>
             
             <div v-for="position in employer.position" class="job space-y-6">
-                <div class="flex flex-col justify-between sm:items-center sm:flex-row">
+                <div class="flex flex-col justify-between gap-2 sm:items-center sm:flex-row">
                     <h3 class="text-cornflower text-xl">{{ position.title }}</h3>
                     <span class="text-light-pink italic">{{ position.date }}</span>
                 </div>

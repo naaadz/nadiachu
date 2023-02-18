@@ -1,6 +1,6 @@
 <template>
     <div :class="`layout-${route.name === 'projects' ? 'full' : 'standard'}`">
-        <div class="bg flex h-screen fixed overflow-hidden">
+        <div class="bg flex w-screen h-screen fixed overflow-hidden">
             <div class="first floral flex-none" ref="first"></div>
             <div class="second bg-default-dark" ref="second"></div>
             <div class="third bg-dark-1 flex-1"></div>
@@ -43,7 +43,7 @@
             </nav>
         </div>
 
-        <div class="page-wrap">
+        <div class="page-wrap" ref="pageWrap">
             <div class="page-content">
                 <div class="the-page" ref="thepage">
                     <NuxtPage class="" />
@@ -80,6 +80,7 @@ const standardnav = ref(null)
 const fullnav = ref(null)
 const heading = ref(null)
 const branch = ref(null)
+const pageWrap = ref(null)
 
 let logoTL, flowerTL
 
@@ -90,6 +91,12 @@ const revealHeading = gsap.timeline({ paused: true })
 const revealFirst = gsap.timeline({paused: true})
 const revealBlurb = gsap.timeline({paused: true})
 const revealNav = gsap.timeline({paused: true})
+
+
+const scroll = () => {
+    console.log('scroll')
+    document.querySelector('.page-wrap').scrollTo({ top: 0 })
+}
 
 const onFlowerTL = (payload) => {
     flowerTL = payload
@@ -120,6 +127,10 @@ const defineTimelines = () => {
 
     revealNav.to(standardnav.value.children, {opacity: 1, stagger:.2})
 }
+
+router.afterEach((to, from, next) => {
+    pageWrap.value.scrollTo({ top: 0 })
+})
 
 router.beforeEach((to, from, next) => {
 
