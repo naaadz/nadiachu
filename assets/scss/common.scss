@@ -8,23 +8,39 @@ a.under {
     border-bottom: 1px solid transparent;
     transition: border .6s, color .5s;
     align-self: flex-start;
+    line-height: 1.5;
 
-    &.active, &:hover {
+    &.active {
         border-bottom: 1px solid $cornflower;
-        
     }
 
-    &:hover {
-        color: $cornflower;
+    @screen lg {
+        &:hover {
+            border-bottom: 1px solid $cornflower;
+            color: $cornflower;
+        }
     }
+
 }
 
 a.fill {
     transition: color .3s;
 
-    &.active, &:hover {
+    &.active {
         color: $cornflower;
     }
+
+    @screen lg {
+        &:hover {
+            color: $cornflower;
+        }
+    }
+}
+
+.disabled {
+    opacity: .3;
+    pointer-events: none;
+    transition: opacity .5s;
 }
 
 .arrow {
@@ -81,10 +97,6 @@ a.fill {
     background-image: url('@/assets/images/flower-pattern.jpg');
 }
 
-.first, .second {
-    width: 0;
-}
-
 .blurb {
     opacity: 0;
 }
@@ -127,6 +139,20 @@ nav  {
 
 .layout-mobile {
 
+    &.page-about {
+        .heading-wrap {
+            display: none;
+        }
+    }
+
+    .first {
+        width: 1.5rem;
+    }
+
+    .second {
+        flex: 1;
+    }
+
     .stc-logo {
         width: 230px;
     }
@@ -165,13 +191,20 @@ nav  {
         top: 70px;
     }
 
+    // &.page-about {
+    //     .the-page {
+    //         top: 265px;
+    //     }
+    // }
+
     .heading-wrap {
         width: 100%;
         top: 20px;
-        opacity: 1;
-        transition: opacity 1s;
+        opacity: 0;
+        //transition: opacity 1s;
 
         &:before {
+            background: linear-gradient($default-dark 60%, rgba($default-dark, 0));
             height: 100px;
             top: -20px;
         }
@@ -184,15 +217,23 @@ nav  {
     nav {
         background: none;
         @apply p-8 fixed right-0 left-0 bottom-0;
+
+        .inner {
+            opacity: 1;
+
+            &.disabled {
+                @extend .disabled;
+            }
+        }
     }
 
     //when loaded, show the gradients
     .loaded {
-        .heading-wrap {
-            &:before {
-                background: linear-gradient($default-dark 60%, rgba($default-dark, 0));
-            }
-        }
+        // .heading-wrap {
+        //     &:before {
+        //         background: linear-gradient($default-dark 60%, rgba($default-dark, 0));
+        //     }
+        // }
 
         nav {
             background: linear-gradient(rgba(5, 24, 51, 0) 0%, #051833 30%);
@@ -202,18 +243,21 @@ nav  {
 
 .layout-screen {
 
+    .first {
+        width: 2.5rem;
+    }
+
     .second {
-        position: relative;
-    
-        &:after {
-            content: '';
+        width: 20rem;
+    }
+
+    .third {
+            position: relative;
             width: 2px;
             background: #0B3067;
-            height: 100%;
-            position: absolute;
+            //height: 0;
             right: -5px;
-            top: 10px;
-        }
+            //bottom: 0;
     }
 
     .stc-logo {
@@ -238,7 +282,7 @@ nav  {
             z-index: 5;
             bottom: 0;
             height: 100px;
-            background: linear-gradient(rgba($dark-1, .3), rgba($dark-1, 1) 50%);
+            background: linear-gradient(rgba($dark-1, 0), rgba($dark-1, 1) 50%);
             pointer-events: none;
             margin-left: 2px;
         }
@@ -287,6 +331,8 @@ nav  {
     .bar-standard {
         @apply ml-10;
         @apply w-80;
+
+
     }
     
     .bar-full {
@@ -294,6 +340,9 @@ nav  {
         width: 2.5rem;
         left: 0;
         position: absolute;
+        transition: background 1s;
+        background-color: transparent;
+        box-shadow: 10px 10px 26px -6px rgba(0,0,0,0.38);
         @apply flex flex-col justify-between items-center;
     
         nav {

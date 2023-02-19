@@ -3,7 +3,7 @@
         <div class="bg flex w-screen h-screen fixed overflow-hidden">
             <div class="first floral flex-none" ref="first"></div>
             <div class="second bg-default-dark" ref="second"></div>
-            <div class="third bg-dark-1 flex-1"></div>
+            <div class="third" ref="third"></div>
         </div>
 
         <div class="bar-standard fixed h-screen flex flex-col justify-between top-0 overflow-hidden" ref="standard">
@@ -69,10 +69,10 @@ import gsap from 'gsap'
 
 const route = useRoute()
 const router = useRouter()
-const { currentProject } = useProjects()
 
 const first = ref(null)
 const second = ref(null)
+const third = ref(null)
 const blurb = ref(null)
 const thepage = ref(null)
 const standard = ref(null)
@@ -84,7 +84,7 @@ const pageWrap = ref(null)
 
 let logoTL, flowerTL
 
-const masterTL = gsap.timeline({ paused: true })
+const masterTL = gsap.timeline({paused: true})
 const fullTL = gsap.timeline({ paused: true })
 const revealPageTL = gsap.timeline({ paused: true })
 const revealHeading = gsap.timeline({ paused: true })
@@ -92,11 +92,6 @@ const revealFirst = gsap.timeline({paused: true})
 const revealBlurb = gsap.timeline({paused: true})
 const revealNav = gsap.timeline({paused: true})
 
-
-const scroll = () => {
-    console.log('scroll')
-    document.querySelector('.page-wrap').scrollTo({ top: 0 })
-}
 
 const onFlowerTL = (payload) => {
     flowerTL = payload
@@ -108,7 +103,6 @@ const onlogoTL = (payload) => {
 
 const defineTimelines = () => {
     fullTL
-        .to(first.value, { width: '2.5rem', opacity: 0 })
         .to('.bar-full nav:last-child > *', {opacity: 1, stagger: .1})
         .to('.bar-full nav:first-child > *', {opacity: 1, stagger: .1})
         .add(flowerTL.play())
@@ -116,16 +110,18 @@ const defineTimelines = () => {
     revealPageTL.to(thepage.value, { opacity: 1 })
 
     revealHeading
-        .to(branch.value, { width: '400px', ease: "expo.out" })
+        .to(branch.value, { width: '400px', ease: "power2.in" })
         .to(heading.value, { opacity: 1 })
 
     revealFirst
-        .to(first.value, { width: '2.5rem' })
-        .to(second.value, { width: '20rem' })
+        .from(first.value, { duration: .5, x: '-100%' })
+        .from(second.value, { duration: 1, y: '-100%', ease: "power2.in" }, '>-80%')
+        .from(third.value, { duration: 1, y: '100%', ease: "power2.in" }, '>-80%')
     
     revealBlurb.to(blurb.value, { opacity: 1 })
 
     revealNav.to(standardnav.value.children, {opacity: 1, stagger:.2})
+
 }
 
 router.afterEach((to, from, next) => {
@@ -133,9 +129,6 @@ router.afterEach((to, from, next) => {
 })
 
 router.beforeEach((to, from, next) => {
-
-    // console.log('from:', from)
-    // console.log('to:', to)
 
     if (from.name !== to.name) {
         masterTL.clear()
@@ -157,7 +150,7 @@ router.beforeEach((to, from, next) => {
         })
 
         masterTL.then(() => {
-
+            console.log('then')
             if (to.name === 'projects') {
                 //reverse the standard view
                 masterTL
@@ -165,8 +158,8 @@ router.beforeEach((to, from, next) => {
                 .add(revealNav.reverse(), '<')
                 .add(revealBlurb.reverse(), '<')
                 .add(revealFirst.reverse(), '<')
-                .add(fullTL.timeScale(1).play())
-                .add(revealHeading.play(), '>-50%')
+                .add(fullTL.timeScale(1).play(), '>-50%')
+                .add(revealHeading.play(), '>-80%')
                 .add(revealPageTL.play(), '>-50%')
             }
 

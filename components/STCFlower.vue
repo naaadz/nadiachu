@@ -103,7 +103,8 @@ const petalsTL = gsap.timeline({
     paused: true, 
     onComplete: () => {
             gsap.timeline().add(sprayTL.restart().play())
-    }})
+    }
+})
 
 const shootSprayIn = () => {
     gsap.timeline()

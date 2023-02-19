@@ -308,7 +308,7 @@ let logoTL, flowerTL
 
 
 const defineTimelines = () => {
-	const dashValues = [40, 100, 60, 125, 40, 360, 25, 260, 125]
+	const dashValues = [40, 100, 60, 125, 40, 360, 25, 261, 125]
 	const styleChars = logo.value.querySelectorAll("#style-group > g > g > *")
 	const that = logo.value.querySelector("#that")
 	const compChars = logo.value.querySelectorAll("#compiles > *")

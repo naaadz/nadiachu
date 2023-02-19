@@ -1,6 +1,6 @@
 <template>
     <div :class="{ loaded: data.loaded }">
-        <div class="bg flex h-screen relative">
+        <div class="bg flex h-screen relative overflow-hidden">
             <div class="first floral flex-none" ref="first"></div>
             <div class="second bg-default-dark flex flex-col justify-between" ref="second"></div>
         </div>
@@ -17,16 +17,18 @@
             <div class="the-page" ref="thepage">
                 <NuxtPage class="text-default-light" />
             </div>
-            <nav class="fixed-stretch flex justify-center space-x-4" ref="nav">
-                <nuxt-link 
-                    v-for="page in usePages()" 
-                    class="under"
-                    :class="{ active : route.name === page.name}"
-                    :to="page.name">{{ page.name }}
-                </nuxt-link>
+            <nav class="fixed-stretch" ref="nav">
+                <div class="inner flex justify-center space-x-4" :class="{ disabled: data.animating }">
+                    <nuxt-link 
+                        v-for="page in usePages()" 
+                        class="under"
+                        :class="{ active : route.name === page.name }"
+                        :to="page.name">{{ page.name }}
+                    </nuxt-link>
+                </div>
             </nav>
         </div>
-        <div class="heading-wrap flex justify-start items-center fixed-stretch">
+        <div class="heading-wrap flex justify-start items-center fixed-stretch" ref="headingWrap">
             <div class="branch" ref="branch"></div>
             <div class="heading flex" ref="heading">
                 <template v-if="route.meta.heading">
@@ -46,16 +48,17 @@ const route = useRoute()
 const router = useRouter()
 
 const data = reactive({
-    loaded: false
+    loaded: false,
+    animating: false
 })
 
 //maybe make the refs list and the timeline assignments dynamic (in a loop)
-
 const first = ref(null)
 const second = ref(null)
 const logoWrap = ref(null)
 const blurb = ref(null)
 const heading = ref(null)
+const headingWrap = ref(null)
 const nav = ref(null)
 const thepage = ref(null)
 const branch = ref(null)
@@ -63,7 +66,18 @@ const pageWrap = ref(null)
 
 let logoTL
 
-const masterTL = gsap.timeline({paused: true})
+const masterTL = gsap.timeline({
+    paused: true,
+    onStart: () => {
+        console.log('masterTL started')
+        data.animating = true
+    },
+    onComplete: () => {
+            console.log('masterTL complete')
+            data.animating = false
+    }
+})
+
 const revealFirst = gsap.timeline({paused: true})
 const revealPageTL = gsap.timeline({paused: true})
 const revealHeading = gsap.timeline({paused: true})
@@ -75,64 +89,69 @@ const onlogoTL = (payload) => {
     logoTL = payload
 }
 
-router.afterEach((to, from, next) => {
-    console.log('to', to)
-    console.log('from', from)
-    if (to.name !== from.name ) {
-        console.log('test')
-        pageWrap.value.scrollTo({ top: 0 })
-    }
-})
-
 router.beforeEach((to, from, next) => {
 
-    //console.log('beforeEach', from.name, to.name)
-
     if (from.name !== to.name) {
-        masterTL.clear()
-        masterTL.add(revealPageTL.reverse())
+
+        masterTL
+            .clear()
+            .add(revealPageTL.reverse())
+            .add(revealHeading.reverse())
+
+        if (from.name === 'about') {
+
+            masterTL
+                .add(logoTL.timeScale(4).reverse())
+                .add(hideLogoTL.play(), '>')
+                .add(revealBlurb.reverse(), '>-50%')
+        }
+
+        else if (to.name === 'about') {
+            masterTL
+                .add(() => {
+                    pageWrap.value.scrollTo({ top: 0 })
+                })
+                .add(hideLogoTL.reverse())
+                .add(logoTL.timeScale(1).play())
+                .add(revealBlurb.play(), '>-20%')
+        }
 
         masterTL.add(() => {
             return new Promise ((res) => {
+                pageWrap.value.scrollTo({ top: 0 })
                 next()
                 res()
             })
         })
 
         masterTL.then(() => {
-            if (from.name === 'about') {
-                masterTL
-                    .add(logoTL.timeScale(4).reverse())
-                    .add(revealBlurb.reverse(), '>-50%')
-                    .add(hideLogoTL.play())
-                    .add(revealHeading.play())
-                    .add(revealPageTL.play(), '>-50%')
-            } 
-
-            else if (to.name === 'about') {
-                masterTL
-                    .add(revealHeading.reverse())
-                    .add(hideLogoTL.reverse())
-                    .add(logoTL.timeScale(1).play())
-                    .add(revealBlurb.play(), '>-20%')
-                    .add(revealPageTL.play(), '>-20%')
-            } else {
-                masterTL.add(revealPageTL.play())
+            if (to.name !== 'about') {
+                masterTL.add(revealHeading.play())
             }
+            
+            masterTL.add(revealPageTL.play())
         })
     }
 })
 
 const defineTimelines = () => {
     revealFirst
-        .to(first.value, { width: '1.5rem' })
-        .to(second.value, { flex: 1 })
-    revealNav.to(nav.value.children, {opacity: 1, stagger:.2})
-    revealPageTL.to(thepage.value, { opacity: 1 })
+        .from(first.value, { x: '-100%' })
+        .from(second.value, { y: '100%', ease: "power2.in" })
+    revealNav.to('nav a', {opacity: 1, stagger:.2})
+
+    revealPageTL
+        .to(thepage.value, { opacity: 1 })
+
     revealHeading
+        .set(headingWrap.value, { opacity: 1 })
         .to(branch.value, { flex: '1 1 0', ease: "expo.out" })
         .to(heading.value, { opacity: 1 })
-    hideLogoTL.set(logoWrap.value, { height: 0 })
+
+    hideLogoTL
+        .to(logoWrap.value, { opacity: 0 })
+        .set(logoWrap.value, { height: 0 })
+
     revealBlurb.to(blurb.value, { opacity: 1 })
 }
 
@@ -158,9 +177,6 @@ onMounted(() => {
             .add(revealNav.play())
 
         masterTL.play()
-
-
 })
-
 
 </script>
