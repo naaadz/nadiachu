@@ -87,9 +87,7 @@ const onlogoTL = (payload) => {
 }
 
 const mobileGuard = router.beforeEach((to, from, next) => {
-
-    console.log('mobile: beforeEach')
-
+    
     if (from.name !== to.name) {
 
         masterTL

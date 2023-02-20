@@ -129,8 +129,6 @@ router.afterEach((to, from, next) => {
 
 const screenGuard = router.beforeEach((to, from, next) => {
 
-    console.log('screen: beforeEach')
-
     if (from.name !== to.name) {
         masterTL.clear()
         

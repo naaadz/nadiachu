@@ -35,25 +35,30 @@
         .the-page {
             height: 100%;
         }
+
+        .project-desc {
+            max-width: 800px;
+            order: 1;
+        }
     
         .scaled-content {
             position: relative;
             @apply min-h-0;
-            //@apply flex-1; remove for now
+            order: 2;
             
             //still small issue where the image skews is width comes in too close.
             img, video {
                 height: 100%; 
                 width: auto;
-                //object-fit: cover;
                 object-fit: contain;
                 box-shadow: 0 1px 20px 0 rgba($dark-1, .8);
              }
         }
-    
-        .project-content {
-            max-width: 800px;
+
+        .project-nav {
+            order: 3;
         }
+
     }
 }
 
