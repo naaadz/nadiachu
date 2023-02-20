@@ -21,7 +21,6 @@
                 <div class="inner flex justify-center space-x-4" :class="{ disabled: data.animating }">
                     <nuxt-link 
                         v-for="page in usePages()" 
-                        class="under"
                         :class="{ active : route.name === page.name }"
                         :to="page.name">{{ page.name }}
                     </nuxt-link>
@@ -69,11 +68,9 @@ let logoTL
 const masterTL = gsap.timeline({
     paused: true,
     onStart: () => {
-        console.log('masterTL started')
         data.animating = true
     },
     onComplete: () => {
-            console.log('masterTL complete')
             data.animating = false
     }
 })
@@ -137,7 +134,8 @@ router.beforeEach((to, from, next) => {
 const defineTimelines = () => {
     revealFirst
         .from(first.value, { x: '-100%' })
-        .from(second.value, { y: '100%', ease: "power2.in" })
+        .from(second.value, { y: '100%', ease: "power4.in" })
+
     revealNav.to('nav a', {opacity: 1, stagger:.2})
 
     revealPageTL

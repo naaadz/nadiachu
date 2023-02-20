@@ -40,7 +40,7 @@
         "id": 3, 
         "name": "platform", 
         "title": "Platform page", 
-        "desc": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>", 
+        "desc": "<p>This is a product landing page with a spacey theme that I was able to collaborate with our design team on for its look and scroll effects, and then build. </p>", 
         "tags": [
             "Vanilla JS", "Wordpress", "Native javascript animation", "SCSS"
         ],

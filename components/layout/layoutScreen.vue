@@ -19,7 +19,6 @@
             <nav class="flex justify-center gap-4 m-10" ref="standardnav">
                 <nuxt-link 
                     v-for="page in usePages()" 
-                    class="under"
                     :class="{ active : route.name === page.name}"
                     :to="page.name">{{ page.name }}
                 </nuxt-link>
@@ -110,17 +109,17 @@ const defineTimelines = () => {
     revealPageTL.to(thepage.value, { opacity: 1 })
 
     revealHeading
-        .to(branch.value, { width: '400px', ease: "power2.in" })
+        .to(branch.value, { width: '400px', ease: "power4.in" })
         .to(heading.value, { opacity: 1 })
 
     revealFirst
         .from(first.value, { duration: .5, x: '-100%' })
-        .from(second.value, { duration: 1, y: '-100%', ease: "power2.in" }, '>-80%')
-        .from(third.value, { duration: 1, y: '100%', ease: "power2.in" }, '>-80%')
+        .from(second.value, { duration: 1, y: '-100%', ease: "power4.in" }, '>-80%')
+        .from(third.value, { duration: 1, y: '100%', ease: "power4.in" }, '>-80%')
     
     revealBlurb.to(blurb.value, { opacity: 1 })
 
-    revealNav.to(standardnav.value.children, {opacity: 1, stagger:.2})
+    revealNav.to(standardnav.value.children, {opacity: 1, stagger:.05})
 
 }
 
@@ -150,7 +149,6 @@ router.beforeEach((to, from, next) => {
         })
 
         masterTL.then(() => {
-            console.log('then')
             if (to.name === 'projects') {
                 //reverse the standard view
                 masterTL

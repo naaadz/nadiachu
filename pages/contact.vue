@@ -1,6 +1,6 @@
 <template>
 	<div class="form-wrap space-y-8">
-		<p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+		<p>Thanks for contacting me, I'm looking forward to chatting with you.</p>
 		<form
 			class="flex flex-col space-y-4"
             @submit.prevent="onSubmit"
@@ -35,7 +35,7 @@
             {{ validation.isValid ? validation.message.success : validation.message.error }}
         </Alert>
 
-		<div class="social flex space-x-6 items-center">
+		<div class="social flex space-x-6 items-center justify-center sm:justify-start">
             <nuxt-link
                 v-for="item in socials"
 				:to="item.link"

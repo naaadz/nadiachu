@@ -1,20 +1,21 @@
 <template>
-    <div class="space-y-4">
-        <p>Style that Compiles is about my love for designing user experiences that also function well. I enjoy collaborating on concepts and building them even better. <a href="/contact" class="under active">Contact</a> me or check out some of my <a href="/projects" class="under active">projects</a>.</p>
+    <div class="space-y-8">
+        
+        <p>I'm <nuxt-link to="/contact" class="under">Nadia Chu</nuxt-link>, a front-end developer with a focus on creative and clean user experiences. I enjoy collaborating on design and layout concepts and building them even better.  <nuxt-link to="/contact" class="under">Contact</nuxt-link> me or check out some of my <nuxt-link to="/projects" class="under">projects</nuxt-link>. </p> 
         <div class="tags">
-            <span>ENFJ</span>
-            <span>VueJS</span>
-            <span>SVG animation</span>
-            <span>Drum and bass</span>
-            <span>Clean, semantic html</span>
-            <span>Pickleball</span>
-            <span>UX design</span>
-            <span>Coffee w/ cream </span>
-            <span>Nuxt 3</span>
-            <span>{{ "Let's talk <3" }}</span>
-            <span>Food related travel</span>
-            <span>Creative writing</span>
-            <span>AI robots</span>
+            <Tag value="VueJS" link="https://vuejs.org" />
+            <Tag value="Drum & bass" link="https://music.youtube.com/playlist?list=PLwQn_6xJ7nMc_X6YvFPm_BqwbuhYjPrk1&feature=share" title="Currently listening" />
+            <Tag value="SVG animation" />
+            <Tag value="ENFJ" link="https://www.16personalities.com/enfj-personality" />
+            <Tag value="Clean, semantic html" />
+            <Tag value="Racquet sports" />
+            <Tag value="UX design" link="https://dribbble.com/naaadz/likes" title="Liked shots" />
+            <Tag value="Cold brew" />
+            <Tag value="Nuxt 3" link="https://nuxt.com/" />
+            <Tag value="Let's talk <3" link="/contact" />
+            <Tag value="Food related adventure" />
+            <Tag value="Creative writing" />
+            <Tag value="AI robots" link="https://www.midjourney.com/showcase/recent/" />
         </div>
     </div>
 </template>

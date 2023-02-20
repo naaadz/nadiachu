@@ -2,8 +2,6 @@ import { initializeApp } from 'firebase/app'
 import { getFirestore, doc, collection, setDoc, addDoc } from 'firebase/firestore/lite'
 
 const config = useRuntimeConfig()
-//const { $mail } = useNuxtApp()
-
 
 const configKeys = {
     "apiKey": "",
@@ -34,7 +32,7 @@ export default defineEventHandler(async (event) => {
 
     } catch(e) {
         //i can't figure out how to test this error.
-        console.log('e', e)
+        //console.log('e', e)
         return e
     }
 

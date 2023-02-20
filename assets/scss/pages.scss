@@ -5,15 +5,23 @@
 .tags {
     @apply gap-2 flex flex-wrap;
 
-    @screen sm {
+    @screen lg {
         width: 80%;
     }
 
-    span {
+    .tag {
         background: rgba($cornflower, .2);
         color: $cornflower;
         padding: 2px 5px;
         @apply rounded text-sm;
+
+        a {
+            text-decoration: underline;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
     }
 }
 
@@ -124,7 +132,7 @@
         position: relative;
 
         .send {
-            background: $dark-1;
+            background: $default-dark;
             padding: 0 15px;
             position: absolute;
             right: 15px;
@@ -133,6 +141,10 @@
             line-height: .8;
             @apply font-corinthia;
             transition: color .5s;
+
+            @screen lg {
+                background: $dark-1;
+            }
 
             &:hover {
                 color: $cornflower;

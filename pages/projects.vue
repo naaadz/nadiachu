@@ -5,7 +5,7 @@
 		<div class="project-content space-y-4">
             <div class="space-y-4" v-html="currentProject.desc"></div>
 			<div class="tags">
-                <span v-for="tag in currentProject.tags" :key="tag">{{ tag }}</span>
+                <Tag v-for="tag in currentProject.tags" :key="tag" :value="tag" />
 			</div>
 		</div>
 
@@ -33,10 +33,10 @@
 		</div>
         <div class="flex gap-2">
             <template v-if="currentProject.liveLink">
-                <a class="active" :href="currentProject.liveLink" target="_blank">See it live</a> |
+                <a class="fill" :href="currentProject.liveLink" target="_blank">See it live</a> |
             </template>
             <a
-                class="active"
+                class="fill"
                 href="#"
                 @click="playNext"
                 >Next project</a

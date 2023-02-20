@@ -1,12 +1,15 @@
 <template>
-    <div class="alert" :class="`type-${type}`">
-        <div class="flex items-center gap-4">
+    <div class="alert relative" :class="`type-${type}`">
+        <div class="flex items-center gap-2">
             <Icon :name="getIcon()" />
-            <div>
+            <div class="message">
                 <slot>
                     {{ content }}
                 </slot>
             </div>
+        </div>
+        <div class="flowers">
+            <Icon name="flowers" />
         </div>
     </div>
 </template>

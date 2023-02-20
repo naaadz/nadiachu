@@ -39,7 +39,7 @@ module.exports = {
             }
         },
         screens: {
-          'max-phone': {'max': '639px'},
+          'max-phone': {'max': '450px'},
       },
       },
     },

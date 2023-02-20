@@ -16,12 +16,12 @@
                     <li v-for="item in position.list">{{ item }}</li>
                 </ul>
                 <div class="tags">
-                    <span v-for="tag in position.tags">{{ tag }}</span>
+                    <Tag v-for="tag in position.tags" :key="tag" :value="tag" />
                 </div>
             </div>
         </div>
         <Alert icon="download">
-            <a href="#" class="active under">Download my resume</a>
+            <a href="https://new.nadiastoffel.com/media/nadia-chu-resume.pdf" target="_blank" class="active under">Download my resume</a>
         </Alert>
     </div>
 </template>

@@ -5,14 +5,10 @@
 
 a.under {
     display: inline-flex;
-    border-bottom: 1px solid transparent;
     transition: border .6s, color .5s;
     align-self: flex-start;
     line-height: 1.5;
-
-    &.active {
-        border-bottom: 1px solid $cornflower;
-    }
+    border-bottom: 1px solid $cornflower;
 
     @screen lg {
         &:hover {
@@ -25,10 +21,7 @@ a.under {
 
 a.fill {
     transition: color .3s;
-
-    &.active {
-        color: $cornflower;
-    }
+    color: $cornflower;
 
     @screen lg {
         &:hover {
@@ -110,8 +103,7 @@ a.fill {
 }
 
 nav  {
-    > * {
-        opacity: 0;
+    a {
         text-transform: capitalize;
     }
 }
@@ -177,6 +169,10 @@ nav  {
         .the-page {
             position: relative;
             padding: 30px 30px 100px;
+
+            @screen sm {
+                width: 80%;
+            }
         }
 
     .blurb {
@@ -191,17 +187,14 @@ nav  {
         top: 70px;
     }
 
-    // &.page-about {
-    //     .the-page {
-    //         top: 265px;
-    //     }
-    // }
+    &.page-about .the-page {
+        top: 20px;
+    }
 
     .heading-wrap {
         width: 100%;
         top: 20px;
         opacity: 0;
-        //transition: opacity 1s;
 
         &:before {
             background: linear-gradient($default-dark 60%, rgba($default-dark, 0));
@@ -225,16 +218,18 @@ nav  {
                 @extend .disabled;
             }
         }
+
+        a {
+            opacity: 0;
+
+            &.active {
+                @extend .under;
+            }
+        }
     }
 
     //when loaded, show the gradients
     .loaded {
-        // .heading-wrap {
-        //     &:before {
-        //         background: linear-gradient($default-dark 60%, rgba($default-dark, 0));
-        //     }
-        // }
-
         nav {
             background: linear-gradient(rgba(5, 24, 51, 0) 0%, #051833 30%);
         }
@@ -242,6 +237,15 @@ nav  {
 }
 
 .layout-screen {
+    height: 100dvh;
+
+    &:not(.page-projects) {
+        @screen xl {
+            background-image: url('@/assets/images/watermark.svg');
+            background-position: right bottom;
+            background-repeat: no-repeat;
+        }
+    }
 
     .first {
         width: 2.5rem;
@@ -255,9 +259,7 @@ nav  {
             position: relative;
             width: 2px;
             background: #0B3067;
-            //height: 0;
             right: -5px;
-            //bottom: 0;
     }
 
     .stc-logo {
@@ -332,7 +334,17 @@ nav  {
         @apply ml-10;
         @apply w-80;
 
+        nav a {
+            opacity: 0;
 
+            &:hover {
+                @extend .fill; 
+            }
+
+            &.active {
+                @extend .under;
+            }
+        }
     }
     
     .bar-full {
@@ -349,6 +361,19 @@ nav  {
             @apply flex;
             writing-mode: tb-rl;
             white-space: nowrap;
+
+            > *  {
+                opacity: 0; 
+            }
+
+            a {
+                color: $default-light;
+
+                &.active {
+                    color: $cornflower;
+                }
+            }
+            
 
             &:first-child {
                 padding-bottom: 20px;
@@ -414,6 +439,10 @@ nav  {
             }
         }
     }
+
+    &.page-about .the-page {
+        padding: 50px 164px 100px 50px;
+    }
 }
 
 .alert {
@@ -423,23 +452,37 @@ nav  {
         content: '';
         width: 82%;
         display: block;
+
+        @screen max-phone {
+            width: 70%;
+        }
     }
     
     > div {
         padding: 20px;
         position: relative;
+    }
 
-        &:after {
-            content: url('@/assets/images/flowers.svg');
-            position: absolute;
-            right: 0;
-            top: -30px;
+    .message {
+        @screen max-phone {
+            padding-right: 60px;
         }
+    }
+
+    .flowers {
+        position: absolute;
+        right: -20px;
+        top: -50px;
+        pointer-events: none;
     }
     
     &.type-info {
         &:before {
             border-top: 2px solid $cornflower;
+        }
+
+        .flowers svg {
+            fill: $cornflower;
         }
     }
 
@@ -451,6 +494,10 @@ nav  {
         div {
             color: $light-blue;
         }
+
+        .flowers svg {
+            fill: $light-blue;
+        }
     }
 
     &.type-danger {
@@ -460,6 +507,10 @@ nav  {
 
         div {
             color: $status-danger;
+        }
+
+        .flowers svg {
+            fill: $status-danger;
         }
     }
 }

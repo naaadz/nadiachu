@@ -8,7 +8,7 @@ body {
             'trade-area-prototype' #151836 #f8bd50, 
             'polygons-toolbar' #0f133d #f1437f,
             'platform' #161653 #9037e2,
-            'thinkitai' #000b33 #2df3ce;
+            'thinkitai' #001666 #2df3ce;
 
         @each $name, $primary, $accent in $projects {
             &.project-#{$name} {
@@ -29,27 +29,30 @@ body {
                    transition: background 1s;
                 }
 
-                
-                .active {
-                    color: $accent;
-                    border-bottom: 1px solid transparent;
-                    transition: border .5s;
-                    
-
-                    &:hover {
-                        border-bottom: 1px solid $accent;
+                .fill {
+                    &.active, &:hover {
+                        color: $accent; 
                     }
                 }
-        
-                
-                
-                a.fill {
-                    &.active, &:hover {
-                        color: $accent;
+
+                .under {
+                    border-bottom: 1px solid $accent;
+                    
+                }
+
+                .the-page {
+                    a.fill {
+                        color: $accent; 
+                        border-bottom: 1px solid transparent;
+                        transition: border .5s;
+
+                        &:hover {
+                            @extend .under;
+                        }
                     }
                 }
     
-                .tags > span {
+                .tag {
                     color: lighten($accent, 20);
                     background: $primary;
                     transition: background 1s;
