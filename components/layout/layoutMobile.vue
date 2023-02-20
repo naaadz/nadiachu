@@ -86,7 +86,9 @@ const onlogoTL = (payload) => {
     logoTL = payload
 }
 
-router.beforeEach((to, from, next) => {
+const mobileGuard = router.beforeEach((to, from, next) => {
+
+    console.log('mobile: beforeEach')
 
     if (from.name !== to.name) {
 
@@ -175,6 +177,10 @@ onMounted(() => {
             .add(revealNav.play())
 
         masterTL.play()
+})
+
+onUnmounted(() => {
+    mobileGuard()
 })
 
 </script>
