@@ -84,16 +84,7 @@ const pageWrap = ref(null)
 let logoTL, flowerTL
 
 
-const masterTL = gsap.timeline({
-    paused: true,
-    onStart: () => {
-        console.log('on start')
-    },
-    onComplete: () => {
-        console.log('on end')
-    }
-})
-
+const masterTL = gsap.timeline({paused: true})
 const fullTL = gsap.timeline({ paused: true })
 const revealPageTL = gsap.timeline({ paused: true })
 const revealHeading = gsap.timeline({ paused: true })
@@ -130,14 +121,15 @@ const defineTimelines = () => {
     revealBlurb.to(blurb.value, { duration: 1, opacity: 1 })
 
     revealNav.to(standardnav.value.children, {opacity: 1, stagger:.05})
-
 }
 
-router.afterEach((to, from, next) => {
-    pageWrap.value.scrollTo({ top: 0 })
-})
 
-const screenGuard = router.beforeEach((to, from, next) => {
+
+const afterGuard = router.afterEach(() => {
+    pageWrap.value.scrollTo({ top: 0 })
+ })
+
+const beforeGuard = router.beforeEach((to, from, next) => {
 
     if (from.name !== to.name) {
         masterTL.clear()
@@ -168,12 +160,14 @@ const screenGuard = router.beforeEach((to, from, next) => {
 
             else if (from.name === 'projects' ) {
                 masterTL
-                    .add(fullTL.timeScale(3).reverse(), 1)
-                    .add(revealFirst.play(), 1)
-                    .add(logoTL.timeScale(2).play(), 1)
-                    .add(revealNav.play(), 1)
-                    .add(revealBlurb.play(), 1)
-                    .add(revealHeading.play(), '>')
+                    .add(fullTL.timeScale(3).reverse())
+                    .add(revealFirst.play(), '<')
+                    .add(() => {
+                        logoTL.progress(1).pause()
+                    }, '>-50%')
+                    .add(revealNav.play(), '<' )
+                    .add(revealBlurb.play(), '<' )
+                    .add(revealHeading.play(), '>-50%')
                     .add(revealPageTL.play(), '>')
             }
 
@@ -199,21 +193,19 @@ onMounted(() => {
         masterTL
             .add(revealFirst.play())
             .add(logoTL.timeScale(1).play(), '<')
-            .add(revealHeading.play(), '<+20%')
+            .add(revealHeading.play(), '>-30%')
             .add(revealPageTL.play(), '>')
-            .add(revealBlurb.play(), '<')
+            .add(revealBlurb.play(), '>')
             .add(revealNav.play(), '<')
-
-
     }
 
     masterTL.play()
 
-
 })
 
 onUnmounted(() => {
-    screenGuard()
+    beforeGuard()
+    afterGuard()
 })
 
 
