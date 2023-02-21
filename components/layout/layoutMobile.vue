@@ -17,14 +17,12 @@
             <div class="the-page" ref="thepage">
                 <NuxtPage class="text-default-light" />
             </div>
-            <nav class="fixed-stretch" ref="nav">
-                <div class="inner flex justify-center space-x-4" :class="{ disabled: data.animating }">
-                    <nuxt-link 
-                        v-for="page in usePages()" 
-                        :class="{ active : route.name === page.name }"
-                        :to="page.name">{{ page.name }}
-                    </nuxt-link>
-                </div>
+            <nav class="fixed-stretch flex justify-center space-x-4" ref="nav">
+                <nuxt-link 
+                    v-for="page in usePages()" 
+                    :class="{ active : route.name === page.name }"
+                    :to="page.name">{{ page.name }}
+                </nuxt-link>
             </nav>
         </div>
         <div class="heading-wrap flex justify-start items-center fixed-stretch" ref="headingWrap">
@@ -46,10 +44,6 @@ import gsap from 'gsap'
 const route = useRoute()
 const router = useRouter()
 
-const data = reactive({
-    animating: false
-})
-
 //maybe make the refs list and the timeline assignments dynamic (in a loop)
 const first = ref(null)
 const second = ref(null)
@@ -64,16 +58,7 @@ const pageWrap = ref(null)
 
 let logoTL
 
-const masterTL = gsap.timeline({
-    paused: true,
-    onStart: () => {
-        data.animating = true
-    },
-    onComplete: () => {
-            data.animating = false
-    }
-})
-
+const masterTL = gsap.timeline({paused: true})
 const revealFirst = gsap.timeline({paused: true})
 const revealPageTL = gsap.timeline({paused: true})
 const revealHeading = gsap.timeline({paused: true})
@@ -124,7 +109,7 @@ const mobileGuard = router.beforeEach((to, from, next) => {
                 masterTL.add(revealHeading.timeScale(1).play())
             }
             
-            masterTL.add(revealPageTL.play(), '<')
+            masterTL.add(revealPageTL.play(), '>-50%')
         })
     }
 })
@@ -136,7 +121,7 @@ const defineTimelines = () => {
 
     revealNav
         .to(nav.value, { opacity: 1 })
-        .to('nav a', {opacity: 1, stagger:.2})
+        .to(nav.value.children, {opacity: 1, stagger:.05})
 
     revealPageTL
         .to(thepage.value, { opacity: 1 })
@@ -165,13 +150,13 @@ onMounted(() => {
                     .add(revealHeading.play())
             } else {
                 masterTL
-                    .add(logoTL.timeScale(2).play(), '<')
+                    .add(logoTL.timeScale(2).play())
                     .add(revealBlurb.play())
             }
 
         masterTL
             .add(revealPageTL.play())
-            .add(revealNav.play(), 1)
+            .add(revealNav.play())
 
         masterTL.play()
 })

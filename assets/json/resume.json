@@ -4,7 +4,7 @@
         "desc": "Location intelligence SaaS company",
         "position": [
             { 
-                "title": "Front-end developer, App dev team",
+                "title": "Front-end developer, App dev",
                 "date": "3/2020 - present",
                 "blurb": "Bring designs to life with well-organized JS and styling",
                 "list":[
@@ -16,18 +16,19 @@
                 ],
                 "tags": [
                     "VueJS",
-                    "KnockoutJS",
                     "Leaflet",
                     "Javascript",
                     "CSS",
                     "SCSS",
                     "TailwindCSS",
+                    "KnockoutJS",
+                    "Agile",
                     "GIT",
                     "Azure Devops"
                 ]
             },
             { 
-                "title": "Product Designer, App dev team",
+                "title": "Product Designer, App dev",
                 "date": "3/2020 - present",
                 "blurb": "Cleanup an overly-complex looking UI by introducing well thought-out design patterns",
                 "list":[
@@ -41,12 +42,11 @@
                     "Adobe Illustrator",
                     "UX",
                     "UI",
-                    "Lucid chart",
-                    "Coffee"
+                    "Flow charting"
                 ]
             },
             { 
-                "title": "Web developer, Marketing team",
+                "title": "Web developer, Marketing",
                 "date": "10/2018 - 3/2021",
                 "blurb": "Own the public-facing marketing website & blog",
                 "list":[
@@ -121,12 +121,11 @@
             { 
                 "title": "Associate developer",
                 "date": "2007 - 2008",
-                "list":[
-                    "Built websites from designs as agency/client work"
-                ],
+                "blurb": "Fresh on the scene building websites from designs for a web application agency",
                 "tags": [
                     "Adobe Suite",
                     "ColdFusion",
+                    "PHP",
                     "Javascript",
                     "CSS"
                 ]

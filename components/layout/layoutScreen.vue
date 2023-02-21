@@ -135,7 +135,7 @@ const beforeGuard = router.beforeEach((to, from, next) => {
         masterTL.clear()
 
         masterTL
-            .add(revealHeading.reverse(), '<')
+            .add(revealHeading.timeScale(2).reverse(), '<')
             .add(revealPageTL.reverse(), '<')
             
         masterTL.add(() => {
@@ -149,12 +149,12 @@ const beforeGuard = router.beforeEach((to, from, next) => {
             if (to.name === 'projects') {
                 //reverse the standard view
                 masterTL
-                .add(logoTL.timeScale(5).reverse(), 1)
-                .add(revealNav.reverse(), .5)
-                .add(revealBlurb.reverse(), .5)
-                .add(revealFirst.reverse(), 1)
-                .add(fullTL.timeScale(1).play(), 1)
-                .add(revealHeading.play(), 1)
+                .add(logoTL.timeScale(5).reverse())
+                .add(revealFirst.reverse(), '<')
+                .add(revealBlurb.reverse(), '<-50%')
+                .add(revealNav.reverse(), '<')
+                .add(fullTL.timeScale(1).play(), '<')
+                .add(revealHeading.timeScale(1).play(), '>-80%')
                 .add(revealPageTL.play(), '>')
             }
 
@@ -167,13 +167,13 @@ const beforeGuard = router.beforeEach((to, from, next) => {
                     }, '>-50%')
                     .add(revealNav.play(), '<' )
                     .add(revealBlurb.play(), '<' )
-                    .add(revealHeading.play(), '>-50%')
+                    .add(revealHeading.timeScale(1).play(), '>-80%')
                     .add(revealPageTL.play(), '>')
             }
 
             else {
                 masterTL
-                    .add(revealHeading.play(), '>-50%')
+                    .add(revealHeading.timeScale(1).play(), '>-50%')
                     .add(revealPageTL.play(), '>-50%')
             }
         })
