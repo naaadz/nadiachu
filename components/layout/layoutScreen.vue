@@ -83,7 +83,17 @@ const pageWrap = ref(null)
 
 let logoTL, flowerTL
 
-const masterTL = gsap.timeline({paused: true})
+
+const masterTL = gsap.timeline({
+    paused: true,
+    onStart: () => {
+        console.log('on start')
+    },
+    onComplete: () => {
+        console.log('on end')
+    }
+})
+
 const fullTL = gsap.timeline({ paused: true })
 const revealPageTL = gsap.timeline({ paused: true })
 const revealHeading = gsap.timeline({ paused: true })
@@ -103,8 +113,8 @@ const onlogoTL = (payload) => {
 const defineTimelines = () => {
     fullTL
         .to('.bar-full nav:last-child > *', {opacity: 1, stagger: .1})
-        .to('.bar-full nav:first-child > *', {opacity: 1, stagger: .1})
-        .add(flowerTL.play())
+        .to('.bar-full nav:first-child > *', {opacity: 1, stagger: .1}, '>-50%')
+        .add(flowerTL.play(), '>-50%')
 
     revealPageTL.to(thepage.value, { opacity: 1 })
 
@@ -113,11 +123,11 @@ const defineTimelines = () => {
         .to(heading.value, { opacity: 1 })
 
     revealFirst
-        .from(first.value, { duration: .5, x: '-100%' })
-        .from(second.value, { duration: 1, y: '-100%', ease: "power4.in" }, '>-80%')
-        .from(third.value, { duration: 1, y: '100%', ease: "power4.in" }, '>-80%')
+        .from(first.value, { x: '-100%' })
+        .from(second.value, { y: '-100%', ease: "power4.in" }, '<-70%')
+        .from(third.value, { y: '100%', ease: "power4.in" }, '<')
     
-    revealBlurb.to(blurb.value, { opacity: 1 })
+    revealBlurb.to(blurb.value, { duration: 1, opacity: 1 })
 
     revealNav.to(standardnav.value.children, {opacity: 1, stagger:.05})
 
@@ -131,15 +141,10 @@ const screenGuard = router.beforeEach((to, from, next) => {
 
     if (from.name !== to.name) {
         masterTL.clear()
-        
-        if (![from.name, to.name].includes('projects')) {
-            //dim the standard nav while the other pages are appearing
-            masterTL.add(gsap.to(standard.value, { opacity: .5}))
-        }
 
         masterTL
             .add(revealHeading.reverse(), '<')
-            .add(revealPageTL.reverse())
+            .add(revealPageTL.reverse(), '<')
             
         masterTL.add(() => {
             return new Promise ((res) => {
@@ -152,31 +157,30 @@ const screenGuard = router.beforeEach((to, from, next) => {
             if (to.name === 'projects') {
                 //reverse the standard view
                 masterTL
-                .add(logoTL.timeScale(5).reverse())
-                .add(revealNav.reverse(), '<')
-                .add(revealBlurb.reverse(), '<')
-                .add(revealFirst.reverse(), '<')
-                .add(fullTL.timeScale(1).play(), '>-50%')
-                .add(revealHeading.play(), '>-80%')
-                .add(revealPageTL.play(), '>-50%')
+                .add(logoTL.timeScale(5).reverse(), 1)
+                .add(revealNav.reverse(), .5)
+                .add(revealBlurb.reverse(), .5)
+                .add(revealFirst.reverse(), 1)
+                .add(fullTL.timeScale(1).play(), 1)
+                .add(revealHeading.play(), 1)
+                .add(revealPageTL.play(), '>')
             }
 
             else if (from.name === 'projects' ) {
                 masterTL
-                    .add(fullTL.timeScale(3).reverse())
-                    .add(revealFirst.play())
-                    .add(logoTL.timeScale(1).play(), '>-50%')
-                    .add(revealHeading.play(), '>-50%')
+                    .add(fullTL.timeScale(3).reverse(), 1)
+                    .add(revealFirst.play(), 1)
+                    .add(logoTL.timeScale(2).play(), 1)
+                    .add(revealNav.play(), 1)
+                    .add(revealBlurb.play(), 1)
+                    .add(revealHeading.play(), '>')
                     .add(revealPageTL.play(), '>')
-                    .add(revealNav.play(), '>')
-                    .add(revealBlurb.play(), '>')
             }
 
             else {
                 masterTL
                     .add(revealHeading.play(), '>-50%')
                     .add(revealPageTL.play(), '>-50%')
-                    .add(gsap.to(standard.value, { opacity: 1}))
             }
         })
     }
@@ -189,16 +193,18 @@ onMounted(() => {
     if (route.name === 'projects') {
         masterTL
             .add(fullTL.play())
-            .add(revealHeading.play(), '>-50%')
-            .add(revealPageTL.play())
+            .add(revealHeading.play(), '>-80%')
+            .add(revealPageTL.play(), '>')
     } else {
         masterTL
             .add(revealFirst.play())
-            .add(logoTL.timeScale(1).play(), '>-50%')
-            .add(revealHeading.play(), '>-50%')
+            .add(logoTL.timeScale(1).play(), '<')
+            .add(revealHeading.play(), '<+20%')
             .add(revealPageTL.play(), '>')
-            .add(revealNav.play(), '>')
-            .add(revealBlurb.play(), '>')
+            .add(revealBlurb.play(), '<')
+            .add(revealNav.play(), '<')
+
+
     }
 
     masterTL.play()

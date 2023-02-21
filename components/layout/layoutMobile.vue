@@ -1,5 +1,5 @@
 <template>
-    <div :class="{ loaded: data.loaded }">
+    <div>
         <div class="bg flex h-screen relative overflow-hidden">
             <div class="first floral flex-none" ref="first"></div>
             <div class="second bg-default-dark flex flex-col justify-between" ref="second"></div>
@@ -47,7 +47,6 @@ const route = useRoute()
 const router = useRouter()
 
 const data = reactive({
-    loaded: false,
     animating: false
 })
 
@@ -87,20 +86,19 @@ const onlogoTL = (payload) => {
 }
 
 const mobileGuard = router.beforeEach((to, from, next) => {
-    
+
     if (from.name !== to.name) {
 
         masterTL
             .clear()
             .add(revealPageTL.reverse())
-            .add(revealHeading.reverse())
+            .add(revealHeading.timeScale(6).reverse())
 
         if (from.name === 'about') {
 
             masterTL
-                .add(logoTL.timeScale(4).reverse())
-                .add(hideLogoTL.play(), '>')
-                .add(revealBlurb.reverse(), '>-50%')
+                .add(hideLogoTL.play(), .5)
+                .add(revealBlurb.reverse(), '<')
         }
 
         else if (to.name === 'about') {
@@ -108,9 +106,9 @@ const mobileGuard = router.beforeEach((to, from, next) => {
                 .add(() => {
                     pageWrap.value.scrollTo({ top: 0 })
                 })
-                .add(hideLogoTL.reverse())
-                .add(logoTL.timeScale(1).play())
-                .add(revealBlurb.play(), '>-20%')
+                .add(hideLogoTL.reverse(), 1)
+                .add(logoTL.progress(1).pause(), 1)
+                .add(revealBlurb.play(), 1)
         }
 
         masterTL.add(() => {
@@ -123,10 +121,10 @@ const mobileGuard = router.beforeEach((to, from, next) => {
 
         masterTL.then(() => {
             if (to.name !== 'about') {
-                masterTL.add(revealHeading.play())
+                masterTL.add(revealHeading.timeScale(1).play())
             }
             
-            masterTL.add(revealPageTL.play())
+            masterTL.add(revealPageTL.play(), '<')
         })
     }
 })
@@ -134,9 +132,11 @@ const mobileGuard = router.beforeEach((to, from, next) => {
 const defineTimelines = () => {
     revealFirst
         .from(first.value, { x: '-100%' })
-        .from(second.value, { y: '100%', ease: "power4.in" })
+        .from(second.value, { y: '100%', ease: "power4.in" }, '<')
 
-    revealNav.to('nav a', {opacity: 1, stagger:.2})
+    revealNav
+        .to(nav.value, { opacity: 1 })
+        .to('nav a', {opacity: 1, stagger:.2})
 
     revealPageTL
         .to(thepage.value, { opacity: 1 })
@@ -158,7 +158,6 @@ onMounted(() => {
 
         masterTL
             .add(revealFirst.play())
-            .add(() => data.loaded = true )
 
             if (['contact', 'projects', 'resume'].includes(route.name)) {
                 masterTL
@@ -166,18 +165,19 @@ onMounted(() => {
                     .add(revealHeading.play())
             } else {
                 masterTL
-                    .add(logoTL.play())
+                    .add(logoTL.timeScale(2).play(), '<')
                     .add(revealBlurb.play())
             }
 
         masterTL
             .add(revealPageTL.play())
-            .add(revealNav.play())
+            .add(revealNav.play(), 1)
 
         masterTL.play()
 })
 
 onUnmounted(() => {
+    //remove router hook
     mobileGuard()
 })
 
