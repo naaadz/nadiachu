@@ -10,7 +10,7 @@
         "loaded": false,
         "liveLink": "https://prev.sitezeusdev.com/solutions/",
         "mediaType": "video",
-        "mediaPath": "https://new.nadiastoffel.com/video/solutions-marker.mp4"
+        "mediaPath": "https://new.nadiastoffel.com/video/new/map-marker.mp4"
     },
     { 
         "id": 1, 
@@ -47,7 +47,7 @@
         "loaded": false,
         "liveLink": "https://prev.sitezeusdev.com/products/synergy/",
         "mediaType": "video",
-        "mediaPath": "https://new.nadiastoffel.com/video/platform-page.mp4"
+        "mediaPath": "https://new.nadiastoffel.com/video/new/platform.mp4"
     },
     { 
         "id": 4, 
@@ -60,6 +60,6 @@
         "loaded": false,
         "liveLink": "https://tia.nadiastoffel.com",
         "mediaType": "video",
-        "mediaPath": "https://new.nadiastoffel.com/video/thinkit-ai-homepage.mp4"
+        "mediaPath": "https://new.nadiastoffel.com/video/new/tia-fullscreen.mp4"
     }
 ]
