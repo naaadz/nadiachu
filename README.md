@@ -1,6 +1,6 @@
 # My portfolio site on Nuxt 3
 
-## To run it
+## To build it
 
 ```bash
 # yarn
@@ -13,7 +13,7 @@ npm install
 pnpm install --shamefully-hoist
 ```
 
-## Development Server
+## To run it
 
 ```bash
 npm run dev
