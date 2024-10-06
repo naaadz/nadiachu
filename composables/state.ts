@@ -10,7 +10,7 @@ export const useScreensize = () => {
 	let size = ref('')
 
     const handleResize = () => {
-		windowWidth.value = window.innerWidth
+		windowWidth.value = window?.innerWidth
 
 		if (windowWidth.value >= 1024) {
 			isMobile.value = false
@@ -37,7 +37,7 @@ export const useScreensize = () => {
     }
 
     handleResize()
-    window.addEventListener("resize", debounce(handleResize, 2000))
+    window?.addEventListener("resize", debounce(handleResize, 2000))
 
 	return { isMobile, size }
 }

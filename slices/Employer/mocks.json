@@ -1,0 +1,68 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"employer_name": {
+				"__TYPE__": "FieldContent",
+				"value": "eleven",
+				"type": "Text"
+			},
+			"position": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"position_name",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "dawn",
+									"type": "Text"
+								}
+							],
+							[
+								"position_dates",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "sense",
+									"type": "Text"
+								}
+							],
+							[
+								"position_blurb",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Exercitation duis ex culpa aliquip reprehenderit. Quis reprehenderit aliqua excepteur consectetur sit exercitation. Velit aute aliquip occaecat excepteur magna officia reprehenderit dolore laborum pariatur dolore."
+											}
+										}
+									]
+								}
+							],
+							[
+								"position_tags",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Ex ipsum veniam ex magna ex dolore. In consectetur excepteur minim deserunt sint. Fugiat voluptate mollit voluptate consequat in labore et."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

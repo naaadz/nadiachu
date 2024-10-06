@@ -1,11 +1,34 @@
 [
     { 
+        "employerName": "ZaneRay Group",
+        "desc": "E-Commerce design/development agency",
+        "position": [
+            { 
+                "title": "Senior UI Developer",
+                "date": "4/2023 - Present",
+                "list":[
+                    "Develop and support 10+ headless BigCommerce projects",
+                    "Work with developers, designers, and project managers to deliver the very best e-commerce experiences"
+                ],
+                "tags": [
+                    "REST / GraphQL",
+                    "VueJS",
+                    "Nuxt3",
+                    "BigCommerce",
+                    "ContentStack",
+                    "Prismic",
+                    "DatoCMS"
+                ]
+            }
+        ]
+    },
+    { 
         "employerName": "SiteZeus",
         "desc": "Location intelligence SaaS company",
         "position": [
             { 
                 "title": "Front-end developer, App dev",
-                "date": "3/2020 - present",
+                "date": "3/2020 - 4/2023",
                 "blurb": "Bring designs to life with well-organized JS and styling",
                 "list":[
                     "Prototype and build features",
