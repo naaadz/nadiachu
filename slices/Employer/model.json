@@ -19,6 +19,13 @@
             "placeholder": ""
           }
         },
+        "employer_about": {
+          "type": "Text",
+          "config": {
+            "label": "Employer about",
+            "placeholder": ""
+          }
+        },
         "position": {
           "type": "Group",
           "config": {
@@ -49,12 +56,10 @@
                 }
               },
               "position_tags": {
-                "type": "StructuredText",
+                "type": "Text",
                 "config": {
                   "label": "Position tags",
-                  "placeholder": "",
-                  "allowTargetBlank": true,
-                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,list-item,o-list-item,rtl,embed"
+                  "placeholder": "x, y, z"
                 }
               }
             }

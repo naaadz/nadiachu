@@ -1,4 +1,3 @@
-import projects from "@/assets/json/projects.json"
 
 export const useConfigVariables = () => {
     const config = useRuntimeConfig()
@@ -56,15 +55,3 @@ const debounce = (callback, delay) => {
     }
   }
 
-export const usePages = () => {
-    const router = useRouter()
-    const routes = router.getRoutes()
-    //put the routes in order of the nav
-    return [routes[0], routes[3], routes[2], routes[1]]
-}
-
-export const usePreloadVideos = () => {
-    projects.forEach(project => {
-        document.createElement("video").setAttribute("src", project.mediaPath)
-    })
-}

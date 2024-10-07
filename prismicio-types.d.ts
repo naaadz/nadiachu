@@ -5,62 +5,419 @@ import type * as prismic from '@prismicio/client';
 type Simplify<T> = {[KeyType in keyof T]: T[KeyType]};
 
 /**
- * Item in *resume → About tags*
+ * Item in *About → About me tags*
  */
-export interface ResumeDocumentDataAboutTagsItem {
+export interface AboutDocumentDataAboutMeTagsItem {
   /**
-   * Tag text field in *resume → About tags*
+   * Tag link field in *About → About me tags*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: resume.about_tags[].tag_text
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **API ID Path**: about.about_me_tags[].tag_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  tag_text: prismic.KeyTextField;
-
-  /**
-   * Tag link field in *resume → About tags*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: resume.about_tags[].tag_link
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  tag_link: prismic.KeyTextField;
+  tag_link: prismic.LinkField;
 }
 
-type ResumeDocumentDataSlicesSlice = never;
-
-type ResumeDocumentDataSlices2Slice = EmployerSlice;
+type AboutDocumentDataSlicesSlice = never;
 
 /**
- * Content for resume documents
+ * Content for About documents
  */
-interface ResumeDocumentData {
+interface AboutDocumentData {
   /**
-   * About me blurb field in *resume*
+   * Under logo blurb field in *About*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: resume.about_me_blurb
+   * - **API ID Path**: about.under_logo_blurb
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  under_logo_blurb: prismic.RichTextField;
+
+  /**
+   * About me blurb field in *About*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.about_me_blurb
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   about_me_blurb: prismic.RichTextField;
 
   /**
-   * About tags field in *resume*
+   * About me tags field in *About*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: resume.about_tags[]
+   * - **API ID Path**: about.about_me_tags[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  about_tags: prismic.GroupField<Simplify<ResumeDocumentDataAboutTagsItem>>;
+  about_me_tags: prismic.GroupField<Simplify<AboutDocumentDataAboutMeTagsItem>>;
 
   /**
-   * Slice Zone field in *resume*
+   * Slice Zone field in *About*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<AboutDocumentDataSlicesSlice> /**
+   * Meta Title field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: about.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: about.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *About*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * About document from Prismic
+ *
+ * - **API ID**: `about`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AboutDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<AboutDocumentData>,
+  'about',
+  Lang
+>;
+
+/**
+ * Item in *Contact → Contact logos*
+ */
+export interface ContactDocumentDataContactLogosItem {
+  /**
+   * Image field in *Contact → Contact logos*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.contact_logos[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Image name field in *Contact → Contact logos*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.contact_logos[].image_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  image_name: prismic.KeyTextField;
+
+  /**
+   * Image link field in *Contact → Contact logos*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.contact_logos[].image_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  image_link: prismic.LinkField;
+}
+
+type ContactDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Contact documents
+ */
+interface ContactDocumentData {
+  /**
+   * Contact blurb field in *Contact*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.contact_blurb
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  contact_blurb: prismic.RichTextField;
+
+  /**
+   * Contact form success message field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.contact_form_success_message
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  contact_form_success_message: prismic.KeyTextField;
+
+  /**
+   * Contact form error message field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.contact_form_error_message
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  contact_form_error_message: prismic.KeyTextField;
+
+  /**
+   * Contact logos field in *Contact*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.contact_logos[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  contact_logos: prismic.GroupField<Simplify<ContactDocumentDataContactLogosItem>>;
+
+  /**
+   * Slice Zone field in *Contact*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ContactDocumentDataSlicesSlice> /**
+   * Meta Title field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: contact.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: contact.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Contact*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Contact document from Prismic
+ *
+ * - **API ID**: `contact`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ContactDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<ContactDocumentData>,
+  'contact',
+  Lang
+>;
+
+/**
+ * Item in *Projects → Project*
+ */
+export interface ProjectsDocumentDataProjectItem {
+  /**
+   * Project slug field in *Projects → Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects.project[].project_slug
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  project_slug: prismic.KeyTextField;
+
+  /**
+   * Project title field in *Projects → Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects.project[].project_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  project_title: prismic.KeyTextField;
+
+  /**
+   * Project desc field in *Projects → Project*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects.project[].project_desc
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  project_desc: prismic.RichTextField;
+
+  /**
+   * Project media field in *Projects → Project*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects.project[].project_media
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  project_media: prismic.LinkToMediaField;
+
+  /**
+   * Project url field in *Projects → Project*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects.project[].project_url
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  project_url: prismic.LinkField;
+
+  /**
+   * Project tags field in *Projects → Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects.project[].project_tags
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  project_tags: prismic.KeyTextField;
+}
+
+type ProjectsDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Projects documents
+ */
+interface ProjectsDocumentData {
+  /**
+   * Project field in *Projects*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects.project[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  project: prismic.GroupField<Simplify<ProjectsDocumentDataProjectItem>>;
+
+  /**
+   * Slice Zone field in *Projects*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ProjectsDocumentDataSlicesSlice> /**
+   * Meta Title field in *Projects*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: projects.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Projects*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: projects.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Projects*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Projects document from Prismic
+ *
+ * - **API ID**: `projects`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProjectsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<ProjectsDocumentData>,
+  'projects',
+  Lang
+>;
+
+type ResumeDocumentDataSlicesSlice = EmployerSlice;
+
+/**
+ * Content for Resume documents
+ */
+interface ResumeDocumentData {
+  /**
+   * Resume download link field in *Resume*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: resume.resume_download_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  resume_download_link: prismic.LinkField;
+
+  /**
+   * Slice Zone field in *Resume*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -69,7 +426,7 @@ interface ResumeDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<ResumeDocumentDataSlicesSlice> /**
-   * Meta Title field in *resume*
+   * Meta Title field in *Resume*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -80,7 +437,7 @@ interface ResumeDocumentData {
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *resume*
+   * Meta Description field in *Resume*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -91,7 +448,7 @@ interface ResumeDocumentData {
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *resume*
+   * Meta Image field in *Resume*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -99,20 +456,11 @@ interface ResumeDocumentData {
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  meta_image: prismic.ImageField<never> /**
-   * Slice Zone field in *resume*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: resume.slices2[]
-   * - **Tab**: Resume
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */;
-  slices2: prismic.SliceZone<ResumeDocumentDataSlices2Slice>;
+  meta_image: prismic.ImageField<never>;
 }
 
 /**
- * resume document from Prismic
+ * Resume document from Prismic
  *
  * - **API ID**: `resume`
  * - **Repeatable**: `false`
@@ -126,7 +474,7 @@ export type ResumeDocument<Lang extends string = string> = prismic.PrismicDocume
   Lang
 >;
 
-export type AllDocumentTypes = ResumeDocument;
+export type AllDocumentTypes = AboutDocument | ContactDocument | ProjectsDocument | ResumeDocument;
 
 /**
  * Item in *Employer → Default → Primary → Position*
@@ -165,12 +513,12 @@ export interface EmployerSliceDefaultPrimaryPositionItem {
   /**
    * Position tags field in *Employer → Default → Primary → Position*
    *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
+   * - **Field Type**: Text
+   * - **Placeholder**: x, y, z
    * - **API ID Path**: employer.default.primary.position[].position_tags
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  position_tags: prismic.RichTextField;
+  position_tags: prismic.KeyTextField;
 }
 
 /**
@@ -186,6 +534,16 @@ export interface EmployerSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   employer_name: prismic.KeyTextField;
+
+  /**
+   * Employer about field in *Employer → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: employer.default.primary.employer_about
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  employer_about: prismic.KeyTextField;
 
   /**
    * Position field in *Employer → Default → Primary*
@@ -246,11 +604,21 @@ declare module '@prismicio/client' {
 
   namespace Content {
     export type {
+      AboutDocument,
+      AboutDocumentData,
+      AboutDocumentDataAboutMeTagsItem,
+      AboutDocumentDataSlicesSlice,
+      ContactDocument,
+      ContactDocumentData,
+      ContactDocumentDataContactLogosItem,
+      ContactDocumentDataSlicesSlice,
+      ProjectsDocument,
+      ProjectsDocumentData,
+      ProjectsDocumentDataProjectItem,
+      ProjectsDocumentDataSlicesSlice,
       ResumeDocument,
       ResumeDocumentData,
-      ResumeDocumentDataAboutTagsItem,
       ResumeDocumentDataSlicesSlice,
-      ResumeDocumentDataSlices2Slice,
       AllDocumentTypes,
       EmployerSlice,
       EmployerSliceDefaultPrimaryPositionItem,

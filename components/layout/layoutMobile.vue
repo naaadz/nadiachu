@@ -19,7 +19,7 @@
             </div>
             <nav class="fixed-stretch flex justify-center space-x-4" ref="nav">
                 <nuxt-link
-                    v-for="page in pages"
+                    v-for="page in pageLinks"
                     :key="page.name"
                     :class="{active: route.name === page.name}"
                     :to="page.route"
@@ -46,7 +46,7 @@ import gsap from 'gsap'
 const route = useRoute()
 const router = useRouter()
 
-const pages = inject('pages')
+const pageLinks = inject('pageLinks')
 
 //maybe make the refs list and the timeline assignments dynamic (in a loop)
 const first = ref(null)

@@ -47,20 +47,19 @@
 							[
 								"position_tags",
 								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "paragraph",
-											"content": {
-												"text": "Ex ipsum veniam ex magna ex dolore. In consectetur excepteur minim deserunt sint. Fugiat voluptate mollit voluptate consequat in labore et."
-											}
-										}
-									]
+									"__TYPE__": "FieldContent",
+									"value": "fifteen",
+									"type": "Text"
 								}
 							]
 						]
 					}
 				]
+			},
+			"employer_about": {
+				"__TYPE__": "FieldContent",
+				"value": "substance",
+				"type": "Text"
 			}
 		},
 		"items": []

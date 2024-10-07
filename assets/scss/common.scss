@@ -3,7 +3,7 @@
 
 //common styles
 
-a.under {
+.under {
     display: inline-flex;
     transition: border .6s, color .5s;
     align-self: flex-start;
@@ -19,7 +19,7 @@ a.under {
 
 }
 
-a.fill {
+.fill {
     transition: color .3s;
     color: $cornflower;
 
@@ -208,16 +208,7 @@ nav  {
         @apply p-8 fixed right-0 left-0 bottom-0;
         pointer-events: none;
 
-        // .inner {
-        //     opacity: 1;
-        //     transition: opacity .5s;
-
-        //     &.disabled {
-        //         opacity: .3;
-        //     }
-        // }
-
-        a {
+        a, button {
             opacity: 0;
             pointer-events: all;
 
@@ -522,6 +513,12 @@ nav  {
 
 .h-5 {
     height: 1.25rem;
+}
+
+.prismic-rich-text {
+    a, button {
+        @extend .under;
+    }
 }
 
 

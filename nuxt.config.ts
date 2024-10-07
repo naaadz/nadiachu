@@ -1,4 +1,4 @@
-import { apiEndpoint, repositoryName } from "./slicemachine.config.json";
+
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
  app: {
@@ -30,12 +30,12 @@ export default defineNuxtConfig({
  },
 
  devtools: {
-     enabled: true
+     enabled: false
  },
 
  prismic: {
-     endpoint: apiEndpoint || repositoryName
- },
+    endpoint: 'https://nadias-resume.cdn.prismic.io/api/v2',
+  },
 
  compatibilityDate: '2024-10-05'
 })

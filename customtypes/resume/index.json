@@ -1,48 +1,30 @@
 {
   "format": "page",
   "id": "resume",
-  "label": "resume",
+  "label": "Resume",
   "repeatable": false,
   "status": true,
   "json": {
     "Main": {
-      "about_me_blurb": {
-        "type": "StructuredText",
+      "resume_download_link": {
+        "type": "Link",
         "config": {
-          "label": "About me blurb",
+          "label": "Resume download link",
           "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-        }
-      },
-      "about_tags": {
-        "type": "Group",
-        "config": {
-          "label": "About tags",
-          "repeat": true,
-          "fields": {
-            "tag_text": {
-              "type": "Text",
-              "config": {
-                "label": "Tag text",
-                "placeholder": ""
-              }
-            },
-            "tag_link": {
-              "type": "Text",
-              "config": {
-                "label": "Tag link",
-                "placeholder": ""
-              }
-            }
-          }
+          "select": null,
+          "allowText": true
         }
       },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "employer": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },
@@ -71,19 +53,6 @@
           "thumbnails": []
         },
         "type": "Image"
-      }
-    },
-    "Resume": {
-      "slices2": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
-        "config": {
-          "choices": {
-            "employer": {
-              "type": "SharedSlice"
-            }
-          }
-        }
       }
     }
   }

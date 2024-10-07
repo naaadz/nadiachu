@@ -13,13 +13,13 @@
       <div class="flex-col text-center">
         <STCLogo class="logo" @logoTL="onlogoTL" />
         <p class="blurb" ref="blurb">
-          A portfolio site by <nuxt-link to="/contact" class="under active">Nadia Chu</nuxt-link>
+          <prismic-rich-text class="prismic-rich-text" :field="aboutPage.data.under_logo_blurb" :serializer="serializer"/>
         </p>
       </div>
 
       <nav class="flex justify-center gap-4 m-10" ref="standardnav">
         <nuxt-link
-          v-for="page in pages"
+          v-for="page in pageLinks"
           :key="page.name"
           :class="{active: route.name === page.name}"
           :to="page.route"
@@ -37,7 +37,7 @@
       </nav>
       <nav class="nav flex justify-center gap-4">
         <nuxt-link
-          v-for="page in pages"
+          v-for="page in pageLinks"
           :key="page.name"
           class="fill"
           :class="{active: route.name === page.name}"
@@ -71,8 +71,11 @@ import gsap from 'gsap';
 
 const route = useRoute();
 const router = useRouter();
+const serializer = usePrismicSerializer();
 
-const pages = inject('pages')
+// Injectables
+const aboutPage = inject('aboutPage')
+const pageLinks = inject('pageLinks')
 
 const first = ref(null);
 const second = ref(null);

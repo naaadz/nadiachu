@@ -1,6 +1,6 @@
 <template>
 	<div class="form-wrap space-y-8">
-		<p>Thanks for contacting me, I'm looking forward to chatting with you.</p>
+        <prismic-rich-text class="prismic-rich-text" :field="contactPage.data.contact_blurb" :serializer="serializer"/>
 		<form
 			class="flex flex-col space-y-4"
             @submit.prevent="onSubmit"
@@ -50,11 +50,16 @@
 </template>
 
 <script setup>
+const {serializer} = usePrismicSerializer();
 
+// Composables
 definePageMeta({
 	title: "Contact",
 	heading: ["contact", "me"],
 })
+
+// Injectables
+const contactPage = inject('contactPage')
 
 const socials = [
     { name: 'email', link: 'mailto:naaadz@gmail.com', title: 'Email' },
@@ -64,6 +69,7 @@ const socials = [
     { name: 'dribbble', link: 'https://dribbble.com/naaadz', title: 'Dribbble' }  
 ]
 
+// Local state
 const formData = reactive({
     name: '',
     email: '',
@@ -74,11 +80,12 @@ const formData = reactive({
 const validation = reactive({
     isValid: undefined,
     message: {
-        success: `It worked! Thanks :)`,
-        error: `It didn't work :( Check the fields and try again.`
+        success: contactPage.data.contact_form_success_message,
+        error: contactPage.data.contact_form_error_message
     }
 })
 
+// Methods
 const isEmailValid = (email) => {
   const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
   return regex.test(email)

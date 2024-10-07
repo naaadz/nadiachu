@@ -45,6 +45,14 @@ body {
     font-family: 'Lato';
 }
 
+.prismic-rich-text ul {
+  @apply list-disc list-outside pl-5 flex flex-col gap-3;
+}
+
+.prismic-rich-text ul li {
+  @apply text-balance;
+}
+
 
 
 
