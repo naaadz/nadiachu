@@ -1,18 +1,13 @@
-
 export default defineNuxtRouteMiddleware((to, from) => {
-    if (to.path === '/') {
-        return navigateTo('/about')
+    // Redirect root path to '/about' if not already there
+    if (to.path === '/' && to.name !== 'about') {
+      return navigateTo('/about')
     }
-
-    // remove trailing slash in url if it got there somehow
-    //otherwise, nuxt will try to add a child route to it with next() 
-    //in the beforeEach hook
-
+  
+    // Remove trailing slash and redirect with 301 if it's not the root
     if (to.path !== '/' && to.path.endsWith('/')) {
-        const { path, query, hash } = to
-        const nextPath = path.replace(/\/+$/, '') || '/'
-        const nextRoute = { path: nextPath, query, hash }
-        return navigateTo(nextRoute, { redirectCode: 301 })
-      }
-    
+      const { path, query, hash } = to
+      const nextPath = path.replace(/\/+$/, '')
+      return navigateTo({ path: nextPath, query, hash }, { redirectCode: 301 })
+    }
   })
