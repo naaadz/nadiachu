@@ -71,7 +71,7 @@ import gsap from 'gsap';
 
 const route = useRoute();
 const router = useRouter();
-const serializer = usePrismicSerializer();
+const { serializer } = usePrismicSerializer()
 
 // Injectables
 const aboutPage = inject('aboutPage')
